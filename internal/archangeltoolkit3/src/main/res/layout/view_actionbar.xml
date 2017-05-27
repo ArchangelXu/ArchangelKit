@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:id = "@+id/view_actionbar_layout"
+              xmlns:android = "http://schemas.android.com/apk/res/android"
+              android:layout_width = "match_parent"
+              android:layout_height = "wrap_content"
+              android:clipChildren = "false"
+              android:orientation = "vertical">
+
+	<Space
+		android:id = "@+id/view_actionbar_status_bar"
+		android:layout_width = "match_parent"
+		android:layout_height = "0dp"/>
+
+	<RelativeLayout
+		android:layout_width = "match_parent"
+		android:layout_height = "48dp"
+		android:clipChildren = "false">
+
+		<FrameLayout
+			android:id = "@+id/view_actionbar_title_container"
+			android:layout_width = "wrap_content"
+			android:layout_height = "match_parent"
+			android:layout_centerInParent = "true"
+			android:paddingLeft = "12dp"
+			android:paddingRight = "12dp">
+		</FrameLayout>
+
+		<FrameLayout
+			android:id = "@+id/view_actionbar_left_container"
+			android:layout_width = "wrap_content"
+			android:layout_height = "match_parent"
+			android:layout_alignParentLeft = "true">
+			<!--<include layout = "@layout/view_actionbar_arrow"/>-->
+			<!--<include layout = "@layout/view_actionbar_text"/>-->
+			<!--<include layout = "@layout/view_actionbar_image"/>-->
+		</FrameLayout>
+
+		<FrameLayout
+			android:id = "@+id/view_actionbar_right_container"
+			android:layout_width = "wrap_content"
+			android:layout_height = "match_parent"
+			android:layout_alignParentRight = "true">
+			<!--<include layout = "@layout/view_actionbar_arrow"/>-->
+			<!--<include layout = "@layout/view_actionbar_text"/>-->
+			<!--<include layout = "@layout/view_actionbar_image"/>-->
+		</FrameLayout>
+	</RelativeLayout>
+</LinearLayout>

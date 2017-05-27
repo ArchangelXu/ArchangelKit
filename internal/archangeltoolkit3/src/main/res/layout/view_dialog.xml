@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:id = "@+id/view_dialog_back"
+                xmlns:android = "http://schemas.android.com/apk/res/android"
+                xmlns:app = "http://schemas.android.com/apk/res-auto"
+                android:layout_width = "match_parent"
+                android:layout_height = "match_parent"
+                android:background = "@color/trans_25"
+                android:padding = "24dp">
+
+	<LinearLayout
+		android:layout_width = "match_parent"
+		android:layout_height = "wrap_content"
+		android:layout_centerInParent = "true"
+		android:background = "@drawable/p_dialog"
+		android:clickable = "true"
+		android:orientation = "vertical"
+		android:paddingLeft = "10dp"
+		android:paddingRight = "10dp"
+		android:paddingTop = "10dp">
+
+		<LinearLayout
+			android:id = "@+id/view_dialog_body"
+			android:layout_width = "match_parent"
+			android:layout_height = "wrap_content"
+			android:layout_weight = "1"
+			android:clickable = "true"
+			android:clipToPadding = "false"
+			android:orientation = "vertical"
+			android:padding = "24dp">
+
+			<TextView
+				android:id = "@+id/view_dialog_title"
+				android:layout_width = "wrap_content"
+				android:layout_height = "wrap_content"
+				android:text = "标题"
+				android:textColor = "@color/text_black"
+				android:textSize = "18sp"/>
+
+			<uk.co.androidalliance.edgeeffectoverride.EdgeEffectScrollView
+				android:id = "@+id/view_dialog_message_scroller"
+				android:layout_width = "match_parent"
+				android:layout_height = "wrap_content"
+				android:layout_marginTop = "16dp">
+
+				<TextView
+					android:id = "@+id/view_dialog_message"
+					android:layout_width = "match_parent"
+					android:layout_height = "wrap_content"
+					android:text = "这是对话框的正文哦~~~~~~~~~\n哦哈哈哈哈~"
+					android:textColor = "@color/text_black"
+					android:textSize = "14sp"/>
+			</uk.co.androidalliance.edgeeffectoverride.EdgeEffectScrollView>
+
+			<FrameLayout
+				android:id = "@+id/view_dialog_custom"
+				android:layout_width = "match_parent"
+				android:layout_height = "wrap_content"
+				android:layout_marginLeft = "-24dp"
+				android:layout_marginRight = "-24dp"
+				android:layout_marginTop = "16dp"
+				android:clipChildren = "false"
+				android:clipToPadding = "false"
+				android:visibility = "gone"/>
+		</LinearLayout>
+
+		<LinearLayout
+			android:id = "@+id/view_dialog_button_container"
+			android:layout_width = "match_parent"
+			android:layout_height = "wrap_content"
+			android:layout_marginBottom = "26dp"
+			android:gravity = "right"
+			android:orientation = "horizontal"
+			android:paddingRight = "16dp"
+			android:visibility = "visible">
+
+			<com.rey.material.widget.Button
+				android:id = "@+id/button_cancel"
+				style = "@style/MDButton.Flat"
+				android:layout_width = "wrap_content"
+				android:layout_height = "36dp"
+				android:layout_gravity = "center_vertical"
+				android:minWidth = "72dp"
+				android:text = "@string/angel_dialog_cancel"
+				app:rd_delayClick = "untilRelease"/>
+
+			<com.rey.material.widget.Button
+				android:id = "@+id/button_neutral"
+				style = "@style/MDButton.Flat"
+				android:layout_width = "wrap_content"
+				android:layout_height = "36dp"
+				android:layout_gravity = "center_vertical"
+				android:minWidth = "72dp"
+				android:text = "@string/angel_dialog_neutual"
+				app:rd_delayClick = "untilRelease"/>
+
+			<com.rey.material.widget.Button
+				android:id = "@+id/button_accept"
+				style = "@style/MDButton.Flat"
+				android:layout_width = "wrap_content"
+				android:layout_height = "36dp"
+				android:layout_gravity = "center_vertical"
+				android:minWidth = "72dp"
+				android:text = "@string/angel_dialog_ok"
+				app:rd_delayClick = "untilRelease"/>
+		</LinearLayout>
+	</LinearLayout>
+</RelativeLayout>

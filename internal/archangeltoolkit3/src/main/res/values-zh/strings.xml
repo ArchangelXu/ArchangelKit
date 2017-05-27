@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string name = "app_name">ArchangelToolKit3</string>
+	<string name = "error_wrong_json_format">数据格式错误</string>
+	<string name = "date_just_now">刚刚</string>
+	<string name = "date_minutes_ago">%d分钟前</string>
+	<string name = "date_hours_ago">%d小时前</string>
+	<string name = "date_days_ago">%d天前</string>
+	<string name = "date_weeks_ago">%d周前</string>
+	<string name = "date_months_ago">%d个月前</string>
+	<string name = "date_years_ago">%d年前</string>
+	<plurals name = "date_minutes_ago_plural">
+		<item quantity = "other">%d分钟前</item>
+	</plurals>
+	<plurals name = "date_hours_ago_plural">
+		<item quantity = "other">%d小时前</item>
+	</plurals>
+	<plurals name = "date_days_ago_plural">
+		<item quantity = "other">%d天前</item>
+	</plurals>
+	<plurals name = "date_weeks_ago_plural">
+		<item quantity = "other">%d周前</item>
+	</plurals>
+	<plurals name = "date_months_ago_plural">
+		<item quantity = "other">%d个月前</item>
+	</plurals>
+	<plurals name = "date_years_ago_plural">
+		<item quantity = "other">%d年前</item>
+	</plurals>
+	<string name = "error_no_network">无网络连接</string>
+	<string name = "error_other">未知错误</string>
+	<string name = "angel_dialog_cancel">取消</string>
+	<string name = "angel_dialog_neutual">其他</string>
+	<string name = "angel_dialog_ok">确定</string>
+	<string name = "permission_title_camera">需要权限</string>
+	<string name = "permission_try_again">重试</string>
+	<string name = "common_cancel">取消</string>
+	<string name = "permission_setting">去设置</string>
+	<string name = "common_edit">编辑</string>
+</resources>

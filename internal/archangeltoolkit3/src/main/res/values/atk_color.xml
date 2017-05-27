@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<!--Transparent-->
+	<color name = "trans">#00000000</color>
+	<color name = "trans_75">#bF000000</color>
+	<color name = "trans_50">#7F000000</color>
+	<color name = "trans_25">#3F000000</color>
+	<color name = "trans_12">#1F000000</color>
+	<color name = "trans_6">#0B000000</color>
+	<color name = "trans_white_75">#bFFFFFFF</color>
+	<color name = "trans_white_50">#7FFFFFFF</color>
+	<color name = "trans_white_25">#3FFFFFFF</color>
+	<color name = "trans_white_12">#1FFFFFFF</color>
+	<color name = "trans_white_6">#0BFFFFFF</color>
+	<color name = "trans_white">#00FFFFFF</color>
+	<!--White, Grey & Black-->
+	<color name = "white">#ffffff</color>
+	<color name = "white_dark">#F4F4F4</color>
+	<color name = "grey">#777</color>
+	<color name = "grey_light">#bbb</color>
+	<color name = "black">#444</color>
+	<color name = "black_light">#555</color>
+	<!--Rainbow-->
+	<color name = "pink">#f46eba</color>
+	<color name = "red">#F55949</color>
+	<color name = "orange">#F5A61C</color>
+	<color name = "yellow">#f5df1c</color>
+	<color name = "green">#60C782</color>
+	<color name = "green_alt">#9ACC54</color>
+	<color name = "cyan">#60C2C2</color>
+	<color name = "blue_light">#6CB6F5</color>
+	<color name = "blue">#3080f9</color>
+	<color name = "pruple">#9E8ADB</color>
+	<!--Text Color-->
+	<color name = "text_black">@color/black</color>
+	<color name = "text_white">@color/white</color>
+	<color name = "text_grey">@color/grey</color>
+</resources>

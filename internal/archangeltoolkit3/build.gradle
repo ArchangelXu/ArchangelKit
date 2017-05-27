@@ -1,0 +1,64 @@
+apply plugin: 'com.android.library'
+apply plugin: 'me.tatarka.retrolambda'
+
+android {
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    buildToolsVersion rootProject.ext.buildToolsVersion
+
+    defaultConfig {
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
+        renderscriptTargetApi 19
+        renderscriptSupportModeEnabled true
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility 1.8
+        targetCompatibility 1.8
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    testCompile 'junit:junit:4.12'
+    compile 'com.orhanobut:logger:1.15'
+    compile "com.android.support:recyclerview-v7:$rootProject.ext.supportLibraryVersion"
+    compile project(':internal:constrainedWidget')
+    compile project(':internal:edgeEffectOverride')
+    compile project(':internal:materialEditText')
+    compile 'com.squareup.okhttp3:okhttp:3.4.1'
+    compile 'com.ogaclejapan.smarttablayout:library:1.6.1@aar'
+    compile 'com.ogaclejapan.smarttablayout:utils-v4:1.6.1@aar'
+    compile project(':internal:materialdesigneffectlibrary')
+    compile project(':internal:public_libs')
+    compile project(':internal:barone')
+
+    compile 'com.badoo.mobile:android-weak-handler:1.1'
+    compile 'com.eightbitlab:blurview:1.1.2'
+
+    compile 'com.lsjwzh:materialloadingprogressbar:0.5.8-RELEASE'
+    compile 'jp.wasabeef:recyclerview-animators:2.2.3'
+
+    compile project(':internal:androidnumberpicker')
+    compile project(':internal:swipeToLoadLayout')
+    compile 'com.yalantis:ucrop:2.2.0'
+    compile('com.github.ozodrukh:CircularReveal:2.0.1@aar') {
+        transitive = true;
+    }
+    compile 'com.nineoldandroids:library:2.4.0'
+    compile 'com.daimajia.easing:library:1.0.1@aar'
+    compile 'uk.co.chrisjenx:calligraphy:2.2.0'
+    compile 'com.android.support.constraint:constraint-layout:1.0.0-alpha7'
+}
+repositories {
+    maven {
+        repositories {
+            url 'https://oss.sonatype.org/content/repositories/releases/'
+        }
+    }
+}

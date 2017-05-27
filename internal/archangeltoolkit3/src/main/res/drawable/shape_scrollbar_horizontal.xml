@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android = "http://schemas.android.com/apk/res/android">
+	<item android:bottom = "4dp"> <!-- Your Margin -->
+		<shape>
+			<size android:height = "4dp"/>
+			<solid android:color = "@color/trans_12"/>
+			<stroke
+				android:color = "@color/trans_white_12"
+				android:width = "1px"/>
+			<corners android:radius = "2dp"/>
+		</shape>
+	</item>
+</layer-list>

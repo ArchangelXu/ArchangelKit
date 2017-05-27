@@ -1,0 +1,170 @@
+<resources>
+	<!--
+		Base application theme, dependent on API level. This theme is replaced
+		by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
+	-->
+	<style name = "AppBaseTheme" parent = "android:Theme.Light">
+		<!--
+			Theme customizations available in newer API levels can go in
+			res/values-vXX/styles.xml, while customizations related to
+			backward-compatibility can go here.
+		-->
+	</style>
+	<!-- Application theme. -->
+	<style name = "AppTheme" parent = "AppBaseTheme">
+		<!--<item name="android:overScrollMode">never</item>-->
+		<!-- All customizations that are NOT specific to a particular API-level can go here. -->
+	</style>
+
+	<style name = "AngelNumberPicker" parent = "NPWidget.Holo.NumberPicker">
+		<item name = "solidColor">@color/trans</item>
+		<item name = "selectionDivider">@android:color/holo_blue_light</item>
+		<item name = "selectionDividerHeight">2dp</item>
+		<item name = "internalLayout">@layout/number_picker_with_selector_wheel</item>
+		<item name = "internalMinWidth">60dp</item>
+		<item name = "internalMaxHeight">180dp</item>
+		<item name = "virtualButtonPressedDrawable">@drawable/selecter_numberpicker_button</item>
+	</style>
+	<!--<style name = "AnimDialog" parent = "android:Theme.Translucent">-->
+	<style name = "AnimDialog" parent = "AngelTheme.Translucent.NoTitleBar">
+		<!--<style name = "AnimDialog" parent = "android:Theme.Translucent.NoTitleBar">-->
+		<item name = "android:windowAnimationStyle">@style/AngelFadeAnim</item>
+		<item name = "android:windowSoftInputMode">stateUnspecified|adjustResize</item>
+		<item name = "android:windowContentOverlay">@null</item>
+		<item name = "android:windowTranslucentStatus">true</item>
+		<item name = "windowNoTitle">true</item>
+		<item name = "android:windowNoTitle">true</item>
+		<item name = "android:windowIsFloating">false</item>
+		<!-- ListView样式-->
+		<item name = "android:listViewStyle">@style/AngelTheme.ListView</item>
+		<!-- TextView样式-->
+		<item name = "android:textViewStyle">@style/AngelTheme.TextView</item>
+		<!-- EditText样式-->
+		<item name = "android:editTextStyle">@style/AngelTheme.EditText</item>
+		<!-- Scrollbar样式-->
+		<item name = "android:scrollbarThumbVertical">@drawable/shape_scrollbar_vertical</item>
+		<item name = "android:scrollbarThumbHorizontal">@drawable/shape_scrollbar_horizontal</item>
+		<item name = "android:scrollbarStyle">outsideOverlay</item>
+	</style>
+
+	<style name = "AnimDialogFullscreen" parent = "android:Theme.Translucent.NoTitleBar.Fullscreen">
+		<!--<style name = "AnimDialog" parent = "android:Theme.Translucent.NoTitleBar">-->
+		<item name = "android:windowAnimationStyle">@style/AngelFadeAnim</item>
+		<item name = "android:windowSoftInputMode">stateUnspecified|adjustResize</item>
+		<item name = "android:windowNoTitle">true</item>
+		<item name = "android:windowIsFloating">false</item>
+		<!-- ListView样式-->
+		<item name = "android:listViewStyle">@style/AngelTheme.ListView</item>
+		<!-- TextView样式-->
+		<item name = "android:textViewStyle">@style/AngelTheme.TextView</item>
+		<!-- EditText样式-->
+		<item name = "android:editTextStyle">@style/AngelTheme.EditText</item>
+		<!-- Scrollbar样式-->
+		<item name = "android:scrollbarThumbVertical">@drawable/shape_scrollbar_vertical</item>
+		<item name = "android:scrollbarThumbHorizontal">@drawable/shape_scrollbar_horizontal</item>
+		<item name = "android:scrollbarStyle">outsideOverlay</item>
+	</style>
+
+	<style name = "MaterialDialog" parent = "android:Theme.Translucent">
+		<item name = "android:windowFrame">@null</item>
+		<item name = "android:windowBackground">@android:color/transparent</item>
+		<!--<item name="android:windowIsFloating">true</item>-->
+		<item name = "android:windowContentOverlay">@null</item>
+		<item name = "android:windowTitleStyle">@null</item>
+		<item name = "android:windowAnimationStyle">@style/AngelFadeAnim</item>
+		<item name = "android:windowSoftInputMode">stateUnspecified|adjustPan</item>
+		<item name = "android:backgroundDimEnabled">false</item>
+		<item name = "android:background">@android:color/transparent</item>
+		<!--&lt;!&ndash;<item name = "android:windowAnimationStyle">@style/AngelActivityAnim</item>&ndash;&gt;-->
+		<!--&lt;!&ndash;<item name = "android:backgroundDimEnabled">false</item>&ndash;&gt;-->
+		<!--&lt;!&ndash; activity 不变暗 &ndash;&gt;-->
+		<!--&lt;!&ndash;<item name = "android:windowIsTranslucent">true</item>&ndash;&gt;-->
+		<!--&lt;!&ndash; 半透明 &ndash;&gt;-->
+		<!--<item name = "android:windowIsFloating">true</item>-->
+		<!--&lt;!&ndash; 是否浮现在activity之上 &ndash;&gt;-->
+		<!--<item name = "android:windowNoTitle">true</item>-->
+		<!--<item name = "android:windowFrame">@null</item>-->
+		<!--<item name = "android:windowTitleStyle">@null</item>-->
+		<!--&lt;!&ndash;<item name = "android:windowBackground">@color/trans</item>&ndash;&gt;-->
+		<!--&lt;!&ndash;<item name = "android:colorBackgroundCacheHint">@null</item>&ndash;&gt;-->
+		<!--<item name = "android:windowContentOverlay">@null</item>-->
+		<!--<item name = "android:windowAnimationStyle">@style/AngelActivityAnim</item>-->
+		<!--<item name = "android:windowSoftInputMode">stateUnspecified|adjustPan</item>-->
+		<!--<item name = "android:windowCloseOnTouchOutside">false</item>-->
+		<!--<item name = "android:windowActionModeOverlay">true</item>-->
+	</style>
+
+	<style name = "AngelFadeAnim">
+		<item name = "android:windowEnterAnimation">@anim/dialog_fade_in</item>
+		<item name = "android:windowExitAnimation">@anim/dialog_fade_out</item>
+	</style>
+
+	<style name = "AngelProgressDialogEternal" parent = "android:Theme.Dialog">
+		<item name = "android:windowFrame">@null</item>
+		<item name = "android:windowBackground">@color/trans</item>
+		<item name = "android:windowIsFloating">true</item>
+		<item name = "android:windowContentOverlay">@null</item>
+		<item name = "android:windowTitleStyle">@null</item>
+		<item name = "android:windowAnimationStyle">@android:style/Animation.Dialog</item>
+		<item name = "android:windowSoftInputMode">stateUnspecified|adjustPan</item>
+		<item name = "android:backgroundDimEnabled">false</item>
+		<item name = "android:background">@color/trans</item>
+	</style>
+
+	<style name = "AngelProgressDialog" parent = "android:Theme.Dialog">
+		<item name = "android:windowFrame">@null</item>
+		<item name = "android:windowBackground">@null</item>
+		<item name = "android:windowIsFloating">true</item>
+		<item name = "android:windowContentOverlay">@null</item>
+		<item name = "android:windowTitleStyle">@null</item>
+		<item name = "android:windowAnimationStyle">@android:style/Animation.Dialog</item>
+		<item name = "android:windowSoftInputMode">stateUnspecified|adjustPan</item>
+		<item name = "android:backgroundDimEnabled">true</item>
+		<item name = "android:background">@color/black</item>
+	</style>
+	<!--<style name = "AngelProgressDialogAnim">-->
+	<!--<item name = "android:windowEnterAnimation">@anim/dialog_fade_in</item>-->
+	<!--<item name = "android:windowExitAnimation">@anim/dialog_fade_out</item>-->
+	<!--</style>-->
+	<!--<style name = "AngelTheme.ListView" parent = "@android:style/Widget.Holo.Light.ListView">-->
+	<style name = "AngelTheme.ListView" parent = "Widget.AppCompat.ListView">
+		<item name = "android:fadingEdge">none</item>
+		<item name = "android:divider">@color/grey_light</item>
+		<item name = "android:dividerHeight">1px</item>
+		<item name = "android:fadingEdgeLength">0dp</item>
+		<item name = "android:listSelector">@color/trans</item>
+		<item name = "android:cacheColorHint">@color/trans</item>
+	</style>
+
+	<style name = "AngelTheme.TextView" parent = "android:Widget.Holo.Light.TextView">
+		<item name = "android:textIsSelectable">false</item>
+		<item name = "android:textColorHint">@color/trans_25</item>
+		<item name = "android:textColor">@color/text_black</item>
+		<item name = "android:textAppearance">@android:style/TextAppearance.Holo.Small</item>
+		<item name = "android:includeFontPadding">false</item>
+		<item name = "android:textAllCaps">false</item>
+		<!--<item name = "android:fontFamily">sans-serif-light</item>-->
+		<!--<item name="fontPath">fonts/font.ttf</item>-->
+	</style>
+	<!--<style name = "AngelTheme.Button" parent = "android:Widget.Holo.Light.Button">-->
+	<!--&lt;!&ndash;<item name = "android:fontFamily">sans-serif-light</item>&ndash;&gt;-->
+	<!--<item name="fontPath">fonts/font.ttf</item>-->
+	<!--</style>-->
+	<!--<style name = "AngelTheme.EditText" parent = "android:Widget.Holo.Light.EditText">-->
+	<style name = "AngelTheme.EditText" parent = "Widget.AppCompat.EditText">
+		<item name = "android:textColorHint">@color/trans_25</item>
+		<item name = "android:textColor">@color/text_black</item>
+		<item name = "android:textAppearance">@android:style/TextAppearance.Holo.Medium</item>
+		<item name = "android:textSize">14sp</item>
+	</style>
+	<!--<style name = "AngelTheme.ActionBar" parent = "@android:style/Widget.Holo.Light.ActionBar.Solid">-->
+	<style name = "AngelTheme.ActionBar" parent = "Base.Widget.AppCompat.Light.ActionBar.Solid">
+		<item name = "android:background">@color/white</item>
+		<item name = "android:backgroundStacked">@color/white</item>
+		<item name = "android:backgroundSplit">@color/white</item>
+		<item name = "elevation">0dp</item>
+		<item name = "android:height">48dp</item>
+		<item name = "height">48dp</item>
+		<!--<item name="android:layout_marginTop">18dp</item>-->
+	</style>
+</resources>

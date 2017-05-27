@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<!--<style name = "AngelTheme" parent = "android:Theme.Holo.Light">-->
+	<style name = "AngelTheme" parent = "Base.Theme.AppCompat.Light">
+		<!-- ListView样式-->
+		<item name = "android:listViewStyle">@style/AngelTheme.ListView</item>
+		<!-- TextView样式-->
+		<item name = "android:textViewStyle">@style/AngelTheme.TextView</item>
+		<!-- EditText样式-->
+		<item name = "android:editTextStyle">@style/AngelTheme.EditText</item>
+		<!-- Scrollbar样式-->
+		<item name = "android:scrollbarThumbVertical">@drawable/shape_scrollbar_vertical</item>
+		<item name = "android:scrollbarThumbHorizontal">@drawable/shape_scrollbar_horizontal</item>
+		<item name = "android:scrollbarStyle">outsideOverlay</item>
+		<!-- Actionbar下面阴影的样式-->
+		<!--<item name = "android:windowContentOverlay">@drawable/shape_shadow_actionbar</item>-->
+		<!-- Actionbar样式-->
+		<item name = "android:actionBarStyle">@style/AngelTheme.ActionBar</item>
+		<item name = "actionBarStyle">@style/AngelTheme.ActionBar</item>
+		<!-- Activity切换动画-->
+		<item name = "android:windowAnimationStyle">@style/AngelTheme.AngelActivityAnimation</item>
+		<!-- Actionbar tabbar样式-->
+		<!--<item name = "android:actionBarWidgetTheme">@style/AngelActionBarTabBar</item>-->
+		<item name = "android:actionBarDivider">@color/trans</item>
+	</style>
+
+	<style name = "AngelTheme.NoDisplay">
+		<item name = "android:windowBackground">@null</item>
+		<item name = "android:windowContentOverlay">@null</item>
+		<item name = "android:windowIsTranslucent">true</item>
+		<item name = "android:windowAnimationStyle">@null</item>
+		<item name = "android:windowDisablePreview">true</item>
+		<item name = "android:windowNoDisplay">true</item>
+	</style>
+	<!--<style name = "AngelTheme.DarkActionBar" parent = "android:Theme.Holo.Light.DarkActionBar">-->
+	<style name = "AngelTheme.DarkActionBar" parent = "Theme.AppCompat.Light.DarkActionBar">
+		<!-- ListView样式-->
+		<item name = "android:listViewStyle">@style/AngelTheme.ListView</item>
+		<!-- TextView样式-->
+		<item name = "android:textViewStyle">@style/AngelTheme.TextView</item>
+		<!-- Scrollbar样式-->
+		<item name = "android:scrollbarThumbVertical">@drawable/shape_scrollbar_vertical</item>
+		<item name = "android:scrollbarThumbHorizontal">@drawable/shape_scrollbar_horizontal</item>
+		<item name = "android:scrollbarStyle">outsideOverlay</item>
+		<!-- Actionbar下面阴影的样式-->
+		<!--<item name = "android:windowContentOverlay">@drawable/shape_shadow_actionbar</item>-->
+		<!-- Actionbar样式-->
+		<item name = "android:actionBarStyle">@style/AngelTheme.ActionBar</item>
+		<item name = "actionBarStyle">@style/AngelTheme.ActionBar</item>
+		<!-- Activity切换动画-->
+		<item name = "android:windowAnimationStyle">@style/AngelTheme.AngelActivityAnimation</item>
+		<!-- Actionbar tabbar样式-->
+		<!--<item name = "android:actionBarWidgetTheme">@style/AngelActionBarTabBar</item>-->
+		<item name = "android:actionBarDivider">@color/trans</item>
+	</style>
+	<!--<style name = "AngelTheme.Translucent.NoTitleBar"-->
+	<!--parent = "android:Theme.Translucent.NoTitleBar">-->
+	<style name = "AngelTheme.Translucent.NoTitleBar" parent = "Theme.AppCompat.Light">
+		<item name = "windowNoTitle">true</item>
+		<item name = "android:windowNoTitle">true</item>
+		<item name = "android:windowBackground">@android:color/transparent</item>
+		<item name = "android:colorBackgroundCacheHint">@null</item>
+		<item name = "android:windowIsTranslucent">true</item>
+		<item name = "android:windowAnimationStyle">@android:style/Animation</item>
+		<!-- ListView样式-->
+		<item name = "android:listViewStyle">@style/AngelTheme.ListView</item>
+		<!-- TextView样式-->
+		<item name = "android:textViewStyle">@style/AngelTheme.TextView</item>
+		<!-- Scrollbar样式-->
+		<item name = "android:scrollbarThumbVertical">@drawable/shape_scrollbar_vertical</item>
+		<item name = "android:scrollbarThumbHorizontal">@drawable/shape_scrollbar_horizontal</item>
+		<item name = "android:scrollbarStyle">outsideOverlay</item>
+		<!-- Actionbar下面阴影的样式-->
+		<!--<item name = "android:windowContentOverlay">@drawable/shape_shadow_actionbar</item>-->
+		<!-- Actionbar样式-->
+		<item name = "android:actionBarStyle">@style/AngelTheme.ActionBar</item>
+		<item name = "actionBarStyle">@style/AngelTheme.ActionBar</item>
+		<!-- Activity切换动画-->
+		<!--<item name = "android:windowAnimationStyle">@style/AngelTheme.AngelActivityAnimation</item>-->
+		<!-- Actionbar tabbar样式-->
+		<!--<item name = "android:actionBarWidgetTheme">@style/AngelActionBarTabBar</item>-->
+		<item name = "android:actionBarDivider">@color/trans</item>
+	</style>
+	<!--<style name = "AngelTheme.Fullscreen" parent = "android:Theme.NoTitleBar.Fullscreen">-->
+	<style name = "AngelTheme.Fullscreen" parent = "Theme.AppCompat.Light">
+		<item name = "windowNoTitle">true</item>
+		<item name = "android:windowNoTitle">true</item>
+		<item name = "windowActionBar">false</item>
+		<item name = "android:windowActionBar">false</item>
+		<item name = "android:windowFullscreen">true</item>
+		<item name = "android:windowContentOverlay">@null</item>
+		<!-- ListView样式-->
+		<item name = "android:listViewStyle">@style/AngelTheme.ListView</item>
+		<!-- TextView样式-->
+		<item name = "android:textViewStyle">@style/AngelTheme.TextView</item>
+		<!-- Scrollbar样式-->
+		<item name = "android:scrollbarThumbVertical">@drawable/shape_scrollbar_vertical</item>
+		<item name = "android:scrollbarThumbHorizontal">@drawable/shape_scrollbar_horizontal</item>
+		<item name = "android:scrollbarStyle">outsideOverlay</item>
+		<item name = "android:windowAnimationStyle">@style/AngelTheme.AngelActivityAnimation</item>
+		<!-- Actionbar下面阴影的样式-->
+		<!--<item name = "android:windowContentOverlay">@drawable/shape_shadow_actionbar</item>-->
+		<!-- Actionbar样式-->
+		<!--<item name = "android:actionBarStyle">@style/AngelTheme.ActionBarTheme</item>-->
+		<!-- Activity切换动画-->
+		<!--<item name = "android:windowAnimationStyle">@style/AngelTheme.AngelActivityAnimation</item>-->
+		<!-- Actionbar tabbar样式-->
+		<!--<item name = "android:actionBarWidgetTheme">@style/AngelActionBarTabBar</item>-->
+		<item name = "android:actionBarDivider">@color/trans</item>
+	</style>
+	<!--<style name = "AngelTheme.NoTitleBar" parent = "android:Theme.NoTitleBar">-->
+	<style name = "AngelTheme.NoTitleBar" parent = "Theme.AppCompat.Light">
+		<item name = "windowActionBar">false</item>
+		<item name = "android:windowActionBar">false</item>
+		<!-- ListView样式-->
+		<item name = "android:listViewStyle">@style/AngelTheme.ListView</item>
+		<!-- TextView样式-->
+		<item name = "android:textViewStyle">@style/AngelTheme.TextView</item>
+		<!-- Scrollbar样式-->
+		<item name = "android:scrollbarThumbVertical">@drawable/shape_scrollbar_vertical</item>
+		<item name = "android:scrollbarThumbHorizontal">@drawable/shape_scrollbar_horizontal</item>
+		<item name = "android:scrollbarStyle">outsideOverlay</item>
+		<item name = "android:windowAnimationStyle">@style/AngelTheme.AngelActivityAnimation</item>
+		<!-- Actionbar下面阴影的样式-->
+		<!--<item name = "android:windowContentOverlay">@drawable/shape_shadow_actionbar</item>-->
+		<!-- Actionbar样式-->
+		<!--<item name = "android:actionBarStyle">@style/AngelTheme.ActionBarTheme</item>-->
+		<!-- Activity切换动画-->
+		<!--<item name = "android:windowAnimationStyle">@style/AngelTheme.AngelActivityAnimation</item>-->
+		<!-- Actionbar tabbar样式-->
+		<!--<item name = "android:actionBarWidgetTheme">@style/AngelActionBarTabBar</item>-->
+		<item name = "android:actionBarDivider">@color/trans</item>
+	</style>
+
+	<style name = "AngelTheme.NoActionBar" parent = "Theme.AppCompat.Light.NoActionBar">
+		<!-- ListView样式-->
+		<item name = "android:listViewStyle">@style/AngelTheme.ListView</item>
+		<!-- TextView样式-->
+		<item name = "android:textViewStyle">@style/AngelTheme.TextView</item>
+		<!--&lt;!&ndash; Button样式&ndash;&gt;-->
+		<!--<item name = "buttonStyle">@style/AngelTheme.Button</item>-->
+		<!-- Scrollbar样式-->
+		<item name = "android:scrollbarThumbVertical">@drawable/shape_scrollbar_vertical</item>
+		<item name = "android:scrollbarThumbHorizontal">@drawable/shape_scrollbar_horizontal</item>
+		<item name = "android:scrollbarStyle">outsideOverlay</item>
+		<!-- Actionbar下面阴影的样式-->
+		<!--<item name = "android:windowContentOverlay">@drawable/shape_shadow_actionbar</item>-->
+		<!-- Actionbar样式-->
+		<item name = "android:actionBarStyle">@style/AngelTheme.ActionBar</item>
+		<item name = "actionBarStyle">@style/AngelTheme.ActionBar</item>
+		<!-- Activity切换动画-->
+		<item name = "android:windowAnimationStyle">@style/AngelTheme.AngelActivityAnimation</item>
+		<!-- Actionbar tabbar样式-->
+		<!--<item name = "android:actionBarWidgetTheme">@style/AngelActionBarTabBar</item>-->
+		<item name = "android:actionBarDivider">@color/trans</item>
+	</style>
+
+	<style name = "AngelTheme.ThemeOverlay" parent = "AngelTheme">
+		<item name = "android:windowActionBarOverlay">true</item>
+		<item name = "windowActionBarOverlay">true</item>
+	</style>
+	<!--<style name = "AngelTheme.Dialog" parent = "android:Theme.Holo.Light.Dialog">-->
+	<style name = "AngelTheme.Dialog" parent = "Theme.AppCompat.Light.Dialog">
+		<!-- ListView样式-->
+		<item name = "android:listViewStyle">@style/AngelTheme.ListView</item>
+		<!-- TextView样式-->
+		<item name = "android:textViewStyle">@style/AngelTheme.TextView</item>
+		<!-- Scrollbar样式-->
+		<item name = "android:scrollbarThumbVertical">@drawable/shape_scrollbar_vertical</item>
+		<item name = "android:scrollbarThumbHorizontal">@drawable/shape_scrollbar_horizontal</item>
+		<item name = "android:scrollbarStyle">outsideOverlay</item>
+		<!-- Actionbar下面阴影的样式-->
+		<!--<item name = "android:windowContentOverlay">@drawable/shape_shadow_actionbar</item>-->
+		<!-- Actionbar样式-->
+		<item name = "android:actionBarStyle">@style/AngelTheme.ActionBar</item>
+		<item name = "actionBarStyle">@style/AngelTheme.ActionBar</item>
+		<!-- Activity切换动画-->
+		<item name = "android:windowAnimationStyle">@style/AngelTheme.AngelActivityAnimation</item>
+		<!-- Actionbar tabbar样式-->
+		<!--<item name = "android:actionBarWidgetTheme">@style/AngelActionBarTabBar</item>-->
+		<item name = "android:actionBarDivider">@color/trans</item>
+	</style>
+
+	<style name = "AngelTheme.AngelActivityAnimation"
+	       parent = "@android:style/Animation.Activity">
+		<item name = "android:activityOpenEnterAnimation">@anim/act_slide_in_from_right</item>
+		<item name = "android:activityOpenExitAnimation">@anim/act_slide_out_from_left</item>
+		<item name = "android:activityCloseEnterAnimation">@anim/act_slide_in_from_left</item>
+		<item name = "android:activityCloseExitAnimation">@anim/act_slide_out_from_right</item>
+	</style>
+
+	<style name = "AngelTheme.AngelActivityAnimationShort"
+	       parent = "@android:style/Animation.Activity">
+		<item name = "android:activityOpenEnterAnimation">@anim/act_slide_in_from_right_short</item>
+		<item name = "android:activityOpenExitAnimation">@anim/act_slide_out_from_left_short</item>
+		<item name = "android:activityCloseEnterAnimation">@anim/act_slide_in_from_left_short</item>
+		<item name = "android:activityCloseExitAnimation">@anim/act_slide_out_from_right_short
+		</item>
+	</style>
+	<!--<style name = "AngelActionBarTabBar" parent = "@android:style/Widget.Holo.ActionBar.TabBar">-->
+	<!--<item name = "android:divider">@null</item>-->
+	<!--<item name = "android:showDividers">middle</item>-->
+	<!--<item name = "android:dividerPadding">0dp</item>-->
+	<!--</style>-->
+</resources>

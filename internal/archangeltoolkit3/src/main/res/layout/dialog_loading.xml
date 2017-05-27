@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+	android:id = "@+id/dialog_simple_text_scroll"
+	xmlns:android = "http://schemas.android.com/apk/res/android"
+	android:layout_width = "match_parent"
+	android:layout_height = "wrap_content"
+	android:orientation = "vertical"
+	android:paddingLeft = "24dp"
+	android:paddingRight = "24dp">
+
+	<TextView
+		android:id = "@+id/dialog_loading_text"
+		xmlns:android = "http://schemas.android.com/apk/res/android"
+		android:layout_width = "match_parent"
+		android:layout_height = "wrap_content"
+		android:text = "text"/>
+
+	<ProgressBar
+		android:id = "@+id/dialog_loading_progress"
+		style = "?android:attr/progressBarStyleHorizontal"
+		android:layout_width = "match_parent"
+		android:layout_height = "2dp"
+		android:layout_alignParentBottom = "true"
+		android:layout_marginTop = "16dp"
+		android:indeterminate = "false"
+		android:max = "10000"
+		android:progress = "0"
+		android:progressDrawable = "@drawable/shape_download_progress_bar"/>
+
+	<TextView
+		android:id = "@+id/dialog_loading_progress_text"
+		xmlns:android = "http://schemas.android.com/apk/res/android"
+		android:layout_width = "wrap_content"
+		android:layout_height = "wrap_content"
+		android:layout_marginTop = "8dp"
+		android:text = "0%"
+		android:textColor = "@color/text_grey"/>
+</LinearLayout>

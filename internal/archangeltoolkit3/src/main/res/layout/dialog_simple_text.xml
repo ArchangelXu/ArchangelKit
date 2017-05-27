@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<uk.co.androidalliance.edgeeffectoverride.EdgeEffectScrollView
+	android:id = "@+id/dialog_simple_text_scroll"
+	xmlns:android = "http://schemas.android.com/apk/res/android"
+	android:layout_width = "match_parent"
+	android:layout_height = "wrap_content"
+	android:fillViewport = "true"
+	android:overScrollMode = "never">
+
+	<TextView
+		android:id = "@+id/dialog_simple_text_text"
+		xmlns:android = "http://schemas.android.com/apk/res/android"
+		android:layout_width = "match_parent"
+		android:layout_height = "wrap_content"
+		android:paddingLeft = "24dp"
+		android:paddingRight = "24dp"/>
+</uk.co.androidalliance.edgeeffectoverride.EdgeEffectScrollView>

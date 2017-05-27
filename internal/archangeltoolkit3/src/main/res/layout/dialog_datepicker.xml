@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android = "http://schemas.android.com/apk/res/android"
+              android:orientation = "vertical"
+              android:layout_width = "match_parent"
+              android:layout_height = "wrap_content">
+
+	<TextView
+		android:id = "@+id/dialog_datepicker_title"
+		android:layout_width = "match_parent"
+		android:gravity = "center"
+		android:textSize = "18sp"
+		android:padding = "10dp"
+		android:layout_height = "wrap_content"
+		android:textStyle = "bold"
+		android:text = "选择日期"/>
+
+	<ImageView
+		android:layout_width = "match_parent"
+		android:layout_height = "1px"
+		android:src = "@color/grey"
+		android:scaleType = "fitXY"/>
+
+	<RelativeLayout
+		android:id = "@+id/dialog_datepicker_container"
+		android:layout_width = "match_parent"
+		android:layout_marginTop = "10dp"
+		android:layout_height = "120dp"
+		android:layout_gravity = "center_horizontal">
+
+		<LinearLayout
+			android:id = "@+id/dialog_datepicker_tmp1"
+			android:layout_width = "wrap_content"
+			android:layout_height = "match_parent"
+			android:padding = "1px"
+			android:layout_centerInParent = "true"
+			android:orientation = "horizontal">
+			<!--android:background = "@color/grey"-->
+			<net.simonvt.numberpicker.NumberPicker
+				android:id = "@+id/dialog_datepicker_year"
+				android:layout_width = "wrap_content"
+				style = "@style/AngelNumberPicker"
+				android:layout_height = "match_parent"/>
+
+			<TextView
+				android:layout_weight = "0"
+				android:layout_alignParentRight = "true"
+				android:layout_width = "50dp"
+				android:layout_centerVertical = "true"
+				android:textSize = "14sp"
+				android:gravity = "center"
+				android:layout_height = "match_parent"
+				android:text = "年"/>
+			<!--<ImageView-->
+			<!--android:layout_weight = "0"-->
+			<!--android:layout_width = "30dp"-->
+			<!--android:layout_height = "match_parent"-->
+			<!--android:src = "@color/trans"-->
+			<!--android:scaleType = "fitXY" />-->
+			<net.simonvt.numberpicker.NumberPicker
+				android:id = "@+id/dialog_datepicker_month"
+				android:layout_width = "wrap_content"
+				style = "@style/AngelNumberPicker"
+				android:layout_height = "match_parent"/>
+		</LinearLayout>
+
+		<TextView
+			android:layout_toRightOf = "@+id/dialog_datepicker_tmp1"
+			android:layout_width = "50dp"
+			android:textSize = "14sp"
+			android:gravity = "center"
+			android:layout_height = "match_parent"
+			android:text = "月"/>
+		<!--<RelativeLayout-->
+		<!--android:layout_width = "match_parent"-->
+		<!--android:layout_centerVertical = "true"-->
+		<!--android:layout_height = "50dp">-->
+		<!--<ImageView-->
+		<!--android:layout_width = "5dp"-->
+		<!--android:layout_height = "match_parent"-->
+		<!--android:layout_marginTop = "1px"-->
+		<!--android:layout_marginRight = "1px"-->
+		<!--android:layout_marginBottom = "1px"-->
+		<!--android:src = "@color/blue"-->
+		<!--android:layout_alignParentLeft = "true"-->
+		<!--android:scaleType = "fitXY" />-->
+		<!--<ImageView-->
+		<!--android:layout_width = "1px"-->
+		<!--android:layout_height = "match_parent"-->
+		<!--android:layout_alignParentRight = "true"-->
+		<!--android:src = "@color/grey"-->
+		<!--android:scaleType = "fitXY" />-->
+		<!--<ImageView-->
+		<!--android:layout_width = "match_parent"-->
+		<!--android:layout_height = "1px"-->
+		<!--android:layout_alignParentTop = "true"-->
+		<!--android:src = "@color/grey"-->
+		<!--android:scaleType = "fitXY" />-->
+		<!--<ImageView-->
+		<!--android:layout_width = "match_parent"-->
+		<!--android:layout_height = "1px"-->
+		<!--android:layout_alignParentBottom = "true"-->
+		<!--android:src = "@color/grey"-->
+		<!--android:scaleType = "fitXY" />-->
+		<!--</RelativeLayout>-->
+		<!--<ImageView-->
+		<!--android:layout_width = "match_parent"-->
+		<!--android:layout_height = "match_parent"-->
+		<!--android:id = "@+id/dialog_datepicker_mask"-->
+		<!--android:src = "@color/trans_white_half"-->
+		<!--android:visibility = "gone"-->
+		<!--android:scaleType = "fitXY" />-->
+	</RelativeLayout>
+
+	<RelativeLayout
+		android:layout_width = "match_parent"
+		android:layout_marginTop = "10dp"
+		android:id = "@+id/dialog_datepicker_tillnow_container"
+		android:layout_height = "wrap_content">
+
+		<CheckBox
+			android:layout_width = "wrap_content"
+			android:layout_height = "wrap_content"
+			android:text = "至今"
+			android:id = "@+id/dialog_datepicker_tillnow"
+			android:layout_centerHorizontal = "true"/>
+	</RelativeLayout>
+	<!--<ImageView-->
+	<!--android:layout_width = "match_parent"-->
+	<!--android:layout_height = "1px"-->
+	<!--android:src = "@color/grey"-->
+	<!--android:scaleType = "fitXY" />-->
+	<!--<LinearLayout-->
+	<!--android:layout_width = "match_parent"-->
+	<!--android:layout_height = "wrap_content">-->
+	<!--<Button-->
+	<!--android:layout_width = "wrap_content"-->
+	<!--android:layout_height = "wrap_content"-->
+	<!--android:background = "@color/white"-->
+	<!--android:text = "取消"-->
+	<!--android:layout_weight = "1"-->
+	<!--android:textSize = "16sp" />-->
+	<!--<ImageView-->
+	<!--android:layout_weight = "0"-->
+	<!--android:layout_width = "1px"-->
+	<!--android:layout_height = "match_parent"-->
+	<!--android:src = "@color/grey"-->
+	<!--android:scaleType = "fitXY" />-->
+	<!--<Button-->
+	<!--android:layout_weight = "1"-->
+	<!--android:layout_width = "wrap_content"-->
+	<!--android:layout_height = "wrap_content"-->
+	<!--android:background = "@color/white"-->
+	<!--android:text = "确定"-->
+	<!--android:textSize = "16sp" />-->
+	<!--</LinearLayout>-->
+</LinearLayout>

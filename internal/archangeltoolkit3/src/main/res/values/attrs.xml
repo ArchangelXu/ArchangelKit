@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<declare-styleable name = "AngelDashLine">
+		<attr name = "adl_dash_color" format = "color"/>
+		<attr name = "adl_background" format = "reference"/>
+		<attr name = "adl_dash_gap" format = "dimension"/>
+		<attr name = "adl_dash_length" format = "dimension"/>
+		<attr name = "adl_line_width" format = "dimension"/>
+	</declare-styleable>
+	<declare-styleable name = "AngelSingleCharInputArea">
+		<attr name = "ascia_divider_drawable" format = "reference"/>
+		<attr name = "ascia_divider_width" format = "dimension"/>
+		<attr name = "ascia_count" format = "integer"/>
+		<attr name = "ascia_char_layout" format = "reference"/>
+	</declare-styleable>
+	<declare-styleable name = "AngelNumberInputPad">
+		<attr name = "anip_number_color" format = "color"/>
+		<attr name = "anip_grey_color" format = "color"/>
+	</declare-styleable>
+	<declare-styleable name = "AngelRatingBar">
+		<attr name = "arab_star_size" format = "dimension"/>
+		<attr name = "arab_star_spacing" format = "dimension"/>
+		<attr name = "arab_star_padding" format = "dimension"/>
+		<attr name = "arab_star_count" format = "integer"/>
+		<attr name = "arab_star_max" format = "integer"/>
+		<attr name = "arab_star_empty" format = "reference"/>
+		<attr name = "arab_star_fill" format = "reference"/>
+		<attr name = "arab_star_half" format = "reference"/>
+		<attr name = "arab_enabled" format = "boolean"/>
+	</declare-styleable>
+	<declare-styleable name = "MaxHeightScrollView">
+		<attr name = "maxHeight" format = "dimension"/>
+	</declare-styleable>
+	<declare-styleable name = "AngelRedDot">
+		<attr name = "ard_style" format = "enum">
+			<enum name = "text" value = "0"/>
+			<enum name = "simple" value = "1"/>
+		</attr>
+		<attr name = "ard_oval_drawable" format = "reference"/>
+		<attr name = "ard_text_color" format = "color"/>
+	</declare-styleable>
+	<declare-styleable name = "AngelProgressBarHorizontal">
+		<attr name = "apbh_color" format = "color"/>
+		<attr name = "apbh_height" format = "dimension"/>
+		<attr name = "apbh_max" format = "integer"/>
+		<attr name = "apbh_min" format = "integer"/>
+		<attr name = "apbh_value" format = "integer"/>
+	</declare-styleable>
+	<declare-styleable name = "AngelProgressBarVertical">
+		<attr name = "apbv_color" format = "color"/>
+		<attr name = "apbv_width" format = "dimension"/>
+		<attr name = "apbv_max" format = "integer"/>
+		<attr name = "apbv_min" format = "integer"/>
+		<attr name = "apbv_value" format = "integer"/>
+	</declare-styleable>
+	<declare-styleable name = "AngelProgressCircle">
+		<attr name = "matProg_progressIndeterminate" format = "boolean"/>
+		<attr name = "matProg_barColor" format = "color"/>
+		<attr name = "matProg_rimColor" format = "color"/>
+		<attr name = "matProg_rimWidth" format = "dimension"/>
+		<attr name = "matProg_spinSpeed" format = "float"/>
+		<attr name = "matProg_barSpinCycleTime" format = "integer"/>
+		<attr name = "matProg_circleRadius" format = "dimension"/>
+		<attr name = "matProg_fillRadius" format = "boolean"/>
+		<attr name = "matProg_barWidth" format = "dimension"/>
+		<attr name = "matProg_linearProgress" format = "boolean"/>
+	</declare-styleable>
+	<declare-styleable name = "TintableImageView">
+		<attr name = "tint" format = "reference|color"/>
+	</declare-styleable>
+	<declare-styleable name = "GoogleCircleProgressView">
+		<attr name = "gcp_inner_radius" format = "dimension"/>
+		<attr name = "gcp_background_color" format = "color"/>
+		<attr name = "gcp_progress_color" format = "color"/>
+		<attr name = "gcp_progress_stoke_width" format = "dimension"/>
+		<attr name = "gcp_show_arrow" format = "boolean"/>
+		<attr name = "gcp_enable_circle_background" format = "boolean"/>
+		<attr name = "gcp_arrow_width" format = "dimension"/>
+		<attr name = "gcp_arrow_height" format = "dimension"/>
+		<attr name = "gcp_progress" format = "integer"/>
+		<attr name = "gcp_max" format = "integer"/>
+		<attr name = "gcp_progress_text_size" format = "dimension"/>
+		<attr name = "gcp_progress_text_color" format = "color"/>
+		<!--<attr name="gcp_progress_text_offset" format="dimension"/>-->
+		<attr name = "gcp_progress_text_visibility" format = "enum">
+			<enum name = "visible" value = "0"/>
+			<enum name = "invisible" value = "1"/>
+		</attr>
+	</declare-styleable>
+</resources>

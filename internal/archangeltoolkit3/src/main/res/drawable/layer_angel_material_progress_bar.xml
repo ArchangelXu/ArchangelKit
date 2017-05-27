@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android = "http://schemas.android.com/apk/res/android">
+	<item android:id = "@+id/layer_angel_material_progress_bar_back">
+		<shape android:shape = "rectangle">
+			<solid android:color = "@color/blue"/>
+		</shape>
+	</item>
+</layer-list>

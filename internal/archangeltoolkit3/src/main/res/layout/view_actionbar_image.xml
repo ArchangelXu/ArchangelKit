@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.rey.material.widget.RelativeLayout
+	xmlns:android = "http://schemas.android.com/apk/res/android"
+	xmlns:app = "http://schemas.android.com/apk/res-auto"
+	android:layout_width = "wrap_content"
+	android:minWidth = "48dp"
+	android:layout_height = "match_parent"
+	android:background = "@color/trans"
+	app:rd_backgroundColor = "@color/trans"
+	app:rd_enable = "true"
+	app:rd_rippleColor = "@color/trans_25">
+
+	<ImageView
+		android:id = "@+id/view_actionbar_image"
+		android:layout_width = "24dp"
+		android:layout_height = "24dp"
+		android:layout_centerInParent = "true"
+		android:src = "@drawable/ic_back"/>
+</com.rey.material.widget.RelativeLayout>
