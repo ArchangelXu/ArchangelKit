@@ -18,6 +18,6 @@ android {
 }
 
 dependencies {
-    compile project(':internal:edgeEffectOverride')
-    compile project(':internal:indexableListView')
+    compile project(':extra:ArchangelKit:internal:edgeEffectOverride')
+    compile project(':extra:ArchangelKit:internal:indexableListView')
 }

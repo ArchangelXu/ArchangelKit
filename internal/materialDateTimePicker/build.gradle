@@ -18,6 +18,6 @@ android {
 }
 
 dependencies {
-    compile project(':internal:edgeEffectOverride')
-    compile project(':internal:public_libs')
+    compile project(':extra:ArchangelKit:internal:edgeEffectOverride')
+    compile project(':extra:ArchangelKit:internal:public_libs')
 }
