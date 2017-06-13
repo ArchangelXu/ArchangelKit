@@ -22,6 +22,7 @@ public class AngelActionBar extends FrameLayout {
 	static int arrow_size = 24;
 	static int image_size = 24;
 	private boolean immersive;
+	static boolean use_light_effect = false;
 
 	public enum DisplayMode {
 		arrow, title, text, image, custom, none
@@ -66,6 +67,10 @@ public class AngelActionBar extends FrameLayout {
 
 	public static int getDefaultArrowResource() {
 		return default_arrow_resource;
+	}
+
+	public static void setUseLightEffect(boolean b) {
+		use_light_effect = b;
 	}
 
 	public boolean isImmersive() {
@@ -137,11 +142,11 @@ public class AngelActionBar extends FrameLayout {
 		}
 		switch (mode) {
 			case arrow: {
-				layout_id = R.layout.view_actionbar_arrow;
+				layout_id = use_light_effect ? R.layout.view_actionbar_arrow_light : R.layout.view_actionbar_arrow;
 				break;
 			}
 			case text: {
-				layout_id = R.layout.view_actionbar_text;
+				layout_id = use_light_effect ? R.layout.view_actionbar_text_light : R.layout.view_actionbar_text;
 				break;
 			}
 			case title: {
@@ -149,7 +154,7 @@ public class AngelActionBar extends FrameLayout {
 				break;
 			}
 			case image: {
-				layout_id = R.layout.view_actionbar_image;
+				layout_id = use_light_effect ? R.layout.view_actionbar_image_light : R.layout.view_actionbar_image;
 				break;
 			}
 			case custom: {

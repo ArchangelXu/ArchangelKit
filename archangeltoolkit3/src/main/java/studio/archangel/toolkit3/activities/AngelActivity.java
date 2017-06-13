@@ -242,6 +242,10 @@ public abstract class AngelActivity extends AppCompatActivity {
 		permission_helper.handlePermissionResult(requestCode, permissions, grantResults);
 	}
 
+	public void checkPermissions(String[] permission_strings, @NonNull OnPermissionCheckListener listener) {
+		permission_helper.checkPermissions(permission_strings, listener);
+	}
+
 	public class PermissionHelper {
 		int request_code = 40000;
 		ArrayList<OnPermissionCheckListener> listeners;

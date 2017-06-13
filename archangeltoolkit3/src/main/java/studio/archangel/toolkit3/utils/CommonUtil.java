@@ -11,6 +11,7 @@ import android.graphics.Bitmap;
 import android.graphics.Matrix;
 import android.graphics.Point;
 import android.hardware.Camera;
+import android.media.MediaMetadataRetriever;
 import android.net.ConnectivityManager;
 import android.net.Network;
 import android.net.NetworkInfo;
@@ -534,5 +535,19 @@ public class CommonUtil {
 					fileExtension.toLowerCase());
 		}
 		return mimeType;
+	}
+
+	public static boolean isVideoFile(Context context, String file_path) {
+		boolean isVideo = false;
+		try {
+			MediaMetadataRetriever retriever = new MediaMetadataRetriever();
+			retriever.setDataSource(context, Uri.parse(file_path));
+
+			String hasVideo = retriever.extractMetadata(MediaMetadataRetriever.METADATA_KEY_HAS_VIDEO);
+			isVideo = "yes".equals(hasVideo);
+		} catch (Exception e) {
+			Logger.err(e);//e.printStackTrace();
+		}
+		return isVideo;
 	}
 }

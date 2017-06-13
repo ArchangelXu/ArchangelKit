@@ -95,13 +95,12 @@ public class Slider extends View implements ThemeManager.OnThemeChangedListener 
 	public interface OnPositionChangeListener {
 		/**
 		 * Called when thumb's position changed.
-		 *
-		 * @param view      The view fire this event.
-		 * @param fromUser  Indicate the change is from user touch event or not.
-		 * @param oldPos    The old position of thumb.
-		 * @param newPos    The new position of thumb.
-		 * @param oldValue  The old value.
-		 * @param newValue  The new value.
+		 *  @param view     The view fire this event.
+		 * @param fromUser Indicate the change is from user touch event or not.
+		 * @param oldPos   The old position of thumb.
+		 * @param newPos   The new position of thumb.
+		 * @param oldValue The old value.
+		 * @param newValue The new value.
 		 * @param action_up
 		 */
 		public void onPositionChanged(Slider view, boolean fromUser, float oldPos, float newPos, int oldValue, int newValue, boolean action_up);
