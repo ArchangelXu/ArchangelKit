@@ -13,6 +13,8 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 import java.util.List;
 
+import studio.archangel.toolkit3.utils.AdapterUpdateCallback;
+import studio.archangel.toolkit3.utils.Logger;
 import studio.archangel.toolkit3.views.viewholders.AngelCommonViewHolder;
 
 
@@ -28,6 +30,9 @@ public abstract class CommonRecyclerAdapter<T> extends RecyclerView.Adapter<Recy
 
 	OnItemClickListener<T> listener;
 	OnItemLongClickListener<T> listener_long;
+	AdapterUpdateCallback update_callback;
+	boolean autoscroll_to_top_if_inserted_new_items = true;
+	RecyclerView recycler;
 
 	public CommonRecyclerAdapter() {
 	}
@@ -49,6 +54,11 @@ public abstract class CommonRecyclerAdapter<T> extends RecyclerView.Adapter<Recy
 //		this.temp = i;
 //		items = new ArrayList<>(temp);
 		item_layout = layout_ids;
+		update_callback = new AdapterUpdateCallback(this);
+	}
+
+	public void setAutoscrollToTopIfInsertedNewItems(boolean b) {
+		this.autoscroll_to_top_if_inserted_new_items = b;
 	}
 
 	protected boolean isHeader(int position) {
@@ -57,6 +67,10 @@ public abstract class CommonRecyclerAdapter<T> extends RecyclerView.Adapter<Recy
 
 	public boolean hasHeader() {
 		return header != null;
+	}
+
+	public void setRecycler(RecyclerView recycler) {
+		this.recycler = recycler;
 	}
 
 	@Override
@@ -206,7 +220,15 @@ public abstract class CommonRecyclerAdapter<T> extends RecyclerView.Adapter<Recy
 			}
 		}, should_detect_move);
 		old_items = new ArrayList<>(items);
-		diff.dispatchUpdatesTo(this);
+		diff.dispatchUpdatesTo(update_callback);
+		StringBuilder sb = new StringBuilder();
+		for (T item : items) {
+			sb.append(item.toString()).append(",");
+		}
+		Logger.out("ids=" + sb.toString());
+		if (autoscroll_to_top_if_inserted_new_items && recycler != null && update_callback.getInsertPosition() ==0) {
+			recycler.smoothScrollToPosition(update_callback.getInsertPosition());
+		}
 		// 通知刷新了之后，要更新副本数据到最新
 //		notifyItemRangeChanged(hasHeader() ? 1 : 0, items.size());
 	}
