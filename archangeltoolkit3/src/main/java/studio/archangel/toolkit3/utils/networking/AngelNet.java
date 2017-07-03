@@ -117,6 +117,10 @@ public class AngelNet implements Executor {
 		handler.post(r);
 	}
 
+	public void execute(@NonNull Runnable r, long delay) {
+		handler.postDelayed(r, delay);
+	}
+
 	public AngelNet(AngelNetConfig c) {
 //		client = new OkHttpClient();
 		client = getClient();
