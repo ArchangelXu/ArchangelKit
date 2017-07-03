@@ -225,7 +225,7 @@ public abstract class CommonRecyclerAdapter<T> extends RecyclerView.Adapter<Recy
 		for (T item : items) {
 			sb.append(item.toString()).append(",");
 		}
-		Logger.out("ids=" + sb.toString());
+//		Logger.out("ids=" + sb.toString());
 		if (autoscroll_to_top_if_inserted_new_items && recycler != null && update_callback.getInsertPosition() ==0) {
 			recycler.smoothScrollToPosition(update_callback.getInsertPosition());
 		}

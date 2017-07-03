@@ -1,16 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.rey.material.widget.LinearLayout
 	android:id = "@+id/view_actionbar_left_arrow_back"
+	style = "@style/MDRipple.Light"
 	xmlns:android = "http://schemas.android.com/apk/res/android"
-	xmlns:app = "http://schemas.android.com/apk/res-auto"
 	android:layout_width = "wrap_content"
 	android:layout_height = "match_parent"
 	android:orientation = "horizontal"
 	android:paddingLeft = "12dp"
-	android:paddingRight = "12dp"
-	app:rd_backgroundColor = "@color/trans"
-	app:rd_enable = "true"
-	app:rd_rippleColor = "@color/trans_25">
+	android:paddingRight = "12dp">
 
 	<ImageView
 		android:id = "@+id/view_actionbar_left_arrow_icon"
