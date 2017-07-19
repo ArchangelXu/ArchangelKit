@@ -6,15 +6,15 @@ import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 
 
-public abstract class AngelPageIndicatorUnit2 extends FrameLayout {
+public abstract class AngelPageIndicatorUnit extends FrameLayout {
 	protected boolean is_selected = true;
 
-	public AngelPageIndicatorUnit2(Context context) {
+	public AngelPageIndicatorUnit(Context context) {
 		super(context);
 		initLayoutParameters(context);
 	}
 
-	public AngelPageIndicatorUnit2(Context context, AttributeSet attrs) {
+	public AngelPageIndicatorUnit(Context context, AttributeSet attrs) {
 		super(context, attrs);
 		initLayoutParameters(context);
 	}
