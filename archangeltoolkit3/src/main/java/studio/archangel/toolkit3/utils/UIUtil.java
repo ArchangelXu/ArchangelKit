@@ -147,6 +147,10 @@ public class UIUtil {
 		aab.setPadding(0, AngelApplication.status_bar_height, 0, 0);
 	}
 
+	public static int getColorWithAlpha(int color, int alpha) {
+		return Color.argb(alpha, Color.red(color), Color.green(color), Color.blue(color));
+	}
+
 	public interface OnColorChangedListener {
 		void onColorChanged(int color);
 	}
