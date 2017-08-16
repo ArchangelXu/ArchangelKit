@@ -1,6 +1,7 @@
 package studio.archangel.toolkit3.utils;
 
 import android.annotation.TargetApi;
+import android.app.Activity;
 import android.content.ContentResolver;
 import android.content.ContentUris;
 import android.content.ContentValues;
@@ -9,7 +10,10 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.Matrix;
+import android.graphics.Paint;
 import android.graphics.Point;
+import android.graphics.PointF;
+import android.graphics.Rect;
 import android.hardware.Camera;
 import android.media.MediaMetadataRetriever;
 import android.net.ConnectivityManager;
@@ -22,6 +26,11 @@ import android.os.Environment;
 import android.provider.DocumentsContract;
 import android.provider.MediaStore;
 import android.text.TextUtils;
+import android.util.DisplayMetrics;
+import android.view.Display;
+import android.view.KeyCharacterMap;
+import android.view.KeyEvent;
+import android.view.ViewConfiguration;
 import android.webkit.MimeTypeMap;
 
 import org.json.JSONObject;
@@ -54,6 +63,9 @@ public class CommonUtil {
 	}
 
 	public static float getDistance(Point a, Point b) {
+		return (float) Math.sqrt(Math.pow(a.x - b.x, 2) + Math.pow(a.y - b.y, 2));
+	}
+	public static float getDistance(PointF a, PointF b) {
 		return (float) Math.sqrt(Math.pow(a.x - b.x, 2) + Math.pow(a.y - b.y, 2));
 	}
 
@@ -229,6 +241,41 @@ public class CommonUtil {
 	 */
 	public static boolean isGooglePhotosUri(Uri uri) {
 		return "com.google.android.apps.photos.content".equals(uri.getAuthority());
+	}
+
+	public static boolean hasNavigationBar(Activity act) {
+		boolean hasSoftwareKeys = true;
+
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+			Display d = act.getWindowManager().getDefaultDisplay();
+
+			DisplayMetrics realDisplayMetrics = new DisplayMetrics();
+			d.getRealMetrics(realDisplayMetrics);
+
+			int realHeight = realDisplayMetrics.heightPixels;
+			int realWidth = realDisplayMetrics.widthPixels;
+
+			DisplayMetrics displayMetrics = new DisplayMetrics();
+			d.getMetrics(displayMetrics);
+
+			int displayHeight = displayMetrics.heightPixels;
+			int displayWidth = displayMetrics.widthPixels;
+
+			hasSoftwareKeys = (realWidth - displayWidth) > 0 || (realHeight - displayHeight) > 0;
+		} else {
+			boolean hasMenuKey = ViewConfiguration.get(act).hasPermanentMenuKey();
+			boolean hasBackKey = KeyCharacterMap.deviceHasKey(KeyEvent.KEYCODE_BACK);
+			hasSoftwareKeys = !hasMenuKey && !hasBackKey;
+		}
+		return hasSoftwareKeys;
+	}
+
+	public static int getStringWidth(String s, float text_size) {
+		Paint p = new Paint();
+		p.setTextSize(text_size);
+		Rect rect = new Rect();
+		p.getTextBounds(s, 0, s.length(), rect);
+		return rect.width();
 	}
 
 
