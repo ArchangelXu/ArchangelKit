@@ -7,6 +7,7 @@ import android.content.ContentUris;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.AssetManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.Matrix;
@@ -65,6 +66,7 @@ public class CommonUtil {
 	public static float getDistance(Point a, Point b) {
 		return (float) Math.sqrt(Math.pow(a.x - b.x, 2) + Math.pow(a.y - b.y, 2));
 	}
+
 	public static float getDistance(PointF a, PointF b) {
 		return (float) Math.sqrt(Math.pow(a.x - b.x, 2) + Math.pow(a.y - b.y, 2));
 	}
@@ -276,6 +278,21 @@ public class CommonUtil {
 		Rect rect = new Rect();
 		p.getTextBounds(s, 0, s.length(), rect);
 		return rect.width();
+	}
+
+	public static boolean isFileExistsInAsset(Context context, String path) {
+		if (path.startsWith("asset")) {
+			path = path.substring(path.indexOf("/") + 1);
+		}
+		AssetManager am = context.getAssets();
+		try {
+			InputStream is = am.open(path);
+			is.close();
+			return true;
+		} catch (IOException e) {
+			Logger.err(e);//e.printStackTrace();
+		}
+		return false;
 	}
 
 
