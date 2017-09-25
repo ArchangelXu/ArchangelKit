@@ -205,6 +205,8 @@ public class CommonUtil {
 				final int index = cursor.getColumnIndexOrThrow(column);
 				return cursor.getString(index);
 			}
+		} catch (Exception e) {
+			Logger.err(e);
 		} finally {
 			if (cursor != null)
 				cursor.close();
