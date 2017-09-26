@@ -323,7 +323,7 @@ public abstract class AngelActivity extends AppCompatActivity {
 						listener.onGrant();
 					} else {
 						if (should_show_explaination) {
-							listener.onExplainationNeeded(listener);
+							listener.onExplanationNeeded(listener);
 						} else {
 							listener.onDeny();
 						}
