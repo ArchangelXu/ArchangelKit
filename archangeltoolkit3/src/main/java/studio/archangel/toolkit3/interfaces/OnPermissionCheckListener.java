@@ -28,7 +28,7 @@ public abstract class OnPermissionCheckListener {
 	/**
 	 * 用户授予了所有请求的权限
 	 */
-	public abstract void onExplainationNeeded(OnPermissionCheckListener this_listener);
+	public abstract void onExplanationNeeded(OnPermissionCheckListener this_listener);
 
 	/**
 	 * 用户从设置中的APP权限页面返回，应该重试之前请求的权限
