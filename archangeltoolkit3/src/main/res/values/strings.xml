@@ -2,13 +2,14 @@
 <resources>
 	<string name = "app_name">ArchangelToolKit3</string>
 	<string name = "error_wrong_json_format">Data Format Error</string>
-	<string name = "date_just_now">1m</string>
-	<string name = "date_minutes_ago">%dm</string>
-	<string name = "date_hours_ago">%dhr</string>
-	<string name = "date_days_ago">%dd</string>
-	<string name = "date_weeks_ago">%dw</string>
-	<string name = "date_months_ago">%dmo</string>
-	<string name = "date_years_ago">%dyr</string>
+	<string name = "date_just_now">1 min</string>
+	<string name = "date_minutes_ago">%d min</string>
+	<string name = "date_hours_ago">%d hrs</string>
+	<string name = "date_days_ago">%d day</string>
+	<string name = "date_weeks_ago">%d wk</string>
+	<string name = "date_months_ago">%d mon</string>
+	<string name = "date_years_ago">%d yr</string>
+
 	<plurals name = "date_minutes_ago_plural">
 		<item quantity = "one">%d minute ago</item>
 		<item quantity = "other">%d minutes ago</item>

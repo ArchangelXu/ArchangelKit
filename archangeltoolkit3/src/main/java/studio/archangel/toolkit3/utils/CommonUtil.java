@@ -282,6 +282,14 @@ public class CommonUtil {
 		return rect.width();
 	}
 
+	public static int getStringHeight(String s, float text_size) {
+		Paint p = new Paint();
+		p.setTextSize(text_size);
+		Rect rect = new Rect();
+		p.getTextBounds(s, 0, s.length(), rect);
+		return rect.height();
+	}
+
 	public static boolean isFileExistsInAsset(Context context, String path) {
 		if (path.startsWith("asset")) {
 			path = path.substring(path.indexOf("/") + 1);
