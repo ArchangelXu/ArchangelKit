@@ -20,7 +20,7 @@ public abstract class OnPermissionCheckListener {
 	public abstract void onGrant();
 
 	/**
-	 * 1.用户选择了不再询问（目前在这种情况下也会调用onExplainationNeeded）
+	 * 1.用户选择了不再询问（目前在这种情况下也会调用onExplanationNeeded）
 	 * 2.用户在弹出的权限解释对话框选择了取消
 	 */
 	public abstract void onDeny();
