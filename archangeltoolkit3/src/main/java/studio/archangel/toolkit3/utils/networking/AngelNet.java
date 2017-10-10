@@ -480,14 +480,14 @@ public class AngelNet implements Executor {
 				.addHeader("Content-Type", "application/json")
 				.build();
 		Response response = getDownloader(null).newCall(request).execute();
-		BufferedSink sink = Okio.buffer(Okio.sink(file));
-		try {
+		if (!response.isSuccessful()) {
+			return false;
+		}
+		try (BufferedSink sink = Okio.buffer(Okio.sink(file))) {
 			sink.writeAll(response.body().source());
-		} catch (final IOException e) {
+		} catch (Exception e) {
 			Logger.err(e);
 			return false;
-		} finally {
-			sink.close();
 		}
 		return true;
 	}
