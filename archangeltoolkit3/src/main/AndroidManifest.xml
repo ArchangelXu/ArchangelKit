@@ -6,7 +6,7 @@
 		android:supportsRtl = "true">
 		<provider
 			android:name = ".utils.AngelFileProvider"
-			android:authorities = "studio.archangel.toolkit3.fileprovider"
+			android:authorities = "studio.archangel.toolkit3.AngelFileProvider"
 			android:exported = "false"
 			android:grantUriPermissions = "true">
 			<meta-data

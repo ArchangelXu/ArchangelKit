@@ -61,9 +61,14 @@ public class AngelActionBar extends FrameLayout {
 		arrow_size = size_in_dp;
 	}
 
+	public static int getDefaultArrowSize() {
+		return arrow_size;
+	}
+
 	public static void setDefaultImageSize(int size_in_dp) {
 		image_size = size_in_dp;
 	}
+
 
 	public static int getDefaultArrowResource() {
 		return default_arrow_resource;
