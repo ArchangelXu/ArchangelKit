@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 import java.util.List;
 
+import studio.archangel.toolkit3.AngelApplication;
 import studio.archangel.toolkit3.utils.AdapterUpdateCallback;
 import studio.archangel.toolkit3.utils.Logger;
 import studio.archangel.toolkit3.views.viewholders.AngelCommonViewHolder;
@@ -177,6 +178,11 @@ public abstract class CommonRecyclerAdapter<T> extends RecyclerView.Adapter<Recy
 		notifyDiff(false);
 	}
 
+	public void notifyDiffWithoutAnimation() {
+		notifyDataSetChanged();
+		old_items = new ArrayList<>(items);
+	}
+
 	public void notifyDiff(boolean should_detect_move) {
 		DiffUtil.DiffResult diff = DiffUtil.calculateDiff(new DiffUtil.Callback() {
 			@Override
@@ -196,11 +202,11 @@ public abstract class CommonRecyclerAdapter<T> extends RecyclerView.Adapter<Recy
 			public boolean areItemsTheSame(int oldItemPosition, int newItemPosition) {
 //				Logger.out("areItemsTheSame oldItemPosition=" + oldItemPosition + " newItemPosition=" + newItemPosition);
 				if (hasHeader()) {
-					if (isHeader(oldItemPosition) ^ isHeader(newItemPosition)) {
+					if (isHeader(oldItemPosition) ^ isHeader(newItemPosition)) {//异或状态，是不同的item
 						return false;
-					} else if (isHeader(oldItemPosition)) {
+					} else if (isHeader(oldItemPosition)) {//新旧item都是header，相同
 						return true;
-					} else {
+					} else {//都不是header
 						return CommonRecyclerAdapter.this.areItemsTheSame(old_items.get(oldItemPosition - 1), items.get(newItemPosition - 1));
 					}
 				} else {
@@ -221,16 +227,34 @@ public abstract class CommonRecyclerAdapter<T> extends RecyclerView.Adapter<Recy
 		}, should_detect_move);
 		old_items = new ArrayList<>(items);
 		diff.dispatchUpdatesTo(update_callback);
-		StringBuilder sb = new StringBuilder();
-		for (T item : items) {
-			sb.append(item.toString()).append(",");
+		if (AngelApplication.isDebug()) {
+			StringBuilder sb = new StringBuilder();
+			for (T item : items) {
+				sb.append(item.toString()).append(",");
+			}
+			Logger.out("ids=" + sb.toString());
 		}
-//		Logger.out("ids=" + sb.toString());
-		if (autoscroll_to_top_if_inserted_new_items && recycler != null && update_callback.getInsertPosition() ==0) {
+		if (autoscroll_to_top_if_inserted_new_items && recycler != null && update_callback.getInsertPosition() == 0) {
 			recycler.smoothScrollToPosition(update_callback.getInsertPosition());
 		}
-		// 通知刷新了之后，要更新副本数据到最新
-//		notifyItemRangeChanged(hasHeader() ? 1 : 0, items.size());
+	}
+
+	public void removeItem(int position) {
+		items.remove(position);
+		notifyItemRemoved(position);
+		if (position != items.size()) {
+			notifyItemRangeChanged(position, items.size() - position);
+		}
+	}
+
+	public void removeItems(int... positions) {
+		for (int position : positions) {
+			items.remove(position);
+			notifyItemRemoved(position);
+			if (position != items.size()) {
+				notifyItemRangeChanged(position, items.size() - position);
+			}
+		}
 	}
 
 	protected abstract AngelCommonViewHolder<T> onCreateHeaderVH(View v);
