@@ -20,7 +20,7 @@ buildscript {
     }
     dependencies {
         classpath "com.android.tools.build:gradle:$project.ext.gradleToolVersion"
-        classpath 'me.tatarka:gradle-retrolambda:3.3.0'
+        classpath "me.tatarka:gradle-retrolambda:$project.ext.retrolambdaVersion"
         classpath 'com.neenbedankt.gradle.plugins:android-apt:1.8'
     }
 }
