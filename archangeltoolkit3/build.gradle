@@ -57,6 +57,7 @@ dependencies {
     compile 'com.daimajia.easing:library:2.1@aar'
     compile 'uk.co.chrisjenx:calligraphy:2.3.0'
     compile 'com.android.support.constraint:constraint-layout:1.0.0-alpha7'
+    compile 'de.cketti.fileprovider:public-fileprovider:1.0.0'
 }
 repositories {
     maven {
