@@ -70,6 +70,12 @@ public abstract class AngelActivity extends AppCompatActivity {
 		init(feature_id, -1);
 	}
 
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		reloadLanguageIfNeeded();
+		init(null, -1);
+	}
 //	@Override
 //	protected void attachBaseContext(Context newBase) {
 //		super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
@@ -89,12 +95,6 @@ public abstract class AngelActivity extends AppCompatActivity {
 
 	protected AngelActivity getSelf() {
 		return this;
-	}
-
-	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		init(null, -1);
 	}
 
 	public AngelActionBar getAngelActionBar() {
