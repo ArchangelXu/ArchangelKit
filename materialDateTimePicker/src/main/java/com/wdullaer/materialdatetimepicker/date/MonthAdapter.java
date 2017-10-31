@@ -116,7 +116,7 @@ public abstract class MonthAdapter extends BaseAdapter implements OnDayClickList
 	}
 
 	public MonthAdapter(Context context,
-	                    DatePickerController controller) {
+						DatePickerController controller) {
 		mContext = context;
 		mController = controller;
 		init();

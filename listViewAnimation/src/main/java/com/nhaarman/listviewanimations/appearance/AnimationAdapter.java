@@ -158,7 +158,7 @@ public abstract class AnimationAdapter extends BaseAdapterDecorator {
 		assert mViewAnimator != null;
 
         /* GridView measures the first View which is returned by getView(int, View, ViewGroup), but does not use that View.
-           On KitKat, it does this actually multiple times.
+		   On KitKat, it does this actually multiple times.
            Therefore, we animate all these first Views, and reset the last animated position when we suspect GridView is measuring. */
 		mGridViewPossiblyMeasuring = mGridViewPossiblyMeasuring && (mGridViewMeasuringPosition == -1 || mGridViewMeasuringPosition == position);
 

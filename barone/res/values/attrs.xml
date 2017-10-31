@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-	<declare-styleable name = "FlowLayout">
-		<attr name = "fl_verticalSpacing" format = "dimension"/>
-		<attr name = "fl_horizontalSpacing" format = "dimension"/>
-		<attr name = "fl_maxLines" format = "integer"/>
-	</declare-styleable>
-	<declare-styleable name = "FixedAspectRatioFrameLayout">
-		<attr name = "aspectRatio" format = "float"/>
-	</declare-styleable>
+    <declare-styleable name="FlowLayout">
+        <attr name="fl_verticalSpacing" format="dimension" />
+        <attr name="fl_horizontalSpacing" format="dimension" />
+        <attr name="fl_maxLines" format="integer" />
+    </declare-styleable>
+    <declare-styleable name="FixedAspectRatioFrameLayout">
+        <attr name="aspectRatio" format="float" />
+    </declare-styleable>
 </resources>

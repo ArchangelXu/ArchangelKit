@@ -6,7 +6,7 @@ import android.graphics.Typeface;
 import android.support.v4.util.SimpleArrayMap;
 
 /*
-    Each call to Typeface.createFromAsset will load a new instance of the typeface into memory,
+	Each call to Typeface.createFromAsset will load a new instance of the typeface into memory,
     and this memory is not consistently get garbage collected
     http://code.google.com/p/android/issues/detail?id=9904
     (It states released but even on Lollipop you can see the typefaces accumulate even after

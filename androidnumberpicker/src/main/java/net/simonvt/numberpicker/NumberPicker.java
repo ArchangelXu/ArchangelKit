@@ -1851,7 +1851,7 @@ public class NumberPicker extends LinearLayout {
 	 * @return Whether the text was updated.
 	 */
 	private boolean updateInputTextView() {
-	    /*
+		/*
 	     * If we don't have displayed values then use the current number else
          * find the correct value in the displayed values for the current
          * number.
@@ -2296,7 +2296,7 @@ public class NumberPicker extends LinearLayout {
 
 		@Override
 		public List<AccessibilityNodeInfo> findAccessibilityNodeInfosByText(String searched,
-		                                                                    int virtualViewId) {
+																			int virtualViewId) {
 			if (TextUtils.isEmpty(searched)) {
 				return Collections.emptyList();
 			}
@@ -2520,7 +2520,7 @@ public class NumberPicker extends LinearLayout {
 		}
 
 		private void sendAccessibilityEventForVirtualButton(int virtualViewId, int eventType,
-		                                                    String text) {
+															String text) {
 			if (((AccessibilityManager) getContext().getSystemService(Context.ACCESSIBILITY_SERVICE)).isEnabled()) {
 				AccessibilityEvent event = AccessibilityEvent.obtain(eventType);
 				event.setClassName(Button.class.getName());
@@ -2533,7 +2533,7 @@ public class NumberPicker extends LinearLayout {
 		}
 
 		private void findAccessibilityNodeInfosByTextInChild(String searchedLowerCase,
-		                                                     int virtualViewId, List<AccessibilityNodeInfo> outResult) {
+															 int virtualViewId, List<AccessibilityNodeInfo> outResult) {
 			switch (virtualViewId) {
 				case VIRTUAL_VIEW_ID_DECREMENT: {
 					String text = getVirtualDecrementButtonText();
@@ -2582,7 +2582,7 @@ public class NumberPicker extends LinearLayout {
 		}
 
 		private AccessibilityNodeInfo createAccessibilityNodeInfoForVirtualButton(int virtualViewId,
-		                                                                          String text, int left, int top, int right, int bottom) {
+																				  String text, int left, int top, int right, int bottom) {
 			AccessibilityNodeInfo info = AccessibilityNodeInfo.obtain();
 			info.setClassName(Button.class.getName());
 			info.setPackageName(getContext().getPackageName());
@@ -2616,7 +2616,7 @@ public class NumberPicker extends LinearLayout {
 		}
 
 		private AccessibilityNodeInfo createAccessibilityNodeInfoForNumberPicker(int left, int top,
-		                                                                         int right, int bottom) {
+																				 int right, int bottom) {
 			AccessibilityNodeInfo info = AccessibilityNodeInfo.obtain();
 			info.setClassName(NumberPicker.class.getName());
 			info.setPackageName(getContext().getPackageName());

@@ -445,7 +445,7 @@ public class ViewUtil {
 		boolean drawableRelativeDefined = false;
 
         /*
-         * Look the appearance up without checking first if it exists because
+		 * Look the appearance up without checking first if it exists because
          * almost every TextView has one and it greatly simplifies the logic
          * to be able to parse the appearance first and then let specific tags
          * for this View override it.

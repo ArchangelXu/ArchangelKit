@@ -521,7 +521,7 @@ public abstract class MonthView extends View {
 	 * @param stopY  The bottom boundary of the day number rect
 	 */
 	public abstract void drawMonthDay(Canvas canvas, int year, int month, int day,
-	                                  int x, int y, int startX, int stopX, int startY, int stopY);
+									  int x, int y, int startX, int stopX, int startY, int stopY);
 
 	protected int findDayOffset() {
 		return (mDayOfWeekStart < mWeekStart ? (mDayOfWeekStart + mNumDays) : mDayOfWeekStart)
@@ -746,7 +746,7 @@ public abstract class MonthView extends View {
 
 		@Override
 		protected void onPopulateNodeForVirtualView(int virtualViewId,
-		                                            AccessibilityNodeInfoCompat node) {
+													AccessibilityNodeInfoCompat node) {
 			getItemBounds(virtualViewId, mTempRect);
 
 			node.setContentDescription(getItemDescription(virtualViewId));
@@ -761,7 +761,7 @@ public abstract class MonthView extends View {
 
 		@Override
 		protected boolean onPerformActionForVirtualView(int virtualViewId, int action,
-		                                                Bundle arguments) {
+														Bundle arguments) {
 			switch (action) {
 				case AccessibilityNodeInfo.ACTION_CLICK:
 					onDayClick(virtualViewId);

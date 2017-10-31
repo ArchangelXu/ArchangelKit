@@ -98,7 +98,7 @@ public abstract class ExpandableListItemAdapter<T> extends ArrayAdapter<T> imple
 	 * ViewGroups within that layout.
 	 */
 	protected ExpandableListItemAdapter(final Context context, final int layoutResId, final int titleParentResId, final int contentParentResId,
-	                                    final List<T> items) {
+										final List<T> items) {
 		super(items);
 		mContext = context;
 		mViewLayoutResId = layoutResId;
