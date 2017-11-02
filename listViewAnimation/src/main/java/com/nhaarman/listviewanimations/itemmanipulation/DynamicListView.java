@@ -230,7 +230,7 @@ public class DynamicListView extends ListView {
 	@Override
 	public boolean dispatchTouchEvent(final MotionEvent ev) {
 		if (mCurrentHandlingTouchEventHandler == null) {
-		    /* None of the TouchEventHandlers are actively consuming events yet. */
+			/* None of the TouchEventHandlers are actively consuming events yet. */
 			boolean firstTimeInteracting = false;
 
             /* We don't support dragging items when there are items in the undo state. */

@@ -61,7 +61,7 @@ public class IndexableListViewActivity extends Activity {
 		private String mSections = "#ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
 		public ContentAdapter(Context context, int textViewResourceId,
-		                      List<String> objects) {
+							  List<String> objects) {
 			super(context, textViewResourceId, objects);
 		}
 

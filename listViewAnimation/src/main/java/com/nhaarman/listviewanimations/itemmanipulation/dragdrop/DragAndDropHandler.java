@@ -206,7 +206,7 @@ public class DragAndDropHandler implements TouchEventHandler {
 	 */
 	public void startDragging(final int position) {
 		if (mMobileItemId != INVALID_ID) {
-		    /* We are already dragging */
+			/* We are already dragging */
 			return;
 		}
 

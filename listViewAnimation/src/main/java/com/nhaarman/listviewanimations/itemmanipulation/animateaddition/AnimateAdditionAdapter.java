@@ -196,7 +196,7 @@ public class AnimateAdditionAdapter<T> extends BaseAdapterDecorator {
 
 		for (Pair<Integer, T> pair : indexItemPairs) {
 			if (getListViewWrapper().getFirstVisiblePosition() > pair.first) {
-			    /* Inserting an item above the first visible position */
+				/* Inserting an item above the first visible position */
 				int index = pair.first;
 
                 /* Correct the index for already inserted positions above the first visible view. */

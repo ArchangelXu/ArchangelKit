@@ -138,14 +138,14 @@ public class TimePickerDialog extends DialogFragment implements OnValueSelectedL
 	 **/
 
 	public static TimePickerDialog newInstance(OnTimeSetListener callback,
-	                                           int hourOfDay, int minute, boolean is24HourMode) {
+											   int hourOfDay, int minute, boolean is24HourMode) {
 		TimePickerDialog ret = new TimePickerDialog();
 		ret.initialize(callback, hourOfDay, minute, is24HourMode);
 		return ret;
 	}
 
 	public void initialize(OnTimeSetListener callback,
-	                       int hourOfDay, int minute, boolean is24HourMode) {
+						   int hourOfDay, int minute, boolean is24HourMode) {
 		mCallback = callback;
 
 		mInitialHourOfDay = hourOfDay;
@@ -192,7 +192,7 @@ public class TimePickerDialog extends DialogFragment implements OnValueSelectedL
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
-	                         Bundle savedInstanceState) {
+							 Bundle savedInstanceState) {
 		getDialog().getWindow().requestFeature(Window.FEATURE_NO_TITLE);
 
 		View view = inflater.inflate(R.layout.mdtp_time_picker_dialog, null);
@@ -462,7 +462,7 @@ public class TimePickerDialog extends DialogFragment implements OnValueSelectedL
 
 	// Show either Hours or Minutes.
 	private void setCurrentItemShowing(int index, boolean animateCircle, boolean delayLabelAnimate,
-	                                   boolean announce) {
+									   boolean announce) {
 		mTimePicker.setCurrentItemShowing(index, animateCircle);
 
 		TextView labelToAnimate;

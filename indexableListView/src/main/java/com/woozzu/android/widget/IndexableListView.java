@@ -82,7 +82,7 @@ public class IndexableListView extends EdgeEffectListView {
 
 				@Override
 				public boolean onFling(MotionEvent e1, MotionEvent e2,
-				                       float velocityX, float velocityY) {
+									   float velocityX, float velocityY) {
 					// If fling happens, index bar shows
 					if (mScroller != null)
 						mScroller.show();

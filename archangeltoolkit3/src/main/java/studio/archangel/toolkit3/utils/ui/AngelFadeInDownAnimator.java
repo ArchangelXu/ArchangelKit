@@ -21,7 +21,7 @@ public class AngelFadeInDownAnimator extends FadeInDownAnimator {
 
 	@Override
 	public boolean animateChange(RecyclerView.ViewHolder oldHolder, RecyclerView.ViewHolder newHolder,
-	                             int fromX, int fromY, int toX, int toY) {
+								 int fromX, int fromY, int toX, int toY) {
 		if (oldHolder != null) {
 			dispatchChangeFinished(oldHolder, true);
 		} else if ((newHolder != null) && (newHolder != oldHolder)) {
