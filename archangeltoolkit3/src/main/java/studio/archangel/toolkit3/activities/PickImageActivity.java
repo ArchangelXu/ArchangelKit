@@ -60,7 +60,7 @@ public class PickImageActivity extends AngelActivity {
 	}
 
 	@Override
-	protected void onCreate(Bundle savedInstanceState) {
+	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		Intent it = getIntent();
 		Bundle extras = it.getExtras();
@@ -143,7 +143,7 @@ public class PickImageActivity extends AngelActivity {
 	}
 
 	@Override
-	protected void onResume() {
+	public void onResume() {
 		super.onResume();
 	}
 

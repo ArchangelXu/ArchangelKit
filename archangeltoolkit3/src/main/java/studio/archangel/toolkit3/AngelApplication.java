@@ -7,12 +7,14 @@ import android.app.Application;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.content.res.Configuration;
 import android.os.Build;
 import android.os.Process;
 import android.util.DisplayMetrics;
 import android.view.Display;
 import android.view.WindowManager;
 
+import com.akexorcist.localizationactivity.core.LocalizationApplicationDelegate;
 import com.facebook.cache.disk.DiskCacheConfig;
 import com.facebook.common.internal.Supplier;
 import com.facebook.drawee.backends.pipeline.Fresco;
@@ -73,6 +75,8 @@ public abstract class AngelApplication extends Application {
 	public long activity_taken_to_back_time_stamp;
 	boolean stop_timer_for_once = false;
 	public boolean is_changing_language = false;
+
+	LocalizationApplicationDelegate localizationDelegate = new LocalizationApplicationDelegate(this);
 
 	@Override
 	public void onCreate() {
@@ -409,4 +413,19 @@ public abstract class AngelApplication extends Application {
 
 	}
 
+	@Override
+	protected void attachBaseContext(Context base) {
+		super.attachBaseContext(localizationDelegate.attachBaseContext(base));
+	}
+
+	@Override
+	public void onConfigurationChanged(Configuration newConfig) {
+		super.onConfigurationChanged(newConfig);
+		localizationDelegate.onConfigurationChanged(this);
+	}
+
+	@Override
+	public Context getApplicationContext() {
+		return localizationDelegate.getApplicationContext(super.getApplicationContext());
+	}
 }

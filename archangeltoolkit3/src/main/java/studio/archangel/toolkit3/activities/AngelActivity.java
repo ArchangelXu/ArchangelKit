@@ -21,6 +21,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Window;
 import android.view.WindowManager;
 
+import com.akexorcist.localizationactivity.ui.LocalizationActivity;
 import com.badoo.mobile.util.WeakHandler;
 
 import java.lang.ref.WeakReference;
@@ -37,7 +38,7 @@ import studio.archangel.toolkit3.views.dialogs.AngelLoadingDialog;
 /**
  * @author Administrator
  */
-public abstract class AngelActivity extends AppCompatActivity {
+public abstract class AngelActivity extends LocalizationActivity {
 	public AngelLoadingDialog dialog;
 	public boolean destroyed = false;
 	//    Validator validator;
@@ -59,21 +60,25 @@ public abstract class AngelActivity extends AppCompatActivity {
 	 * @param feature_id
 	 */
 	protected void onCreate(Bundle savedInstanceState, int[] feature_id, int orientation) {
+		setDefaultLanguage(Resources.getSystem().getConfiguration().locale);
 		super.onCreate(savedInstanceState);
-		reloadLanguageIfNeeded();
+//		reloadLanguageIfNeeded();
 		init(feature_id, orientation);
 	}
 
 	protected void onCreate(Bundle savedInstanceState, int[] feature_id) {
+		setDefaultLanguage(Resources.getSystem().getConfiguration().locale);
 		super.onCreate(savedInstanceState);
-		reloadLanguageIfNeeded();
+//		reloadLanguageIfNeeded();
 		init(feature_id, -1);
 	}
 
 	@Override
-	protected void onCreate(Bundle savedInstanceState) {
+	public void onCreate(Bundle savedInstanceState) {
+		setDefaultLanguage(Resources.getSystem().getConfiguration().locale);
+
 		super.onCreate(savedInstanceState);
-		reloadLanguageIfNeeded();
+//		reloadLanguageIfNeeded();
 		init(null, -1);
 	}
 //	@Override
@@ -81,17 +86,26 @@ public abstract class AngelActivity extends AppCompatActivity {
 //		super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
 //	}
 
-	protected void reloadLanguageIfNeeded() {
-		Resources resources = getResources();
-		Configuration config = resources.getConfiguration();
-
-		boolean should_reload_language = !config.locale.getLanguage().equalsIgnoreCase(AngelApplication.getLanguage());
-		Logger.out("should_reload_language=" + should_reload_language + " onRestoreInstanceState page=" + getClass().getSimpleName());
-		if (should_reload_language) {
-			config.locale = new Locale(AngelApplication.getLanguage(), AngelApplication.getCountryCode());
-			resources.updateConfiguration(config, resources.getDisplayMetrics());
-		}
+	@Override
+	public void onConfigurationChanged(Configuration newConfig) {
+		super.onConfigurationChanged(newConfig);
+//		reloadLanguageIfNeeded();
 	}
+
+//	protected void reloadLanguageIfNeeded() {
+////		Resources resources = getResources();
+////		Configuration config = resources.getConfiguration();
+////
+//////		boolean should_reload_language = !config.locale.getLanguage().equalsIgnoreCase(AngelApplication.getLanguage());
+//////		Logger.out("should_reload_language=" + should_reload_language + " onRestoreInstanceState page=" + getClass().getSimpleName());
+//////		if (should_reload_language) {
+////			Configuration configuration = new Configuration(config);
+////			configuration.setLocale(new Locale(AngelApplication.getLanguage(), AngelApplication.getCountryCode()));
+////			resources.updateConfiguration(configuration, resources.getDisplayMetrics());
+//////			config.locale = new Locale(AngelApplication.getLanguage(), AngelApplication.getCountryCode());
+//////			resources.updateConfiguration(config, resources.getDisplayMetrics());
+//////		}
+//	}
 
 	protected AngelActivity getSelf() {
 		return this;
@@ -106,9 +120,9 @@ public abstract class AngelActivity extends AppCompatActivity {
 	}
 
 	@Override
-	protected void onResume() {
+	public void onResume() {
 		super.onResume();
-		reloadLanguageIfNeeded();
+//		reloadLanguageIfNeeded();
 		Application app = getApplication();
 		if (app != null && app instanceof AngelApplication) {
 			AngelApplication aa = (AngelApplication) app;

@@ -41,6 +41,7 @@ dependencies {
     compile project(':materialdesigneffectlibrary')
     compile project(':public_libs')
     compile project(':barone')
+    compile project(':localizationActivity')
 
     compile 'com.badoo.mobile:android-weak-handler:1.1'
     compile 'com.eightbitlab:blurview:1.1.2'
