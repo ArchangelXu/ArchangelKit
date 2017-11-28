@@ -21,7 +21,7 @@ public class NameLengthFilter implements InputFilter {
 
 	@Override
 	public CharSequence filter(CharSequence source, int start, int end,
-							   Spanned dest, int dstart, int dend) {
+	                           Spanned dest, int dstart, int dend) {
 		int destCount = dest.toString().length()
 				+ getChineseCount(dest.toString());
 		int sourceCount = source.toString().length()

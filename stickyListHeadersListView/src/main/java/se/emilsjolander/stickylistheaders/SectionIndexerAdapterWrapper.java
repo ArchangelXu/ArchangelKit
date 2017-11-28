@@ -9,7 +9,7 @@ class SectionIndexerAdapterWrapper extends
 	SectionIndexer mSectionIndexerDelegate;
 
 	SectionIndexerAdapterWrapper(Context context,
-								 StickyListHeadersAdapter delegate) {
+	                             StickyListHeadersAdapter delegate) {
 		super(context, delegate);
 		mSectionIndexerDelegate = (SectionIndexer) delegate;
 	}

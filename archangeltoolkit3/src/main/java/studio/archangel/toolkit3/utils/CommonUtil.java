@@ -191,7 +191,7 @@ public class CommonUtil {
 	 * @return The value of the _data column, which is typically a file path.
 	 */
 	public static String getDataColumn(Context context, Uri uri, String selection,
-									   String[] selectionArgs) {
+	                                   String[] selectionArgs) {
 
 		Cursor cursor = null;
 		final String column = "_data";
@@ -403,9 +403,9 @@ public class CommonUtil {
 	 * @see android.provider.MediaStore.Images.Media#insertImage(ContentResolver, Bitmap, String, String)
 	 */
 	public static final String insertImage(ContentResolver cr,
-										   Bitmap source,
-										   String title,
-										   String description) {
+	                                       Bitmap source,
+	                                       String title,
+	                                       String description) {
 
 		ContentValues values = new ContentValues();
 		values.put(MediaStore.Images.Media.TITLE, title);

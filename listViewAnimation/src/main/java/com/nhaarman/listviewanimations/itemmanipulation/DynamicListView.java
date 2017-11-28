@@ -235,7 +235,7 @@ public class DynamicListView extends ListView {
 
             /* We don't support dragging items when there are items in the undo state. */
 			if (!(mSwipeTouchListener instanceof SwipeUndoTouchListener) || !((SwipeUndoTouchListener) mSwipeTouchListener).hasPendingItems()) {
-		        /* Offer the event to the DragAndDropHandler */
+			    /* Offer the event to the DragAndDropHandler */
 				if (mDragAndDropHandler != null) {
 					mDragAndDropHandler.onTouchEvent(ev);
 					firstTimeInteracting = mDragAndDropHandler.isInteracting();

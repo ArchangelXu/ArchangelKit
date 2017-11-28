@@ -360,7 +360,7 @@ public class Scroller {
 	 *                  point.
 	 */
 	public void fling(int startX, int startY, int velocityX, int velocityY,
-					  int minX, int maxX, int minY, int maxY) {
+	                  int minX, int maxX, int minY, int maxY) {
 		// Continue a scroll or fling in progress
 		if (mFlywheel && !mFinished) {
 			float oldVel = getCurrVelocity();

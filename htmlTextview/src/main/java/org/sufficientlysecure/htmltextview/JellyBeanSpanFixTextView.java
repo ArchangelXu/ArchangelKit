@@ -49,7 +49,7 @@ public class JellyBeanSpanFixTextView extends TextView {
 		public final List<Object> spansWithSpacesAfter;
 
 		public static FixingResult fixed(List<Object> spansWithSpacesBefore,
-										 List<Object> spansWithSpacesAfter) {
+		                                 List<Object> spansWithSpacesAfter) {
 			return new FixingResult(true, spansWithSpacesBefore, spansWithSpacesAfter);
 		}
 
@@ -58,7 +58,7 @@ public class JellyBeanSpanFixTextView extends TextView {
 		}
 
 		private FixingResult(boolean fixed, List<Object> spansWithSpacesBefore,
-							 List<Object> spansWithSpacesAfter) {
+		                     List<Object> spansWithSpacesAfter) {
 			this.fixed = fixed;
 			this.spansWithSpacesBefore = spansWithSpacesBefore;
 			this.spansWithSpacesAfter = spansWithSpacesAfter;
@@ -106,7 +106,7 @@ public class JellyBeanSpanFixTextView extends TextView {
 	 * Add spaces around spans until the text is fixed, and then removes the unneeded spaces
 	 */
 	private void fixSpannedWithSpaces(SpannableStringBuilder builder, int widthMeasureSpec,
-									  int heightMeasureSpec) {
+	                                  int heightMeasureSpec) {
 		long startFix = System.currentTimeMillis();
 
 		FixingResult result = addSpacesAroundSpansUntilFixed(builder, widthMeasureSpec,
@@ -125,7 +125,7 @@ public class JellyBeanSpanFixTextView extends TextView {
 	}
 
 	private FixingResult addSpacesAroundSpansUntilFixed(SpannableStringBuilder builder,
-														int widthMeasureSpec, int heightMeasureSpec) {
+	                                                    int widthMeasureSpec, int heightMeasureSpec) {
 
 		Object[] spans = builder.getSpans(0, builder.length(), Object.class);
 		List<Object> spansWithSpacesBefore = new ArrayList<Object>(spans.length);
@@ -169,7 +169,7 @@ public class JellyBeanSpanFixTextView extends TextView {
 	}
 
 	private void removeUnneededSpaces(int widthMeasureSpec, int heightMeasureSpec,
-									  SpannableStringBuilder builder, FixingResult result) {
+	                                  SpannableStringBuilder builder, FixingResult result) {
 
 		for (Object span : result.spansWithSpacesAfter) {
 			int spanEnd = builder.getSpanEnd(span);

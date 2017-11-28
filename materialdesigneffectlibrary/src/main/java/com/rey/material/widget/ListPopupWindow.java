@@ -1097,7 +1097,7 @@ public class ListPopupWindow {
 			mDropDownList.setFocusableInTouchMode(true);
 			mDropDownList.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 				public void onItemSelected(AdapterView<?> parent, View view,
-										   int position, long id) {
+				                           int position, long id) {
 
 					if (position != -1) {
 						DropDownListView dropDownList = mDropDownList;
@@ -1800,7 +1800,7 @@ public class ListPopupWindow {
 
 	private class PopupScrollListener implements ListView.OnScrollListener {
 		public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount,
-							 int totalItemCount) {
+		                     int totalItemCount) {
 
 		}
 

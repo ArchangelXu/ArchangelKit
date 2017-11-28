@@ -93,7 +93,7 @@ public class RadialSelectorView extends View {
 	 *                         Will be ignored when hasInnerCircle is false.
 	 */
 	public void initialize(Context context, boolean is24HourMode, boolean hasInnerCircle,
-						   boolean disappearsOut, int selectionDegrees, boolean isInnerCircle) {
+	                       boolean disappearsOut, int selectionDegrees, boolean isInnerCircle) {
 		if (mIsInitialized) {
 			Log.e(TAG, "This RadialSelectorView may only be initialized once.");
 			return;
@@ -195,7 +195,7 @@ public class RadialSelectorView extends View {
 	}
 
 	public int getDegreesFromCoords(float pointX, float pointY, boolean forceLegal,
-									final Boolean[] isInnerCircle) {
+	                                final Boolean[] isInnerCircle) {
 		if (!mDrawValuesReady) {
 			return -1;
 		}

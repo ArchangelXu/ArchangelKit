@@ -217,7 +217,7 @@ public class AnimateAdditionAdapter<T> extends BaseAdapterDecorator {
 				}
 			} else if (getListViewWrapper().getLastVisiblePosition() >= pair.first || getListViewWrapper().getLastVisiblePosition() == AdapterView.INVALID_POSITION ||
 					!childrenFillAbsListView()) {
-	            /* Inserting an item that becomes visible on screen */
+			    /* Inserting an item that becomes visible on screen */
 				int index = pair.first;
 
                 /* Correct the index for already inserted positions above the first visible view */

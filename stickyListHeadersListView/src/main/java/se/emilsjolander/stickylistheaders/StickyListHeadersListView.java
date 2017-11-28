@@ -39,7 +39,7 @@ public class StickyListHeadersListView extends FrameLayout {
 
 	public interface OnHeaderClickListener {
 		void onHeaderClick(StickyListHeadersListView l, View header,
-						   int itemPosition, long headerId, boolean currentlySticky);
+		                   int itemPosition, long headerId, boolean currentlySticky);
 	}
 
 	/**
@@ -70,7 +70,7 @@ public class StickyListHeadersListView extends FrameLayout {
 		 * @param headerId     The id of the new sticky header.
 		 */
 		void onStickyHeaderChanged(StickyListHeadersListView l, View header,
-								   int itemPosition, long headerId);
+		                           int itemPosition, long headerId);
 
 	}
 
@@ -504,7 +504,7 @@ public class StickyListHeadersListView extends FrameLayout {
 
 		@Override
 		public void onScroll(AbsListView view, int firstVisibleItem,
-							 int visibleItemCount, int totalItemCount) {
+		                     int visibleItemCount, int totalItemCount) {
 			if (mOnScrollListenerDelegate != null) {
 				mOnScrollListenerDelegate.onScroll(view, firstVisibleItem,
 						visibleItemCount, totalItemCount);
@@ -899,7 +899,7 @@ public class StickyListHeadersListView extends FrameLayout {
 
 	@TargetApi(Build.VERSION_CODES.HONEYCOMB)
 	public void smoothScrollToPositionFromTop(int position, int offset,
-											  int duration) {
+	                                          int duration) {
 		if (requireSdkVersion(Build.VERSION_CODES.HONEYCOMB)) {
 			offset += mAdapter == null ? 0 : getHeaderOverlap(position);
 			offset -= mClippingToPadding ? 0 : mPaddingTop;

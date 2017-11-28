@@ -61,7 +61,7 @@ public class SimpleSwipeUndoAdapter extends SwipeUndoAdapter implements UndoCall
 	 * @param dismissCallback the {@link com.nhaarman.listviewanimations.itemmanipulation.swipedismiss.OnDismissCallback} that is notified of dismissed items.
 	 */
 	public SimpleSwipeUndoAdapter(final BaseAdapter adapter, final Context context,
-								  final OnDismissCallback dismissCallback) {
+	                              final OnDismissCallback dismissCallback) {
 		// We fix this right away
 		// noinspection ConstantConditions
 		super(adapter, null);

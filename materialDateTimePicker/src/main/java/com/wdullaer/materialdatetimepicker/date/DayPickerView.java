@@ -138,7 +138,7 @@ public abstract class DayPickerView extends EdgeEffectListView implements OnScro
 	}
 
 	public abstract MonthAdapter createMonthAdapter(Context context,
-													DatePickerController controller);
+	                                                DatePickerController controller);
 
 	/*
 	 * Sets all the required fields for the list view. Override this method to

@@ -253,7 +253,7 @@ public class MaterialMenuDrawable extends Drawable implements Animatable {
 	}
 
 	public MaterialMenuDrawable(int color, Stroke stroke, long transformDuration, long pressedDuration,
-								int width, int height, float iconWidth, float circleRadius, float strokeWidth, float dip1
+	                            int width, int height, float iconWidth, float circleRadius, float strokeWidth, float dip1
 	) {
 		this.dip1 = dip1;
 		this.dip2 = dip1 * 2;

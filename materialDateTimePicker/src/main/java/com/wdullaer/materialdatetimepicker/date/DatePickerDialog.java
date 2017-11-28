@@ -145,8 +145,8 @@ public class DatePickerDialog extends DialogFragment implements
 	 * @param dayOfMonth  The initial day of the dialog.
 	 */
 	public static DatePickerDialog newInstance(OnDateSetListener callBack, int year,
-											   int monthOfYear,
-											   int dayOfMonth) {
+	                                           int monthOfYear,
+	                                           int dayOfMonth) {
 		DatePickerDialog ret = new DatePickerDialog();
 		ret.initialize(callBack, year, monthOfYear, dayOfMonth);
 		return ret;
@@ -194,7 +194,7 @@ public class DatePickerDialog extends DialogFragment implements
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
-							 Bundle savedInstanceState) {
+	                         Bundle savedInstanceState) {
 		Log.d(TAG, "onCreateView: ");
 		getDialog().getWindow().requestFeature(Window.FEATURE_NO_TITLE);
 

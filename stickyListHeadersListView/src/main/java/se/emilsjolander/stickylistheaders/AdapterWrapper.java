@@ -50,7 +50,7 @@ class AdapterWrapper extends BaseAdapter implements StickyListHeadersAdapter {
 	};
 
 	AdapterWrapper(Context context,
-				   StickyListHeadersAdapter delegate) {
+	               StickyListHeadersAdapter delegate) {
 		this.mContext = context;
 		this.mDelegate = delegate;
 		delegate.registerDataSetObserver(mDataSetObserver);

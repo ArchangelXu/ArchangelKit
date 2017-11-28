@@ -20,6 +20,7 @@ import android.view.Display;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewTreeObserver;
+import android.view.Window;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
@@ -27,10 +28,14 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
+
 import studio.archangel.toolkit3.AngelApplication;
 import studio.archangel.toolkit3.R;
 import studio.archangel.toolkit3.activities.AngelActivity;
 import studio.archangel.toolkit3.utils.ui.ArgbEvaluator;
+import studio.archangel.toolkit3.utils.ui.Rom;
 import studio.archangel.toolkit3.views.AngelActionBar;
 
 /**
@@ -595,5 +600,68 @@ public class UIUtil {
 			height += tv.getCompoundPaddingTop() + tv.getCompoundPaddingBottom();
 		}
 		return height;
+	}
+
+	public static void changeStatusBarTextColor(Activity act, boolean light_text) {
+		if (Rom.isMiui()) {
+			if (Rom.getVersion().contains("V7")) {
+				changeStatusBarForMIUI(act, light_text);
+			} else {
+				if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+					changeStatusBarColorForApi23AndAbove(act, light_text);
+				} else {
+					changeStatusBarForMIUI(act, light_text);
+				}
+			}
+		} else if (Rom.isFlyme()) {
+			if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+				changeStatusBarColorForApi23AndAbove(act, light_text);
+			} else {
+				try {
+					WindowManager.LayoutParams lp = act.getWindow().getAttributes();
+					Field darkFlag = WindowManager.LayoutParams.class
+							.getDeclaredField("MEIZU_FLAG_DARK_STATUS_BAR_ICON");
+					Field meizuFlags = WindowManager.LayoutParams.class
+							.getDeclaredField("meizuFlags");
+					darkFlag.setAccessible(true);
+					meizuFlags.setAccessible(true);
+					int bit = darkFlag.getInt(null);
+					int value = meizuFlags.getInt(lp);
+					if (light_text) {
+						value &= ~bit;
+					} else {
+						value |= bit;
+					}
+					meizuFlags.setInt(lp, value);
+					act.getWindow().setAttributes(lp);
+				} catch (Exception e) {
+				}
+			}
+		}
+	}
+
+	private static void changeStatusBarForMIUI(Activity act, boolean light_text) {
+		try {
+			Class<? extends Window> clazz = act.getWindow().getClass();
+			int darkModeFlag = 0;
+			Class<?> layoutParams = Class.forName("android.view.MiuiWindowManager$LayoutParams");
+			Field field = layoutParams.getField("EXTRA_FLAG_STATUS_BAR_DARK_MODE");
+			darkModeFlag = field.getInt(layoutParams);
+			Method extraFlagField = clazz.getMethod("setExtraFlags", int.class, int.class);
+			extraFlagField.invoke(act.getWindow(), light_text ? 0 : darkModeFlag, darkModeFlag);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	private static void changeStatusBarColorForApi23AndAbove(Activity act, boolean light_text) {
+		View decorView = act.getWindow().getDecorView();
+		int uiOptions = decorView.getSystemUiVisibility();
+		if (!light_text) {
+			uiOptions |= View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR;
+		} else {
+			uiOptions &= ~(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+		}
+		decorView.setSystemUiVisibility(uiOptions);
 	}
 }
