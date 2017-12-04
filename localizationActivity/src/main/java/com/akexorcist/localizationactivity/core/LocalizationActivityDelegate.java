@@ -64,11 +64,16 @@ public class LocalizationActivityDelegate {
 			config.setLocale(locale);
 			LocaleList localeList = new LocaleList(locale);
 			LocaleList.setDefault(localeList);
+
 			config.setLocales(localeList);
-			return context.createConfigurationContext(config);
+			context.getResources().updateConfiguration(config, context.getResources().getDisplayMetrics());
+//			return context.createConfigurationContext(config);
+			return context;
 		} else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
 			config.setLocale(locale);
-			return context.createConfigurationContext(config);
+			context.getResources().updateConfiguration(config, context.getResources().getDisplayMetrics());
+//			return context.createConfigurationContext(config);
+			return context;
 		} else {
 			return context;
 		}
