@@ -36,7 +36,18 @@ public class PickImageActivity extends AngelActivity {
 	public static final String PICK_MODE = "pick_mode";
 	public static final String CROP_MODE = "crop_mode";
 	public static final String CROP_RATIO = "crop_ratio";
+	public static final String USE_ORIGIN_FILE_FOR_CROP = "use_origin_file_for_crop";
+
 	public static final String MAIN_COLOR = "color_main";
+	public static final String TOOL_BAR_COLOR = "color_tool_bar";
+	public static final String WIDGET_BAR_COLOR = "color_widget_bar";
+	public static final String WIDGET_UNSELECTED_COLOR = "color_widget_unselected";
+	public static final String WIDGET_SELECTED_COLOR = "color_widget_selected";
+
+	public static final String IMAGE_TYPE_FILTERS = "image_type_filters";
+	public static final String CROP_TITLE = "crop_title";
+
+	public static final int ERROR_ILLEGAL_ARGUMENT = 1;
 
 	public static final int PICK_MODE_CAMERA = 20001;
 	public static final int PICK_MODE_GALLERY = 20002;
@@ -50,7 +61,15 @@ public class PickImageActivity extends AngelActivity {
 	String cropped_file;
 	float crop_ratio;
 	int color_main = -1;
+	int color_tool_bar = -1;
+	int color_widget_bar = -1;
+	int color_widget_unselected = -1;
+	int color_widget_selected = -1;
 	int crop_mode = 0;
+	String crop_title = null;
+	boolean use_origin_file_for_crop = false;
+
+	String[] image_type_filters = new String[]{"*"};
 
 	@Override
 	protected void onSaveInstanceState(Bundle outState) {
@@ -72,6 +91,16 @@ public class PickImageActivity extends AngelActivity {
 		} else {
 			pick_mode_code = extras.getInt(PICK_MODE, PICK_MODE_CAMERA);
 			color_main = extras.getInt(MAIN_COLOR, getResources().getColor(R.color.blue));
+			color_tool_bar = extras.getInt(TOOL_BAR_COLOR, color_main);
+			color_widget_bar = extras.getInt(WIDGET_BAR_COLOR, getResources().getColor(R.color.white));
+			color_widget_unselected = extras.getInt(WIDGET_UNSELECTED_COLOR, getResources().getColor(R.color.black));
+			color_widget_selected = extras.getInt(WIDGET_SELECTED_COLOR, color_main);
+			use_origin_file_for_crop = extras.getBoolean(USE_ORIGIN_FILE_FOR_CROP, false);
+			crop_title = extras.getString(CROP_TITLE, null);
+			String[] strings = extras.getStringArray(IMAGE_TYPE_FILTERS);
+			if (strings != null) {
+				image_type_filters = strings;
+			}
 		}
 		crop_mode = extras.getInt(CROP_MODE, CROP_MODE_SQUARE);
 		if (crop_mode == CROP_MODE_SPECIFIC) {
@@ -131,6 +160,7 @@ public class PickImageActivity extends AngelActivity {
 		} else if (pick_mode_code == PICK_MODE_GALLERY) {
 			Intent intent = new Intent();
 			intent.setType("image/*");
+//			intent.putExtra(Intent.EXTRA_MIME_TYPES, image_type_filters);
 			intent.setAction(Intent.ACTION_GET_CONTENT);
 			try {
 				startActivityForResult(intent, PICK_MODE_GALLERY);
@@ -148,7 +178,12 @@ public class PickImageActivity extends AngelActivity {
 	}
 
 	void cropPicture(String path) {
-		File f = new File(getCacheDir(), "temp_" + System.currentTimeMillis() + ".jpg");
+		String s = path;
+		if (s.contains(".") && !s.endsWith(".")) {
+			s = s.substring(s.lastIndexOf(".") + 1, s.length());
+
+		}
+		File f = new File(getCacheDir(), "temp_" + System.currentTimeMillis() + "." + s);
 		cropped_file = f.getAbsolutePath();
 		if (cropped_file.startsWith("content://")) {
 //			cropped_file = getRealPathFromURI(getSelf(), Uri.parse(cropped_file));
@@ -171,10 +206,18 @@ public class PickImageActivity extends AngelActivity {
 			}
 		}
 		UCrop.Options options = new UCrop.Options();
-		options.setActiveWidgetColor(color_main);
-		options.setStatusBarColor(color_main);
-		options.setToolbarWidgetColor(getResources().getColor(R.color.white));
-		options.setToolbarColor(color_main);
+		options.setActiveWidgetColor(color_widget_selected);
+		options.setStatusBarColor(color_tool_bar);
+		options.setToolbarWidgetColor(color_widget_bar);
+		options.setToolbarColor(color_tool_bar);
+		if (crop_title != null) {
+			options.setToolbarTitle(crop_title);
+		}
+		if (s.equalsIgnoreCase("png")) {
+			options.setCompressionFormat(Bitmap.CompressFormat.PNG);
+		} else {
+			options.setCompressionFormat(Bitmap.CompressFormat.JPEG);
+		}
 		crop.withOptions(options).start(this);
 	}
 
@@ -198,7 +241,18 @@ public class PickImageActivity extends AngelActivity {
 
 	void handlePickedImage(Uri uri) {
 		Logger.out(uri);
-		FileInfo info = ImageProvider.getSmallPic(uri);
+		FileInfo info;
+		if (use_origin_file_for_crop) {
+			info = new FileInfo();
+			info.path = CommonUtil.getPath(getSelf(), uri);
+			BitmapFactory.Options opts = new BitmapFactory.Options();
+			opts.inJustDecodeBounds = true;
+			BitmapFactory.decodeFile(info.path, opts);
+			info.width = opts.outWidth;
+			info.height = opts.outHeight;
+		} else {
+			info = ImageProvider.getSmallPic(uri);
+		}
 		if (info == null) {
 			setResult(AngelApplication.result_fail);
 			finish();
@@ -255,40 +309,35 @@ public class PickImageActivity extends AngelActivity {
 		Logger.out("PickImageActivity onActivityResult:requestCode=" + requestCode + " resultCode=" + resultCode + " data=" + data);
 		if (requestCode == PICK_MODE_GALLERY && resultCode == AngelApplication.result_ok) {
 			Uri uri = data.getData();
+			if (uri != null && image_type_filters != null) {
+				String s = CommonUtil.getPath(getSelf(), uri);
+				if (s.contains(".") && !s.endsWith(".")) {
+					s = s.substring(s.lastIndexOf(".") + 1, s.length());
+					boolean found = false;
+					for (String filter : image_type_filters) {
+						if (filter.equalsIgnoreCase("*")) {
+							found = true;
+							break;
+						}
+						if (filter.equalsIgnoreCase(s)) {
+							found = true;
+							break;
+						}
+					}
+					if (!found) {
+						Intent result = new Intent();
+						result.putExtra("error_code", ERROR_ILLEGAL_ARGUMENT);
+						result.putExtra("selected_format", s);
+						setResult(AngelApplication.result_fail, result);
+						finish();
+						return;
+					}
+				}
+			}
 			handlePickedImage(uri);
 		} else if (requestCode == PICK_MODE_CAMERA && resultCode == AngelApplication.result_ok) {
 			Uri uri = Uri.fromFile(photo);
 			handlePickedImage(uri);
-//		} else if (requestCode == MODE_SELECT_MULTIPLE_FROM_GALLERY && resultCode == AngelApplication.result_ok) {
-//			if (data == null) {
-//				finish();
-//				return;
-//			}
-//			Bundle extras = data.getExtras();
-//			if (extras == null) {
-//				finish();
-//				return;
-//			}
-//			String image_data = extras.getString("list", null);
-//			if (image_data == null) {
-//				finish();
-//				return;
-//			}
-//			try {
-//				JSONArray ja = new JSONArray(image_data);
-//				ArrayList<FileInfo> list = handlePickedImages(ja);
-//				ja = new JSONArray();
-//				for (FileInfo info : list) {
-//					ja.put(info.toJson());
-//				}
-//				Intent it = new Intent();
-//				it.putExtra("list", ja.toString());
-//				setResult(AngelApplication.result_ok, it);
-//				finish();
-//			} catch (JSONException e) {
-//				e.printStackTrace();
-//			}
-
 		} else if (requestCode == UCrop.REQUEST_CROP) {
 			if (resultCode == RESULT_OK) {
 				Uri resultUri = UCrop.getOutput(data);
