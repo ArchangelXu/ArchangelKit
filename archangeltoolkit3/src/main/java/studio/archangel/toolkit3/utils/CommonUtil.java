@@ -348,23 +348,32 @@ public class CommonUtil {
 	}
 
 	/**
-	 * 获取字符串长度，中文算两个
+	 * 获取字符串长度，全角算两个
 	 *
 	 * @param value 目标字符串
 	 * @return
 	 */
 	public static int getRealLength(String value) {
 		int valueLength = 0;
-		String chinese = "[\u4e00-\u9fa5]";
+//		String chinese = "[\u4e00-\u9fa5]";
+//		for (int i = 0; i < value.length(); i++) {
+//			String temp = value.substring(i, i + 1);
+//			if (temp.matches(chinese)) {
+//				valueLength += 2;
+//			} else {
+//				valueLength += 1;
+//			}
+//		}
 		for (int i = 0; i < value.length(); i++) {
-			String temp = value.substring(i, i + 1);
-			if (temp.matches(chinese)) {
-				valueLength += 2;
-			} else {
-				valueLength += 1;
-			}
+			valueLength += isHalfWidth(value.charAt(i)) ? 1 : 2;
 		}
 		return valueLength;
+	}
+
+	static boolean isHalfWidth(char c) {
+		return '\u0000' <= c && c <= '\u00FF'
+				|| '\uFF61' <= c && c <= '\uFFDC'
+				|| '\uFFE8' <= c && c <= '\uFFEE';
 	}
 
 	/**
