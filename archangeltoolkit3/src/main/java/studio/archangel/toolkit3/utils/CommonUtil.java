@@ -46,13 +46,16 @@ import java.io.OutputStream;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import de.cketti.fileprovider.PublicFileProvider;
 import studio.archangel.toolkit3.AngelApplication;
 
 /**
  * Created by xmk on 16/5/15.
  */
 public class CommonUtil {
+	public static boolean isEmptyString(CharSequence cs) {
+		return TextUtils.isEmpty(cs) || cs.toString().equalsIgnoreCase("null");
+	}
+
 	/**
 	 * 计算两点之间距离
 	 *
@@ -60,10 +63,6 @@ public class CommonUtil {
 	 * @param b 点B
 	 * @return AB间距离
 	 */
-	public static boolean isEmptyString(CharSequence cs) {
-		return TextUtils.isEmpty(cs) || cs.toString().equalsIgnoreCase("null");
-	}
-
 	public static float getDistance(Point a, Point b) {
 		return (float) Math.sqrt(Math.pow(a.x - b.x, 2) + Math.pow(a.y - b.y, 2));
 	}
@@ -536,7 +535,8 @@ public class CommonUtil {
 	}
 
 	public static Uri getUriForFile(File file) {
-		return PublicFileProvider.getUriForFile(AngelApplication.getInstance(), AngelApplication.getInstance().getPackageName() + ".publicfileprovider", file);
+//		return PublicFileProvider.getUriForFile(AngelApplication.getInstance(), AngelApplication.getInstance().getPackageName() + ".publicfileprovider", file);
+		return AngelFileProvider.getUriForFile(AngelApplication.getInstance(), AngelApplication.getInstance().getPackageName() + ".fileprovider", file);
 	}
 
 	public static boolean hasFrontCamera() {

@@ -112,6 +112,7 @@ public class PickImageActivity extends AngelActivity {
 //					uri = FileProvider.getUriForFile(getSelf(), "studio.archangel.toolkit3.AngelFileProvider", photo);
 					uri = CommonUtil.getUriForFile(photo);
 					intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+					intent.addFlags(Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
 				} else {
 					uri = Uri.fromFile(photo);
 				}

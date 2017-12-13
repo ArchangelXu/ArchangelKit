@@ -4,22 +4,22 @@
 	<application
 		android:allowBackup = "true"
 		android:supportsRtl = "true">
-		<!--<provider-->
-		<!--android:name = ".utils.AngelFileProvider"-->
-		<!--android:authorities = "studio.archangel.toolkit3.AngelFileProvider"-->
-		<!--android:exported = "false"-->
-		<!--android:grantUriPermissions = "true">-->
-		<!--<meta-data-->
-		<!--android:name = "android.support.FILE_PROVIDER_PATHS"-->
-		<!--android:resource = "@xml/filepaths"/>-->
-		<!--</provider>-->
 		<provider
-			android:name = "de.cketti.fileprovider.PublicFileProvider"
-			android:authorities = "${applicationId}.publicfileprovider"
-			android:exported = "true">
+			android:name = ".utils.AngelFileProvider"
+			android:authorities = "${applicationId}.fileprovider"
+			android:exported = "false"
+			android:grantUriPermissions = "true">
 			<meta-data
-				android:name = "de.cketti.fileprovider.PUBLIC_FILE_PROVIDER_PATHS"
+				android:name = "android.support.FILE_PROVIDER_PATHS"
 				android:resource = "@xml/filepaths"/>
 		</provider>
+		<!--<provider-->
+		<!--android:name = "de.cketti.fileprovider.PublicFileProvider"-->
+		<!--android:authorities = "${applicationId}.publicfileprovider"-->
+		<!--android:exported = "true">-->
+		<!--<meta-data-->
+		<!--android:name = "de.cketti.fileprovider.PUBLIC_FILE_PROVIDER_PATHS"-->
+		<!--android:resource = "@xml/filepaths"/>-->
+		<!--</provider>-->
 	</application>
 </manifest>
