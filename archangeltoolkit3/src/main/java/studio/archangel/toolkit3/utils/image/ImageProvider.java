@@ -361,7 +361,7 @@ public class ImageProvider {
 	}
 
 
-	static Bitmap rotateBitmap(Bitmap bitmap, int orientation) {
+	public static Bitmap rotateBitmap(Bitmap bitmap, int orientation) {
 
 		Matrix matrix = new Matrix();
 		switch (orientation) {

@@ -50,7 +50,8 @@ dependencies {
     compile 'jp.wasabeef:recyclerview-animators:2.2.6'
     compile project(':androidnumberpicker')
     compile project(':swipeToLoadLayout')
-    compile 'com.yalantis:ucrop:2.2.0'
+//    compile 'com.yalantis:ucrop:2.2.0'
+    compile 'com.github.yalantis:ucrop:2.2.1-native'
     compile('com.github.ozodrukh:CircularReveal:2.0.1@aar') {
         transitive = true;
     }

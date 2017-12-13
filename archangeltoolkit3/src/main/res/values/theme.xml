@@ -2,6 +2,8 @@
 <resources>
 	<!--<style name = "AngelTheme" parent = "android:Theme.Holo.Light">-->
 	<style name = "AngelTheme" parent = "Base.Theme.AppCompat.Light">
+		<item name = "android:splitMotionEvents">false</item>
+		<item name = "android:windowEnableSplitTouch">false</item>
 		<!-- ListView样式-->
 		<item name = "android:listViewStyle">@style/AngelTheme.ListView</item>
 		<!-- TextView样式-->

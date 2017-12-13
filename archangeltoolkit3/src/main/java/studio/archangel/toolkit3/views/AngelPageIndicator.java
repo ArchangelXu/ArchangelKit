@@ -63,6 +63,7 @@ public class AngelPageIndicator extends LinearLayout {
 		if (count <= 1) {
 			setVisibility(View.GONE);
 		} else {
+			setVisibility(View.VISIBLE);
 			AngelPageIndicatorUnit unit = units.get(units.size() - 1);
 			LayoutParams params = (LayoutParams) unit.getLayoutParams();
 			params.rightMargin = 0;
