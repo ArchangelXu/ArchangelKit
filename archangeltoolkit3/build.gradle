@@ -1,5 +1,5 @@
 apply plugin: 'com.android.library'
-apply plugin: 'me.tatarka.retrolambda'
+//apply plugin: 'me.tatarka.retrolambda'
 
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
@@ -28,38 +28,38 @@ android {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
+    api fileTree(dir: 'libs', include: ['*.jar'])
     testCompile 'junit:junit:4.12'
-    compile 'com.orhanobut:logger:2.1.1'
-    compile "com.android.support:recyclerview-v7:$rootProject.ext.supportLibraryVersion"
-    compile project(':constrainedWidget')
-    compile project(':edgeEffectOverride')
-    compile project(':materialEditText')
-    compile 'com.squareup.okhttp3:okhttp:3.9.0'
-    compile 'com.ogaclejapan.smarttablayout:library:1.6.1@aar'
-    compile 'com.ogaclejapan.smarttablayout:utils-v4:1.6.1@aar'
-    compile project(':materialdesigneffectlibrary')
-    compile project(':public_libs')
-    compile project(':barone')
-    compile project(':localizationActivity')
+    api 'com.orhanobut:logger:2.1.1'
+    api "com.android.support:recyclerview-v7:$rootProject.ext.supportLibraryVersion"
+    api project(':constrainedWidget')
+    api project(':edgeEffectOverride')
+    api project(':materialEditText')
+    api 'com.squareup.okhttp3:okhttp:3.9.0'
+    api 'com.ogaclejapan.smarttablayout:library:1.6.1@aar'
+    api 'com.ogaclejapan.smarttablayout:utils-v4:1.6.1@aar'
+    api project(':materialdesigneffectlibrary')
+    api project(':public_libs')
+    api project(':barone')
+    api project(':localizationActivity')
 
-    compile 'com.badoo.mobile:android-weak-handler:1.1'
-    compile 'com.eightbitlab:blurview:1.1.2'
+    api 'com.badoo.mobile:android-weak-handler:1.1'
+    api 'com.eightbitlab:blurview:1.1.2'
 
-    compile 'com.lsjwzh:materialloadingprogressbar:0.5.8-RELEASE'
-    compile 'jp.wasabeef:recyclerview-animators:2.2.6'
-    compile project(':androidnumberpicker')
-    compile project(':swipeToLoadLayout')
-//    compile 'com.yalantis:ucrop:2.2.0'
-    compile 'com.github.yalantis:ucrop:2.2.1-native'
+    api 'com.lsjwzh:materialloadingprogressbar:0.5.8-RELEASE'
+    api 'jp.wasabeef:recyclerview-animators:2.2.6'
+    api project(':androidnumberpicker')
+    api project(':swipeToLoadLayout')
+//    api 'com.yalantis:ucrop:2.2.0'
+    api 'com.github.yalantis:ucrop:2.2.1-native'
     compile('com.github.ozodrukh:CircularReveal:2.0.1@aar') {
         transitive = true;
     }
-    compile 'com.nineoldandroids:library:2.4.0'
-    compile 'com.daimajia.easing:library:2.1@aar'
-    compile 'uk.co.chrisjenx:calligraphy:2.3.0'
-    compile 'com.android.support.constraint:constraint-layout:1.0.2'
-//    compile 'de.cketti.fileprovider:public-fileprovider:1.0.0'
+    api 'com.nineoldandroids:library:2.4.0'
+    api 'com.daimajia.easing:library:2.1@aar'
+    api 'uk.co.chrisjenx:calligraphy:2.3.0'
+    api 'com.android.support.constraint:constraint-layout:1.0.2'
+//    api 'de.cketti.fileprovider:public-fileprovider:1.0.0'
 }
 repositories {
     maven {

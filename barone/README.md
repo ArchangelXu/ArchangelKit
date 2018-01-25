@@ -14,7 +14,7 @@ repositories {
 }
 
 dependencies {
-    compile 'com.triposo:barone:1.0@aar'
+    api 'com.triposo:barone:1.0@aar'
 }
 ```
 
