@@ -17,9 +17,11 @@ buildscript {
 
         jcenter()
         maven { url 'https://dl.google.com/dl/android/maven2/' }
+        maven { url 'https://oss.sonatype.org/content/repositories/snapshots/' }
+
     }
     dependencies {
-        classpath "com.android.tools.build:gradle:$project.ext.gradleToolVersion"
+        classpath "com.android.tools.build:gradle:3.0.1"
         classpath "me.tatarka:gradle-retrolambda:$project.ext.retrolambdaVersion"
         classpath 'com.neenbedankt.gradle.plugins:android-apt:1.8'
     }
@@ -44,6 +46,8 @@ allprojects {
 
         jcenter()
         maven { url 'https://dl.google.com/dl/android/maven2/' }
+        maven { url 'https://oss.sonatype.org/content/repositories/snapshots/' }
+
     }
 }
 

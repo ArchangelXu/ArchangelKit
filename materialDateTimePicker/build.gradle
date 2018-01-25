@@ -18,6 +18,6 @@ android {
 }
 
 dependencies {
-    compile project(':edgeEffectOverride')
-    compile project(':public_libs')
+    api project(':edgeEffectOverride')
+    api project(':public_libs')
 }

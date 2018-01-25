@@ -17,5 +17,5 @@ android {
 }
 
 dependencies {
-    compile project(':public_libs')
+    api project(':public_libs')
 }
