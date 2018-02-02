@@ -17,5 +17,7 @@ android {
 }
 
 dependencies {
-    api project(':public_libs')
+//    api project(':public_libs')
+    implementation "com.android.support:appcompat-v7:$rootProject.ext.supportLibraryVersion"
+
 }

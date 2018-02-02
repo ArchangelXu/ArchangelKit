@@ -1,7 +1,7 @@
 include ':archangelkit_demo'
 include ':androidnumberpicker'
 include ':barone'
-include ':public_libs'
+//include ':public_libs'
 include ':constrainedWidget'
 include ':edgeEffectOverride'
 include ':listViewAnimation'

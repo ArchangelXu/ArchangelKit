@@ -1,8 +1,14 @@
 package studio.archangel.toolkit3.utils.ui;
 
 import android.app.Activity;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.graphics.drawable.StateListDrawable;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.v4.graphics.drawable.TintAwareDrawable;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TabHost;
@@ -10,6 +16,7 @@ import android.widget.TextView;
 
 import com.rey.material.widget.RelativeLayout;
 
+import studio.archangel.toolkit3.AngelApplication;
 import studio.archangel.toolkit3.R;
 import studio.archangel.toolkit3.fragments.AngelFragment;
 import studio.archangel.toolkit3.views.AngelRedDot;
@@ -54,10 +61,14 @@ public class AngelTabHelper {
 
 //			View strip = layout.findViewById(R.id.view_tab_strip);
 			StateListDrawable drawable = new StateListDrawable();
-			drawable.addState(new int[]{android.R.attr.state_selected}, config.getSelectedDrawable());
-			drawable.addState(new int[]{android.R.attr.state_pressed}, config.getSelectedDrawable());
-			drawable.addState(new int[]{android.R.attr.state_focused}, config.getSelectedDrawable());
-			drawable.addState(new int[]{}, config.getUnselectedDrawable());
+			Drawable d = config.getSelectedDrawable();
+			d = getBitmapDrawableForApi19(d);
+			drawable.addState(new int[]{android.R.attr.state_selected}, d);
+			drawable.addState(new int[]{android.R.attr.state_pressed}, d);
+			drawable.addState(new int[]{android.R.attr.state_focused}, d);
+			d = config.getUnselectedDrawable();
+			d = getBitmapDrawableForApi19(d);
+			drawable.addState(new int[]{}, d);
 			icon.setImageDrawable(drawable);
 
 			text.setText(config.getText());
@@ -77,6 +88,17 @@ public class AngelTabHelper {
 //			back.getLayoutParams().height = config.getTabHeight();
 		}
 
+	}
+
+	private Drawable getBitmapDrawableForApi19(Drawable d) {
+		if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.KITKAT && d instanceof TintAwareDrawable) {
+			Bitmap bitmap = Bitmap.createBitmap(d.getIntrinsicWidth(), d.getIntrinsicHeight(), Bitmap.Config.ARGB_8888);
+			Canvas canvas = new Canvas(bitmap);
+			d.setBounds(0, 0, d.getIntrinsicWidth(), d.getIntrinsicHeight());
+			d.draw(canvas);
+			d = new BitmapDrawable(act.getResources(), bitmap);
+		}
+		return d;
 	}
 
 	public void refreshTabStatus(String new_selected_tab_tag) {

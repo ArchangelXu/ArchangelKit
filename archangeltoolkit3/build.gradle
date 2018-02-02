@@ -29,7 +29,7 @@ android {
 
 dependencies {
     api fileTree(dir: 'libs', include: ['*.jar'])
-    testCompile 'junit:junit:4.12'
+    testImplementation 'junit:junit:4.12'
     api 'com.orhanobut:logger:2.1.1'
     api "com.android.support:recyclerview-v7:$rootProject.ext.supportLibraryVersion"
     api project(':constrainedWidget')
@@ -39,7 +39,7 @@ dependencies {
     api 'com.ogaclejapan.smarttablayout:library:1.6.1@aar'
     api 'com.ogaclejapan.smarttablayout:utils-v4:1.6.1@aar'
     api project(':materialdesigneffectlibrary')
-    api project(':public_libs')
+//    api project(':public_libs')
     api project(':barone')
     api project(':localizationActivity')
 
@@ -52,13 +52,20 @@ dependencies {
     api project(':swipeToLoadLayout')
 //    api 'com.yalantis:ucrop:2.2.0'
     api 'com.github.yalantis:ucrop:2.2.1-native'
-    compile('com.github.ozodrukh:CircularReveal:2.0.1@aar') {
+    api('com.github.ozodrukh:CircularReveal:2.0.1@aar') {
         transitive = true;
     }
     api 'com.nineoldandroids:library:2.4.0'
     api 'com.daimajia.easing:library:2.1@aar'
     api 'uk.co.chrisjenx:calligraphy:2.3.0'
     api 'com.android.support.constraint:constraint-layout:1.0.2'
+    api "com.android.support:appcompat-v7:$rootProject.ext.supportLibraryVersion"
+    api 'org.simple:androideventbus:1.0.5.1'
+//    api fileTree(dir: 'libs', include: ['*.jar'])
+    api 'com.facebook.fresco:fresco:1.7.1'
+    api 'com.facebook.fresco:imagepipeline-okhttp3:1.7.1'
+    api 'com.facebook.fresco:animated-gif:1.7.1'
+    api 'me.relex:photodraweeview:1.1.2'
 //    api 'de.cketti.fileprovider:public-fileprovider:1.0.0'
 }
 repositories {
