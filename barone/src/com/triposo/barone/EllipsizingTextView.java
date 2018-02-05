@@ -35,7 +35,7 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class EllipsizingTextView extends TextView {
+public class EllipsizingTextView extends android.support.v7.widget.AppCompatTextView {
 	private static final String ELLIPSIS = "\u2026";
 	private static final Pattern DEFAULT_END_PUNCTUATION = Pattern.compile("[\\.,\u2026;\\:\\s]*$", Pattern.DOTALL);
 
