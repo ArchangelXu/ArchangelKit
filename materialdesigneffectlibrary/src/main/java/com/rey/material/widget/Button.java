@@ -12,7 +12,7 @@ import com.rey.material.app.ThemeManager;
 import com.rey.material.drawable.RippleDrawable;
 import com.rey.material.util.ViewUtil;
 
-public class Button extends android.widget.Button implements ThemeManager.OnThemeChangedListener {
+public class Button extends android.support.v7.widget.AppCompatButton implements ThemeManager.OnThemeChangedListener {
 
 	private RippleManager mRippleManager;
 
@@ -39,9 +39,9 @@ public class Button extends android.widget.Button implements ThemeManager.OnThem
 
 	@TargetApi(Build.VERSION_CODES.LOLLIPOP)
 	public Button(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
-		super(context, attrs, defStyleAttr, defStyleRes);
+		super(context, attrs, defStyleAttr);
 
-		init(context, attrs, defStyleAttr, defStyleRes);
+		init(context, attrs, defStyleAttr, 0);
 	}
 
 	protected void init(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
