@@ -171,7 +171,7 @@ public abstract class AngelApplication extends Application {
 
 		configBuilder.setRequestListeners(requestListeners);
 
-		configBuilder.setDownsampleEnabled(true);
+//		configBuilder.setDownsampleEnabled(true);
 		configBuilder.experiment().setWebpSupportEnabled(true);
 
 		Fresco.initialize(this, configBuilder.build());

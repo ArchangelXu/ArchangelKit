@@ -12,7 +12,7 @@ import com.rey.material.app.ThemeManager;
 import com.rey.material.drawable.RippleDrawable;
 import com.rey.material.util.ViewUtil;
 
-public class ImageButton extends android.widget.ImageButton implements ThemeManager.OnThemeChangedListener {
+public class ImageButton extends android.support.v7.widget.AppCompatImageButton implements ThemeManager.OnThemeChangedListener {
 
 	private RippleManager mRippleManager;
 	protected int mStyleId;
@@ -38,7 +38,7 @@ public class ImageButton extends android.widget.ImageButton implements ThemeMana
 
 	@TargetApi(Build.VERSION_CODES.LOLLIPOP)
 	public ImageButton(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
-		super(context, attrs, defStyleAttr, defStyleRes);
+		super(context, attrs, defStyleAttr);
 
 		init(context, attrs, defStyleAttr, defStyleRes);
 	}

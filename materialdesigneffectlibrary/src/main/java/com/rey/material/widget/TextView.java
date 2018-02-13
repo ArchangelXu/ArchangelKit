@@ -13,7 +13,7 @@ import com.rey.material.app.ThemeManager;
 import com.rey.material.drawable.RippleDrawable;
 import com.rey.material.util.ViewUtil;
 
-public class TextView extends android.widget.TextView implements ThemeManager.OnThemeChangedListener {
+public class TextView extends android.support.v7.widget.AppCompatTextView implements ThemeManager.OnThemeChangedListener {
 
 	private RippleManager mRippleManager;
 	protected int mStyleId;
@@ -45,9 +45,9 @@ public class TextView extends android.widget.TextView implements ThemeManager.On
 
 	@TargetApi(Build.VERSION_CODES.LOLLIPOP)
 	public TextView(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
-		super(context, attrs, defStyleAttr, defStyleRes);
+		super(context, attrs, defStyleAttr);
 
-		init(context, attrs, defStyleAttr, defStyleRes);
+		init(context, attrs, defStyleAttr, 0);
 	}
 
 	protected void init(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {

@@ -3596,7 +3596,7 @@ public class EditText extends FrameLayout implements ThemeManager.OnThemeChanged
 
 	}
 
-	private class InternalEditText extends android.widget.EditText {
+	private class InternalEditText extends android.support.v7.widget.AppCompatEditText {
 
 		public InternalEditText(Context context) {
 			super(context);
@@ -3723,7 +3723,7 @@ public class EditText extends FrameLayout implements ThemeManager.OnThemeChanged
 		}
 	}
 
-	private class InternalAutoCompleteTextView extends AutoCompleteTextView {
+	private class InternalAutoCompleteTextView extends android.support.v7.widget.AppCompatAutoCompleteTextView {
 
 		public InternalAutoCompleteTextView(Context context) {
 			super(context);
@@ -3895,7 +3895,7 @@ public class EditText extends FrameLayout implements ThemeManager.OnThemeChanged
 		}
 	}
 
-	private class InternalMultiAutoCompleteTextView extends MultiAutoCompleteTextView {
+	private class InternalMultiAutoCompleteTextView extends android.support.v7.widget.AppCompatMultiAutoCompleteTextView {
 
 		public InternalMultiAutoCompleteTextView(Context context) {
 			super(context);

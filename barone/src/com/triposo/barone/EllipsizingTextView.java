@@ -28,7 +28,6 @@ import android.text.SpannableStringBuilder;
 import android.text.StaticLayout;
 import android.text.TextUtils.TruncateAt;
 import android.util.AttributeSet;
-import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -238,8 +237,12 @@ public class EllipsizingTextView extends android.support.v7.widget.AppCompatText
 	}
 
 	private Layout createWorkingLayout(CharSequence workingText) {
+		int width = getWidth() - getPaddingLeft() - getPaddingRight();
+		if (width < 0) {
+			width = 0;
+		}
 		return new StaticLayout(workingText, getPaint(),
-				getWidth() - getPaddingLeft() - getPaddingRight(),
+				width,
 				Alignment.ALIGN_NORMAL, lineSpacingMultiplier,
 				lineAdditionalVerticalPadding, false /* includepad */);
 	}
