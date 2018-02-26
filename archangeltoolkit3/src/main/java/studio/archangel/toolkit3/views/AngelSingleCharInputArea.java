@@ -70,24 +70,12 @@ public abstract class AngelSingleCharInputArea extends LinearLayout {
 					divider.setBackground(divider_drawable);
 				} else {
 					divider.setBackgroundResource(default_color_divider);
-					LayoutParams p = (LayoutParams) divider.getLayoutParams();
-					p.width = divider_width;
-					p.height = ViewGroup.LayoutParams.MATCH_PARENT;
 				}
+				LayoutParams p = (LayoutParams) divider.getLayoutParams();
+				p.width = divider_width;
+				p.height = ViewGroup.LayoutParams.MATCH_PARENT;
 			}
 			RelativeLayout layout = new RelativeLayout(getContext());
-//			ConstrainedImageView iv = new ConstrainedImageView(getContext());
-//			iv.setAspectRatio(1, 1);
-//			iv.setImageResource(R.drawable.shape_oval_black);
-//			if (isInEditMode()) {
-//				iv.setPadding(grid_size / 3, grid_size / 3, grid_size / 3, grid_size / 3);
-//			} else {
-//				iv.setPadding(UIUtil.getPX(getContext(), grid_size / 3), UIUtil.getPX(getContext(), grid_size / 3), UIUtil.getPX(getContext(), grid_size / 3), UIUtil.getPX(getContext(), grid_size / 3));
-//			}
-////            iv.setAlpha(0);
-//			iv.setScaleX(0);
-//			iv.setScaleY(0);
-//            iv.setVisibility(View.INVISIBLE);
 			View view = getSingleCharView(layout, char_layout_id);
 			char_views.add(view);
 			addView(layout);
@@ -95,14 +83,6 @@ public abstract class AngelSingleCharInputArea extends LinearLayout {
 			params.width = ViewGroup.LayoutParams.MATCH_PARENT;
 			params.height = ViewGroup.LayoutParams.MATCH_PARENT;
 			params.weight = 1;
-//			LayoutParams p = (LayoutParams) view.getLayoutParams();
-//			if (isInEditMode()) {
-//				p.width = grid_size;
-//				p.height = grid_size;
-//			} else {
-//				p.width = UIUtil.getPX(getContext(), grid_size);
-//				p.height = UIUtil.getPX(getContext(), grid_size);
-//			}
 		}
 	}
 
@@ -127,7 +107,6 @@ public abstract class AngelSingleCharInputArea extends LinearLayout {
 		if (listener != null) {
 			listener.onCharAmountChanged(count, builder.length());
 		}
-//        setText(builder.toString());
 	}
 
 	public boolean deleteLastChar() {
@@ -140,7 +119,6 @@ public abstract class AngelSingleCharInputArea extends LinearLayout {
 			listener.onCharAmountChanged(count, builder.length());
 		}
 		return true;
-//        setText(builder.toString());
 	}
 
 	public void removeAllChars() {
@@ -149,7 +127,6 @@ public abstract class AngelSingleCharInputArea extends LinearLayout {
 		if (listener != null) {
 			listener.onCharAmountChanged(count, builder.length());
 		}
-//        setText(builder.toString());
 	}
 
 	public void setText(String t) {
@@ -165,13 +142,6 @@ public abstract class AngelSingleCharInputArea extends LinearLayout {
 			listener.onCharAmountChanged(count, builder.length());
 		}
 	}
-//    void setText(String t) {
-//        int length = t.length();
-//        setDotAmount(length);
-//        if (listener != null) {
-//            listener.onDotAmountChanged(count, length);
-//        }
-//    }
 
 	void animateAddChar(String character) {
 		animateCharView(char_views.get(builder.length() - 1), character, true);
@@ -194,40 +164,7 @@ public abstract class AngelSingleCharInputArea extends LinearLayout {
 		}
 	}
 
-//	void animateCharView(View dot, float scale, Interpolator interpolator) {
-//		dot.animate().scaleX(scale).scaleY(scale).setDuration(200).setInterpolator(interpolator).start();
-//	}
-
 	protected abstract void animateCharView(View char_view, String character, boolean show);
-//    public void setDotAmount(int amount) {
-//        for (int i = 0; i < count; i++) {
-//            View dot = char_views.GET(i);
-//            boolean show = i < amount;
-//            float scale = show ? 1 : 0;
-//            Interpolator interpolator = null;
-//            if (show) {
-//                interpolator = new OvershootInterpolator();
-//            } else {
-//                interpolator = new AnticipateInterpolator();
-//            }
-//
-//            ViewPropertyAnimator animator = dot.animate();
-//
-//            animator.scaleX(scale).scaleY(scale).setDuration(200).setInterpolator(interpolator).start();
-//
-////            if (show) {
-////                if (dot.getScaleX() != 1) {
-////                    dot.animate().scaleX(1).scaleY(1).setDuration(200).setInterpolator(new OvershootInterpolator()).start();
-////                }
-////            } else {
-////                if (dot.getScaleX() != 0) {
-////                    dot.animate().scaleX(0).scaleY(0).setDuration(200).setInterpolator(new AnticipateOvershootInterpolator()).start();
-////                }
-////
-////            }
-////            dot.setVisibility(i < amount ? View.VISIBLE : View.INVISIBLE);
-//        }
-//    }
 
 	public interface OnCharAmountChangeListener {
 		void onCharAmountChanged(int max, int amount);

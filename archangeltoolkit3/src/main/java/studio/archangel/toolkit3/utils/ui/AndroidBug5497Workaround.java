@@ -41,12 +41,14 @@ public class AndroidBug5497Workaround {
 		if (usableHeightNow != usableHeightPrevious) {
 			int usableHeightSansKeyboard = mChildOfContent.getRootView().getHeight();
 			int heightDifference = usableHeightSansKeyboard - usableHeightNow;
-			if (heightDifference > (usableHeightSansKeyboard / 4)) {
+//			if (heightDifference > (usableHeightSansKeyboard / 4)) {
+			if (heightDifference != 0) {
 				// keyboard probably just became visible
 				frameLayoutParams.height = usableHeightSansKeyboard - heightDifference;
 			} else {
 				// keyboard probably just became hidden
-				frameLayoutParams.height = usableHeightSansKeyboard - navigation_bar_height;
+//				frameLayoutParams.height = usableHeightSansKeyboard - navigation_bar_height;
+				frameLayoutParams.height = usableHeightSansKeyboard;
 			}
 			mChildOfContent.requestLayout();
 			usableHeightPrevious = usableHeightNow;
