@@ -138,7 +138,7 @@ public abstract class AngelApplication extends Application {
 		int maxHeapSize = (int) Runtime.getRuntime().maxMemory();
 		final int maxMemoryCacheSize = maxHeapSize / 8;
 		//	public static final int maxDiskCacheSize = 40 * ByteConstants.MB;
-		final int maxDiskCacheSize = maxMemoryCacheSize * 2 / 1000 / 1000;//in MB
+		final int maxDiskCacheSize = maxMemoryCacheSize * 2;
 		ImagePipelineConfig.Builder configBuilder = OkHttpImagePipelineConfigFactory.newBuilder(this, getAngelNetInstance().getClient());
 
 		// 设置内存配置
