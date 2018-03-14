@@ -35,4 +35,9 @@
 	<color name = "text_black">@color/black</color>
 	<color name = "text_white">@color/white</color>
 	<color name = "text_grey">@color/grey</color>
+	<!--Third party-->
+	<color name = "facebook">#FF4566AC</color>
+	<color name = "twitter">#FF55ACEE</color>
+	<color name = "weibo">#FF9F16</color>
+	<color name = "wechat">#FF00C80F</color>
 </resources>
