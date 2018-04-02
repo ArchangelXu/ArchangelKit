@@ -58,6 +58,8 @@
 	<!--<style name = "AngelTheme.Translucent.NoTitleBar"-->
 	<!--parent = "android:Theme.Translucent.NoTitleBar">-->
 	<style name = "AngelTheme.Translucent.NoTitleBar" parent = "Theme.AppCompat.Light">
+		<item name = "android:splitMotionEvents">false</item>
+		<item name = "android:windowEnableSplitTouch">false</item>
 		<item name = "windowNoTitle">true</item>
 		<item name = "android:windowNoTitle">true</item>
 		<item name = "android:windowBackground">@android:color/transparent</item>
@@ -85,6 +87,8 @@
 	</style>
 	<!--<style name = "AngelTheme.Fullscreen" parent = "android:Theme.NoTitleBar.Fullscreen">-->
 	<style name = "AngelTheme.Fullscreen" parent = "Theme.AppCompat.Light">
+		<item name = "android:splitMotionEvents">false</item>
+		<item name = "android:windowEnableSplitTouch">false</item>
 		<item name = "windowNoTitle">true</item>
 		<item name = "android:windowNoTitle">true</item>
 		<item name = "windowActionBar">false</item>
@@ -112,6 +116,8 @@
 	</style>
 	<!--<style name = "AngelTheme.NoTitleBar" parent = "android:Theme.NoTitleBar">-->
 	<style name = "AngelTheme.NoTitleBar" parent = "Theme.AppCompat.Light">
+		<item name = "android:splitMotionEvents">false</item>
+		<item name = "android:windowEnableSplitTouch">false</item>
 		<item name = "windowActionBar">false</item>
 		<item name = "android:windowActionBar">false</item>
 		<!-- ListView样式-->
@@ -163,6 +169,8 @@
 	</style>
 	<!--<style name = "AngelTheme.Dialog" parent = "android:Theme.Holo.Light.Dialog">-->
 	<style name = "AngelTheme.Dialog" parent = "Theme.AppCompat.Light.Dialog">
+		<item name = "android:splitMotionEvents">false</item>
+		<item name = "android:windowEnableSplitTouch">false</item>
 		<!-- ListView样式-->
 		<item name = "android:listViewStyle">@style/AngelTheme.ListView</item>
 		<!-- TextView样式-->

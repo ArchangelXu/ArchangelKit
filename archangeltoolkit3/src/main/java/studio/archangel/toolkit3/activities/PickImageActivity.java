@@ -5,6 +5,11 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffXfermode;
+import android.graphics.RectF;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -15,7 +20,10 @@ import com.yalantis.ucrop.UCrop;
 
 import org.json.JSONArray;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 
 import studio.archangel.toolkit3.AngelApplication;
@@ -56,6 +64,7 @@ public class PickImageActivity extends AngelActivity {
 	public static final int CROP_MODE_SQUARE = 30002;
 	public static final int CROP_MODE_SPECIFIC = 30003;
 	public static final int CROP_MODE_FREE = 30004;
+	public static final int CROP_MODE_OVAL = 30005;
 
 	File photo;
 	String cropped_file;
@@ -191,6 +200,7 @@ public class PickImageActivity extends AngelActivity {
 			cropped_file = CommonUtil.getPath(getSelf(), Uri.parse(cropped_file));
 		}
 
+		UCrop.Options options = new UCrop.Options();
 		UCrop crop = UCrop.of(Uri.fromFile(new File(path)), Uri.fromFile(f));
 		switch (crop_mode) {
 			case CROP_MODE_SQUARE: {
@@ -205,8 +215,12 @@ public class PickImageActivity extends AngelActivity {
 				//do nothing
 				break;
 			}
+			case CROP_MODE_OVAL: {
+				crop.withAspectRatio(1, 1);
+				options.setCircleDimmedLayer(true);
+				break;
+			}
 		}
-		UCrop.Options options = new UCrop.Options();
 		options.setActiveWidgetColor(color_widget_selected);
 		options.setStatusBarColor(color_tool_bar);
 		options.setToolbarWidgetColor(color_widget_bar);
@@ -350,11 +364,39 @@ public class PickImageActivity extends AngelActivity {
 				Intent it = new Intent();
 				it.putExtra("file", resultUri.toString());
 				final BitmapFactory.Options options = new BitmapFactory.Options();
-				options.inJustDecodeBounds = true;
-				Bitmap bitmap = BitmapFactory.decodeFile(new File(resultUri.getPath()).getAbsolutePath(), options);
+				if (crop_mode != CROP_MODE_OVAL) {
+					options.inJustDecodeBounds = true;
+				}
+				Bitmap bitmap = BitmapFactory.decodeFile(new File(resultUri.getPath()).getAbsolutePath(), options).copy(Bitmap.Config.ARGB_8888, true);
 				if (bitmap != null) {
-					bitmap.recycle();
-					bitmap = null;
+					if (crop_mode == CROP_MODE_OVAL) {
+						Canvas canvas = new Canvas(bitmap);
+						Paint p = new Paint(Paint.ANTI_ALIAS_FLAG);
+						p.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_IN));
+						p.setStyle(Paint.Style.FILL);
+						canvas.drawOval(new RectF(0, 0, options.outWidth, options.outHeight), p);
+
+						FileOutputStream out = null;
+						try {
+							out = new FileOutputStream(resultUri.getPath());
+							bitmap.compress(Bitmap.CompressFormat.PNG, 100, new ByteArrayOutputStream());
+						} catch (Exception e) {
+							e.printStackTrace();
+						} finally {
+							try {
+								if (out != null) {
+									out.close();
+								}
+							} catch (IOException e) {
+								e.printStackTrace();
+							}
+							bitmap.recycle();
+							bitmap = null;
+						}
+					} else {
+						bitmap.recycle();
+						bitmap = null;
+					}
 				}
 				it.putExtra("width", options.outWidth);
 				it.putExtra("height", options.outHeight);

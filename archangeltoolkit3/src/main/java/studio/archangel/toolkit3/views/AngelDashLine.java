@@ -21,6 +21,10 @@ public class AngelDashLine extends View {
 	private Paint paint;
 	private Path path;
 	private PathEffect effects;
+	private int color;
+	private int width;
+	private int length;
+	private int gap;
 
 	public AngelDashLine(Context context) {
 		this(context, null);
@@ -36,18 +40,23 @@ public class AngelDashLine extends View {
 		paint.setStyle(Paint.Style.STROKE);
 		path = new Path();
 		TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.AngelDashLine);
-		int color = a.getColor(R.styleable.AngelDashLine_adl_dash_color, getResources().getColor(R.color.grey_light));
+		color = a.getColor(R.styleable.AngelDashLine_adl_dash_color, getResources().getColor(R.color.grey_light));
 		paint.setColor(color);
-		int width = a.getDimensionPixelOffset(R.styleable.AngelDashLine_adl_line_width, 1);
+		width = a.getDimensionPixelOffset(R.styleable.AngelDashLine_adl_line_width, 1);
 		paint.setStrokeWidth(width);
-		int length = a.getDimensionPixelOffset(R.styleable.AngelDashLine_adl_dash_length, UIUtil.getPX(context, 4));
-		int gap = a.getDimensionPixelOffset(R.styleable.AngelDashLine_adl_dash_gap, UIUtil.getPX(context, 2));
+		length = a.getDimensionPixelOffset(R.styleable.AngelDashLine_adl_dash_length, UIUtil.getPX(context, 4));
+		gap = a.getDimensionPixelOffset(R.styleable.AngelDashLine_adl_dash_gap, UIUtil.getPX(context, 2));
 		effects = new DashPathEffect(new float[]{length, gap, length, gap}, 0);
 		int res = a.getResourceId(R.styleable.AngelDashLine_adl_background, R.color.trans);
 		setBackgroundResource(res);
 		a.recycle();
 	}
 
+	public void setLineColor(int color) {
+		this.color = color;
+		paint.setColor(color);
+		invalidate();
+	}
 
 	@Override
 	protected void onDraw(Canvas canvas) {
