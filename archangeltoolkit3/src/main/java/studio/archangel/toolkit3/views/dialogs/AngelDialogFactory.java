@@ -91,7 +91,11 @@ public class AngelDialogFactory {
 					LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) iv.getLayoutParams();
 					params.width = params.height = item.icon_size_px;
 					if (item.icon_res == 0) {
-						iv.setVisibility(View.GONE);
+						if (item.icon_drawable != null) {
+							iv.setImageDrawable(item.icon_drawable);
+						} else {
+							iv.setVisibility(View.GONE);
+						}
 					} else {
 						iv.setImageResource(item.icon_res);
 					}

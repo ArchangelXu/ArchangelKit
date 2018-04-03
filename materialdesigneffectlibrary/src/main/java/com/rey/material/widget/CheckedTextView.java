@@ -12,7 +12,7 @@ import com.rey.material.app.ThemeManager;
 import com.rey.material.drawable.RippleDrawable;
 import com.rey.material.util.ViewUtil;
 
-public class CheckedTextView extends android.widget.CheckedTextView implements ThemeManager.OnThemeChangedListener {
+public class CheckedTextView extends android.support.v7.widget.AppCompatCheckedTextView implements ThemeManager.OnThemeChangedListener {
 
 	private RippleManager mRippleManager;
 	protected int mStyleId;
@@ -38,7 +38,7 @@ public class CheckedTextView extends android.widget.CheckedTextView implements T
 
 	@TargetApi(Build.VERSION_CODES.LOLLIPOP)
 	public CheckedTextView(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
-		super(context, attrs, defStyleAttr, defStyleRes);
+		super(context, attrs, defStyleAttr);
 
 		init(context, attrs, defStyleAttr, defStyleRes);
 	}

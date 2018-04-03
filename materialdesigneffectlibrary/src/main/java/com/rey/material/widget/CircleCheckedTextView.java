@@ -13,7 +13,7 @@ import com.rey.material.util.ViewUtil;
 /**
  * Created by Rey on 2/5/2015.
  */
-public class CircleCheckedTextView extends android.widget.CheckedTextView {
+public class CircleCheckedTextView extends android.support.v7.widget.AppCompatCheckedTextView {
 
 	private CircleDrawable mBackground;
 
@@ -43,7 +43,7 @@ public class CircleCheckedTextView extends android.widget.CheckedTextView {
 
 	@TargetApi(Build.VERSION_CODES.LOLLIPOP)
 	public CircleCheckedTextView(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
-		super(context, attrs, defStyleAttr, defStyleRes);
+		super(context, attrs, defStyleAttr);
 
 		init(context, attrs, defStyleAttr, defStyleRes);
 	}

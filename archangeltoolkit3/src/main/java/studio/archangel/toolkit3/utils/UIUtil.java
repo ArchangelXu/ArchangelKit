@@ -94,11 +94,11 @@ public class UIUtil {
 			aab.setBackgroundResource(AngelApplication.getInstance().getActionbarBackgroundResource());
 		}
 		try {
-			View container = aab.setDisplay(AngelActionBar.DisplayPosition.title, AngelActionBar.DisplayMode.title);
-			TextView tv = (TextView) container.findViewById(R.id.view_actionbar_title);
+			aab.setDisplay(AngelActionBar.DisplayPosition.title, AngelActionBar.DisplayMode.title);
+			TextView tv = aab.getTitleTextView();
 			tv.setText(title);
 			tv.setTextColor(AngelApplication.getInstance().getActionbarTextColor());
-			container = aab.setDisplay(AngelActionBar.DisplayPosition.left, AngelActionBar.DisplayMode.arrow);
+			View container = aab.setDisplay(AngelActionBar.DisplayPosition.left, AngelActionBar.DisplayMode.arrow);
 			tv = (TextView) container.findViewById(R.id.view_actionbar_left_arrow_text);
 			ImageView iv = (ImageView) container.findViewById(R.id.view_actionbar_left_arrow_icon);
 			iv.setImageResource(AngelActionBar.getDefaultArrowResource());
@@ -141,8 +141,8 @@ public class UIUtil {
 			aab.setBackgroundResource(AngelApplication.getInstance().getActionbarBackgroundResource());
 		}
 		try {
-			View container = aab.setDisplay(AngelActionBar.DisplayPosition.title, AngelActionBar.DisplayMode.title);
-			TextView tv = (TextView) container.findViewById(R.id.view_actionbar_title);
+			aab.setDisplay(AngelActionBar.DisplayPosition.title, AngelActionBar.DisplayMode.title);
+			TextView tv = aab.getTitleTextView();
 			tv.setText(title);
 			tv.setTextColor(AngelApplication.getInstance().getActionbarTextColor());
 			aab.setDisplay(AngelActionBar.DisplayPosition.left, AngelActionBar.DisplayMode.none);
@@ -472,8 +472,8 @@ public class UIUtil {
 //		}
 		aab.setBackgroundResource(AngelApplication.getInstance().getActionbarBackgroundResource());
 		try {
-			View container = aab.setDisplay(AngelActionBar.DisplayPosition.title, AngelActionBar.DisplayMode.title);
-			TextView tv = (TextView) container.findViewById(R.id.view_actionbar_title);
+			View container;
+			TextView tv = aab.getTitleTextView();
 			tv.setText(title);
 			tv.setTextColor(AngelApplication.getInstance().getActionbarTextColor());
 			container = aab.setDisplay(AngelActionBar.DisplayPosition.left, AngelActionBar.DisplayMode.arrow);

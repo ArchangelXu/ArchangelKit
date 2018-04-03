@@ -28,14 +28,13 @@ import android.text.SpannableStringBuilder;
 import android.text.StaticLayout;
 import android.text.TextUtils.TruncateAt;
 import android.util.AttributeSet;
-import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class EllipsizingTextView extends TextView {
+public class EllipsizingTextView extends android.support.v7.widget.AppCompatTextView {
 	private static final String ELLIPSIS = "\u2026";
 	private static final Pattern DEFAULT_END_PUNCTUATION = Pattern.compile("[\\.,\u2026;\\:\\s]*$", Pattern.DOTALL);
 
@@ -238,8 +237,12 @@ public class EllipsizingTextView extends TextView {
 	}
 
 	private Layout createWorkingLayout(CharSequence workingText) {
+		int width = getWidth() - getPaddingLeft() - getPaddingRight();
+		if (width < 0) {
+			width = 0;
+		}
 		return new StaticLayout(workingText, getPaint(),
-				getWidth() - getPaddingLeft() - getPaddingRight(),
+				width,
 				Alignment.ALIGN_NORMAL, lineSpacingMultiplier,
 				lineAdditionalVerticalPadding, false /* includepad */);
 	}

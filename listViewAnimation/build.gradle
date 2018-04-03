@@ -16,3 +16,9 @@ android {
         }
     }
 }
+
+dependencies {
+    implementation "com.android.support:appcompat-v7:$rootProject.ext.supportLibraryVersion"
+
+//    api project(':public_libs')
+}

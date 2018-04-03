@@ -13,39 +13,43 @@ buildscript {
         maven {
             url 'http://www.idescout.com/maven/repo/'
         }
-//        maven { url 'https://zendesk.jfrog.io/zendesk/repo' }
+        maven { url 'https://zendesk.jfrog.io/zendesk/repo' }
 
         jcenter()
         maven { url 'https://dl.google.com/dl/android/maven2/' }
+        maven { url 'https://oss.sonatype.org/content/repositories/snapshots/' }
+
     }
     dependencies {
-        classpath "com.android.tools.build:gradle:$project.ext.gradleToolVersion"
+        classpath "com.android.tools.build:gradle:3.0.1"
         classpath "me.tatarka:gradle-retrolambda:$project.ext.retrolambdaVersion"
-        classpath 'com.neenbedankt.gradle.plugins:android-apt:1.8'
+//        classpath 'com.neenbedankt.gradle.plugins:android-apt:1.8'
     }
 }
 
-allprojects {
-    repositories {
-        maven {
-            url "https://jitpack.io"
-        }
-        maven {
-            url 'http://maven.aliyun.com/nexus/content/groups/public/'
-        }
-        mavenCentral()
-        maven {
-            url 'https://maven.fabric.io/public'
-        }
-        maven {
-            url 'http://www.idescout.com/maven/repo/'
-        }
+//allprojects {
+//    repositories {
+//        maven {
+//            url "https://jitpack.io"
+//        }
+//        maven {
+//            url 'http://maven.aliyun.com/nexus/content/groups/public/'
+//        }
+//        mavenCentral()
+//        maven {
+//            url 'https://maven.fabric.io/public'
+//        }
+//        maven {
+//            url 'http://www.idescout.com/maven/repo/'
+//        }
 //        maven { url 'https://zendesk.jfrog.io/zendesk/repo' }
-
-        jcenter()
-        maven { url 'https://dl.google.com/dl/android/maven2/' }
-    }
-}
+//
+//        jcenter()
+//        maven { url 'https://dl.google.com/dl/android/maven2/' }
+//        maven { url 'https://oss.sonatype.org/content/repositories/snapshots/' }
+//
+//    }
+//}
 
 task clean(type: Delete) {
     delete rootProject.buildDir

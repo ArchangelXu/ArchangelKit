@@ -16,7 +16,7 @@ import com.rey.material.util.ViewUtil;
 /**
  * Created by Rey on 9/16/2015.
  */
-public class CheckedImageView extends android.widget.ImageView implements Checkable, ThemeManager.OnThemeChangedListener {
+public class CheckedImageView extends android.support.v7.widget.AppCompatImageView implements Checkable, ThemeManager.OnThemeChangedListener {
 
 	private RippleManager mRippleManager;
 	protected int mStyleId;
@@ -44,7 +44,7 @@ public class CheckedImageView extends android.widget.ImageView implements Checka
 
 	@TargetApi(Build.VERSION_CODES.LOLLIPOP)
 	public CheckedImageView(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
-		super(context, attrs, defStyleAttr, defStyleRes);
+		super(context, attrs, defStyleAttr);
 
 		init(context, attrs, defStyleAttr, defStyleRes);
 	}
