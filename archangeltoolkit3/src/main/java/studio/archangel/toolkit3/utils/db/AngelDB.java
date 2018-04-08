@@ -118,6 +118,10 @@ public class AngelDB {
 		return getHelper().getDb().rawQuery(sql, null);
 	}
 
+	public Cursor executeQuerySql(String sql, String[] selectionArgs) {
+		return getHelper().getDb().rawQuery(sql, selectionArgs);
+	}
+
 
 	interface OnSqlExecuteListener {
 		void onSqlExecute(String sql);
