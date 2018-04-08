@@ -32,6 +32,7 @@ public abstract class AngelPageIndicatorUnit extends FrameLayout {
 	public abstract int getHorizontalSpacing();
 
 	public void setSelected(boolean selected) {
+		super.setSelected(selected);
 		setSelected(selected, true);
 	}
 
