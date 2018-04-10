@@ -15,6 +15,7 @@ import com.rey.material.widget.Button;
 
 import java.lang.ref.WeakReference;
 
+import studio.archangel.toolkit3.AngelApplication;
 import studio.archangel.toolkit3.R;
 import studio.archangel.toolkit3.utils.Logger;
 
@@ -29,9 +30,9 @@ public class AngelDialog extends Dialog {
 	View v_button_container;
 	View v_body;
 	View v_back;
-	Button b_ok;
-	Button b_cancel;
-	Button b_neutral;
+	TextView b_ok;
+	TextView b_cancel;
+	TextView b_neutral;
 	//    View v_custom;
 	View.OnClickListener listener_ok;
 	View.OnClickListener listener_cancel;
@@ -59,6 +60,7 @@ public class AngelDialog extends Dialog {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.view_dialog);
+//		setContentView(AngelApplication.getInstance().getDialogLayoutRes());
 
 		this.tv_title = (TextView) findViewById(R.id.view_dialog_title);
 		setTitle(title);
@@ -84,7 +86,7 @@ public class AngelDialog extends Dialog {
 //            tv_msg.setVisibility(View.GONE);
 //        }
 
-		this.b_ok = (Button) findViewById(R.id.button_accept);
+		this.b_ok = findViewById(R.id.button_accept);
 		b_ok.setOnClickListener(new View.OnClickListener() {
 
 			@Override
@@ -94,7 +96,7 @@ public class AngelDialog extends Dialog {
 					listener_ok.onClick(v);
 			}
 		});
-		this.b_cancel = (Button) findViewById(R.id.button_cancel);
+		this.b_cancel = findViewById(R.id.button_cancel);
 
 		b_cancel.setOnClickListener(new View.OnClickListener() {
 
@@ -105,7 +107,7 @@ public class AngelDialog extends Dialog {
 					listener_cancel.onClick(v);
 			}
 		});
-		b_neutral = (Button) findViewById(R.id.button_neutral);
+		b_neutral = findViewById(R.id.button_neutral);
 		b_neutral.setOnClickListener(new View.OnClickListener() {
 
 			@Override
@@ -241,15 +243,15 @@ public class AngelDialog extends Dialog {
 
 	}
 
-	public Button getOkButton() {
+	public TextView getOkButton() {
 		return b_ok;
 	}
 
-	public Button getCancelButton() {
+	public TextView getCancelButton() {
 		return b_cancel;
 	}
 
-	public Button getNeutralButton() {
+	public TextView getNeutralButton() {
 		return b_neutral;
 	}
 

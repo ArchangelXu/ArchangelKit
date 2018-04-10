@@ -21,9 +21,9 @@ dependencies {
     api "com.android.support:appcompat-v7:$rootProject.ext.supportLibraryVersion"
     api 'org.simple:androideventbus:1.0.5.1'
     api fileTree(dir: 'libs', include: ['*.jar'])
-    api 'com.facebook.fresco:fresco:1.7.1'
-    api 'com.facebook.fresco:imagepipeline-okhttp3:1.7.1'
-    api 'com.facebook.fresco:animated-gif:1.7.1'
+    api 'com.facebook.fresco:fresco:1.8.1'
+    api 'com.facebook.fresco:imagepipeline-okhttp3:1.8.1'
+    api 'com.facebook.fresco:animated-gif:1.8.1'
     api 'me.relex:photodraweeview:1.1.2'
 
 }

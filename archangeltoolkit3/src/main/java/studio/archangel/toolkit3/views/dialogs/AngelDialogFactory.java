@@ -14,6 +14,7 @@ import com.rey.material.widget.EditText;
 
 import java.util.List;
 
+import studio.archangel.toolkit3.AngelApplication;
 import studio.archangel.toolkit3.R;
 import studio.archangel.toolkit3.activities.AngelActivity;
 import studio.archangel.toolkit3.interfaces.OnPermissionCheckListener;
@@ -28,7 +29,15 @@ import studio.archangel.toolkit3.utils.UIUtil;
 
 public class AngelDialogFactory {
 	public static Dialog getDefaultDialog(Context c) {
-		Dialog d = new Dialog(c);
+//		int res = AngelApplication.getInstance().getDialogStyleRes();
+		Dialog d;
+//		if (res == 0) {
+		d = new Dialog(c);
+//		} else {
+//			d = new Dialog(c, res);
+//		}
+		d.cornerRadius(UIUtil.getPX(8));
+		d.elevation(0);
 		d.contentMargin(0);
 		d.dimAmount(0.5f);
 		d.inAnimation(R.anim.dialog_fade_in);

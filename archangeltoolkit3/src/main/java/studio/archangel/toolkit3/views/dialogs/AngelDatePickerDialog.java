@@ -241,7 +241,7 @@ public class AngelDatePickerDialog extends DialogFragment {
 				}
 			}
 		});
-		Button ab = dialog.getOkButton();
+		TextView ab = dialog.getOkButton();
 		TypedArray a = getActivity().getTheme().obtainStyledAttributes(res_theme, new int[]{R.attr.selectionDivider});
 		int attributeResourceId = a.getResourceId(0, 0);
 		a.recycle();
@@ -249,7 +249,7 @@ public class AngelDatePickerDialog extends DialogFragment {
 
 		ab.setTextColor(getResources().getColor(attributeResourceId));
 		ab.setText("确定");
-		Button cb = dialog.getCancelButton();
+		TextView cb = dialog.getCancelButton();
 		cb.setText("取消");
 //        b.setView(custom);
 //        b.setNegativeButton("取消", null);
