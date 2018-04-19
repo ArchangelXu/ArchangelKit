@@ -10,6 +10,7 @@ import android.media.ExifInterface;
 import android.net.Uri;
 import android.support.annotation.Nullable;
 import android.view.View;
+import android.view.ViewTreeObserver;
 import android.widget.ImageView;
 
 import com.facebook.common.executors.CallerThreadExecutor;
@@ -46,7 +47,25 @@ import studio.archangel.toolkit3.utils.text.AmountProvider;
  */
 public class ImageProvider {
 	public static void load(View v, Object res) {
-		load(v, res, 0, 0);
+		int width = v.getWidth();
+		int height = v.getHeight();
+		if (width <= 0 || height <= 0) {
+//			v.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+//				@Override
+//				public void onGlobalLayout() {
+//					int width = v.getWidth();
+//					int height = v.getHeight();
+//					if (width > 0 && height > 0) {
+//						v.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+//						load(v, res, width, height);
+//					}
+//				}
+//			});
+			load(v, res, 0, 0);
+		} else {
+			load(v, res, width, height);
+		}
+//			load(v, res, 0, 0);
 	}
 
 	public static void load(View v, Object res, int width, int height) {
@@ -63,6 +82,7 @@ public class ImageProvider {
 			return;
 		}
 		request_builder.setAutoRotateEnabled(true)
+				.setRotationOptions(RotationOptions.autoRotate())
 				.setLowestPermittedRequestLevel(ImageRequest.RequestLevel.FULL_FETCH)
 				.setProgressiveRenderingEnabled(false);
 		if (width > 0 && height > 0) {
