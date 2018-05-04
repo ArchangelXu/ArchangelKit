@@ -60,7 +60,7 @@ dependencies {
     api 'com.nineoldandroids:library:2.4.0'
     api 'com.daimajia.easing:library:2.1@aar'
     api 'uk.co.chrisjenx:calligraphy:2.3.0'
-    api 'com.android.support.constraint:constraint-layout:1.0.2'
+    api 'com.android.support.constraint:constraint-layout:1.1.0'
     api "com.android.support:appcompat-v7:$rootProject.ext.supportLibraryVersion"
     api 'org.simple:androideventbus:1.0.5.1'
 //    api fileTree(dir: 'libs', include: ['*.jar'])

@@ -38,7 +38,6 @@
 	<string name = "angel_dialog_cancel">Cancel</string>
 	<string name = "angel_dialog_neutual">Other</string>
 	<string name = "angel_dialog_ok">OK</string>
-	<string name = "permission_title_camera">Permission Request</string>
 	<string name = "permission_try_again">Retry</string>
 	<string name = "common_cancel">Cancel</string>
 	<string name = "permission_setting">Setting</string>
