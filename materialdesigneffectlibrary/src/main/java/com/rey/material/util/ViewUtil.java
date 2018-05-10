@@ -444,12 +444,12 @@ public class ViewUtil {
 		boolean drawableDefined = false;
 		boolean drawableRelativeDefined = false;
 
-        /*
+		/*
 		 * Look the appearance up without checking first if it exists because
-         * almost every TextView has one and it greatly simplifies the logic
-         * to be able to parse the appearance first and then let specific tags
-         * for this View override it.
-         */
+		 * almost every TextView has one and it greatly simplifies the logic
+		 * to be able to parse the appearance first and then let specific tags
+		 * for this View override it.
+		 */
 		TypedArray a = v.getContext().obtainStyledAttributes(attrs, R.styleable.TextViewAppearance, defStyleAttr, defStyleRes);
 		TypedArray appearance = null;
 		int ap = a.getResourceId(R.styleable.TextViewAppearance_android_textAppearance, 0);

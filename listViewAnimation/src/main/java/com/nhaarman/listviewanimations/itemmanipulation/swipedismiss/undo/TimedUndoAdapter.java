@@ -113,7 +113,7 @@ public class TimedUndoAdapter extends SimpleSwipeUndoAdapter {
 	public void onDismiss(final ViewGroup listView, final int[] reverseSortedPositions) {
 		super.onDismiss(listView, reverseSortedPositions);
 
-        /* Adjust the pending timeout positions accordingly wrt the given dismissed positions */
+		/* Adjust the pending timeout positions accordingly wrt the given dismissed positions */
 		//noinspection UseSparseArrays
 		Map<Integer, TimeoutRunnable> newRunnables = new HashMap<>();
 		for (int position : reverseSortedPositions) {

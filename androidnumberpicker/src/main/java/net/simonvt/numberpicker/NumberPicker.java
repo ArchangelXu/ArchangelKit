@@ -1853,9 +1853,9 @@ public class NumberPicker extends LinearLayout {
 	private boolean updateInputTextView() {
 		/*
 		 * If we don't have displayed values then use the current number else
-         * find the correct value in the displayed values for the current
-         * number.
-         */
+		 * find the correct value in the displayed values for the current
+		 * number.
+		 */
 		String text = (mDisplayedValues == null) ? formatNumber(mValue)
 				: mDisplayedValues[mValue - mMinValue];
 		if (!TextUtils.isEmpty(text) && !text.equals(mInputText.getText().toString())) {
@@ -1957,10 +1957,10 @@ public class NumberPicker extends LinearLayout {
 				}
 			}
 
-            /*
-             * The user might have typed in a number into the month field i.e.
-             * 10 instead of OCT so support that too.
-             */
+			/*
+			 * The user might have typed in a number into the month field i.e.
+			 * 10 instead of OCT so support that too.
+			 */
 			try {
 				return Integer.parseInt(value);
 			} catch (NumberFormatException e) {
@@ -2034,11 +2034,11 @@ public class NumberPicker extends LinearLayout {
 				}
 				int val = getSelectedPos(result);
 
-                /*
-                 * Ensure the user can't type in a value greater than the max
-                 * allowed. We have to allow less than min as the user might
-                 * want to delete some numbers and then type a new number.
-                 */
+				/*
+				 * Ensure the user can't type in a value greater than the max
+				 * allowed. We have to allow less than min as the user might
+				 * want to delete some numbers and then type a new number.
+				 */
 				if (val > mMaxValue) {
 					return "";
 				} else {

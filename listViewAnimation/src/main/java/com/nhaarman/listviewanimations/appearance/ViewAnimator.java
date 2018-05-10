@@ -40,7 +40,7 @@ public class ViewAnimator {
 	private static final String SAVEDINSTANCESTATE_LASTANIMATEDPOSITION = "savedinstancestate_lastanimatedposition";
 	private static final String SAVEDINSTANCESTATE_SHOULDANIMATE = "savedinstancestate_shouldanimate";
 
-    /* Default values */
+	/* Default values */
 
 	/**
 	 * The default delay in millis before the first animation starts.
@@ -58,7 +58,7 @@ public class ViewAnimator {
 	 */
 	private static final int DEFAULT_ANIMATION_DURATION_MILLIS = 300;
 
-    /* Fields */
+	/* Fields */
 
 	/**
 	 * The ListViewWrapper containing the ListView implementation.

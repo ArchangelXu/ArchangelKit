@@ -1542,33 +1542,33 @@ public class ListPopupWindow {
 	private static class DropDownListView extends ListView {
 
 		/*
-		* WARNING: This is a workaround for a touch mode issue.
-		*
-		* Touch mode is propagated lazily to windows. This causes problems in
-		* the following scenario:
-		* - Type something in the AutoCompleteTextView and get some results
-		* - Move down with the d-pad to select an item in the list
-		* - Move up with the d-pad until the selection disappears
-		* - Type more text in the AutoCompleteTextView *using the soft keyboard*
-		*   and get new results; you are now in touch mode
-		* - The selection comes back on the first item in the list, even though
-		*   the list is supposed to be in touch mode
-		*
-		* Using the soft keyboard triggers the touch mode change but that change
-		* is propagated to our window only after the first list layout, therefore
-		* after the list attempts to resurrect the selection.
-		*
-		* The trick to work around this issue is to pretend the list is in touch
-		* mode when we know that the selection should not appear, that is when
-		* we know the user moved the selection away from the list.
-		*
-		* This boolean is set to true whenever we explicitly hide the list's
-		* selection and reset to false whenever we know the user moved the
-		* selection back to the list.
-		*
-		* When this boolean is true, isInTouchMode() returns true, otherwise it
-		* returns super.isInTouchMode().
-		*/
+		 * WARNING: This is a workaround for a touch mode issue.
+		 *
+		 * Touch mode is propagated lazily to windows. This causes problems in
+		 * the following scenario:
+		 * - Type something in the AutoCompleteTextView and get some results
+		 * - Move down with the d-pad to select an item in the list
+		 * - Move up with the d-pad until the selection disappears
+		 * - Type more text in the AutoCompleteTextView *using the soft keyboard*
+		 *   and get new results; you are now in touch mode
+		 * - The selection comes back on the first item in the list, even though
+		 *   the list is supposed to be in touch mode
+		 *
+		 * Using the soft keyboard triggers the touch mode change but that change
+		 * is propagated to our window only after the first list layout, therefore
+		 * after the list attempts to resurrect the selection.
+		 *
+		 * The trick to work around this issue is to pretend the list is in touch
+		 * mode when we know that the selection should not appear, that is when
+		 * we know the user moved the selection away from the list.
+		 *
+		 * This boolean is set to true whenever we explicitly hide the list's
+		 * selection and reset to false whenever we know the user moved the
+		 * selection back to the list.
+		 *
+		 * When this boolean is true, isInTouchMode() returns true, otherwise it
+		 * returns super.isInTouchMode().
+		 */
 		private boolean mListSelectionHidden;
 
 		/**

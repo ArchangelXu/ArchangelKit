@@ -219,7 +219,7 @@ public class DragAndDropHandler implements TouchEventHandler {
 		}
 
 		if (position < 0 || position >= mAdapter.getCount()) {
-		    /* Out of bounds */
+			/* Out of bounds */
 			return;
 		}
 
@@ -262,7 +262,7 @@ public class DragAndDropHandler implements TouchEventHandler {
 	public boolean onTouchEvent(final MotionEvent event) {
 		boolean handled = false;
 
-        /* We are in the process of animating the hover drawable back, do not start a new drag yet. */
+		/* We are in the process of animating the hover drawable back, do not start a new drag yet. */
 		if (!mIsSettlingHoverDrawable) {
 			switch (event.getAction() & MotionEvent.ACTION_MASK) {
 				case MotionEvent.ACTION_DOWN:

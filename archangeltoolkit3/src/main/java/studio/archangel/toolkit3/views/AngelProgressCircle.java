@@ -24,13 +24,13 @@ import studio.archangel.toolkit3.utils.UIUtil;
  * Todd Davies' Progress Wheel https://github.com/Todd-Davies/ProgressWheel
  *
  * @author Nico Hormazábal
- *         <p/>
- *         Licensed under the Apache License 2.0 license see:
- *         http://www.apache.org/licenses/LICENSE-2.0
- *         <p/>
- *         <p/>
- *         Collected from https://github.com/pnikosis/materialish-progress
- *         Modified by Michael
+ * <p/>
+ * Licensed under the Apache License 2.0 license see:
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * <p/>
+ * <p/>
+ * Collected from https://github.com/pnikosis/materialish-progress
+ * Modified by Michael
  */
 public class AngelProgressCircle extends View {
 	static int default_color = R.color.blue;

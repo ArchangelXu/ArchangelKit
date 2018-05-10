@@ -233,9 +233,9 @@ public class DynamicListView extends ListView {
 			/* None of the TouchEventHandlers are actively consuming events yet. */
 			boolean firstTimeInteracting = false;
 
-            /* We don't support dragging items when there are items in the undo state. */
+			/* We don't support dragging items when there are items in the undo state. */
 			if (!(mSwipeTouchListener instanceof SwipeUndoTouchListener) || !((SwipeUndoTouchListener) mSwipeTouchListener).hasPendingItems()) {
-			    /* Offer the event to the DragAndDropHandler */
+				/* Offer the event to the DragAndDropHandler */
 				if (mDragAndDropHandler != null) {
 					mDragAndDropHandler.onTouchEvent(ev);
 					firstTimeInteracting = mDragAndDropHandler.isInteracting();
@@ -246,7 +246,7 @@ public class DynamicListView extends ListView {
 				}
 			}
 
-            /* If not handled, offer the event to the SwipeDismissTouchListener */
+			/* If not handled, offer the event to the SwipeDismissTouchListener */
 			if (mCurrentHandlingTouchEventHandler == null && mSwipeTouchListener != null) {
 				mSwipeTouchListener.onTouchEvent(ev);
 				firstTimeInteracting = mSwipeTouchListener.isInteracting();
@@ -277,7 +277,7 @@ public class DynamicListView extends ListView {
 		}
 
 		if (ev.getActionMasked() == MotionEvent.ACTION_UP || ev.getActionMasked() == MotionEvent.ACTION_CANCEL) {
-            /* Gesture is finished, reset the active TouchEventHandler */
+			/* Gesture is finished, reset the active TouchEventHandler */
 			mCurrentHandlingTouchEventHandler = null;
 		}
 
@@ -321,7 +321,7 @@ public class DynamicListView extends ListView {
 		return super.computeVerticalScrollRange();
 	}
 
-    /* Proxy methods below */
+	/* Proxy methods below */
 
 	/**
 	 * Inserts an item at given index. Will show an entrance animation for the new item if the newly added item is visible.
@@ -415,7 +415,7 @@ public class DynamicListView extends ListView {
 	 *                                         or if there is no adapter set.
 	 */
 	public void startDragging(final int position) {
-        /* We don't support dragging items when items are in the undo state. */
+		/* We don't support dragging items when items are in the undo state. */
 		if (mSwipeTouchListener instanceof SwipeUndoTouchListener && ((SwipeUndoTouchListener) mSwipeTouchListener).hasPendingItems()) {
 			return;
 		}

@@ -199,7 +199,7 @@ public class AnimateAdditionAdapter<T> extends BaseAdapterDecorator {
 				/* Inserting an item above the first visible position */
 				int index = pair.first;
 
-                /* Correct the index for already inserted positions above the first visible view. */
+				/* Correct the index for already inserted positions above the first visible view. */
 				for (int insertedPosition : insertedPositions) {
 					if (index >= insertedPosition) {
 						index++;
@@ -217,10 +217,10 @@ public class AnimateAdditionAdapter<T> extends BaseAdapterDecorator {
 				}
 			} else if (getListViewWrapper().getLastVisiblePosition() >= pair.first || getListViewWrapper().getLastVisiblePosition() == AdapterView.INVALID_POSITION ||
 					!childrenFillAbsListView()) {
-			    /* Inserting an item that becomes visible on screen */
+				/* Inserting an item that becomes visible on screen */
 				int index = pair.first;
 
-                /* Correct the index for already inserted positions above the first visible view */
+				/* Correct the index for already inserted positions above the first visible view */
 				for (int insertedPosition : insertedPositions) {
 					if (index >= insertedPosition) {
 						index++;
@@ -229,17 +229,17 @@ public class AnimateAdditionAdapter<T> extends BaseAdapterDecorator {
 				Pair<Integer, T> newPair = new Pair<>(index, pair.second);
 				visibleViews.add(newPair);
 			} else {
-                /* Inserting an item below the last visible item */
+				/* Inserting an item below the last visible item */
 				int index = pair.first;
 
-                /* Correct the index for already inserted positions above the first visible view */
+				/* Correct the index for already inserted positions above the first visible view */
 				for (int insertedPosition : insertedPositions) {
 					if (index >= insertedPosition) {
 						index++;
 					}
 				}
 
-                /* Correct the index for already inserted positions below the last visible view */
+				/* Correct the index for already inserted positions below the last visible view */
 				for (int queuedPosition : insertedBelowPositions) {
 					if (index >= queuedPosition) {
 						index++;
