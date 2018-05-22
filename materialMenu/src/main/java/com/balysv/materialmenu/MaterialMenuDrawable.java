@@ -291,9 +291,9 @@ public class MaterialMenuDrawable extends Drawable implements Animatable {
 		setBounds(0, 0, width, height);
 	}
 
-    /*
+	/*
 	 * Drawing
-     */
+	 */
 
 	@Override
 	public void draw(Canvas canvas) {
@@ -635,9 +635,9 @@ public class MaterialMenuDrawable extends Drawable implements Animatable {
 		return PixelFormat.TRANSPARENT;
 	}
 
-    /*
-     * Accessor methods
-     */
+	/*
+	 * Accessor methods
+	 */
 
 	public void setColor(int color) {
 		iconPaint.setColor(color);

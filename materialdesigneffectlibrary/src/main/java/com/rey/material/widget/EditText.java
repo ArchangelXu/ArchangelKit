@@ -700,7 +700,7 @@ public class EditText extends FrameLayout implements ThemeManager.OnThemeChanged
 			mLabelView.setVisibility(mLabelVisible ? View.VISIBLE : View.INVISIBLE);
 	}
 
-    /* protected method of AutoCompleteTextView */
+	/* protected method of AutoCompleteTextView */
 
 	/**
 	 * <p>Converts the selected item from the drop down list into a sequence
@@ -786,7 +786,7 @@ public class EditText extends FrameLayout implements ThemeManager.OnThemeChanged
 			((InternalMultiAutoCompleteTextView) mInputView).superPerformFiltering(text, start, end, keyCode);
 	}
 
-    /* public method of AutoCompleteTextView */
+	/* public method of AutoCompleteTextView */
 
 	/**
 	 * <p>Sets the optional hint text that is displayed at the bottom of the

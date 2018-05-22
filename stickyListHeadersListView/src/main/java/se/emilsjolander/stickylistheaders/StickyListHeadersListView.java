@@ -579,7 +579,7 @@ public class StickyListHeadersListView extends FrameLayout {
 		return mStickyHeaderTopOffset + (mClippingToPadding ? mPaddingTop : 0);
 	}
 
-    /* ---------- StickyListHeaders specific API ---------- */
+	/* ---------- StickyListHeaders specific API ---------- */
 
 	public void setAreHeadersSticky(boolean areHeadersSticky) {
 		mAreHeadersSticky = areHeadersSticky;

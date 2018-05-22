@@ -333,7 +333,7 @@ public abstract class SwipeTouchListener implements View.OnTouchListener, TouchE
 		int downPosition = AdapterViewUtil.getPositionForView(mListViewWrapper, downView);
 		mCanDismissCurrent = isDismissable(downPosition);
 
-        /* Check if we are processing the item at this position */
+		/* Check if we are processing the item at this position */
 		if (mCurrentPosition == downPosition || downPosition >= mVirtualListCount) {
 			return false;
 		}
@@ -433,7 +433,7 @@ public abstract class SwipeTouchListener implements View.OnTouchListener, TouchE
 			mSwiping = true;
 			mListViewWrapper.getListView().requestDisallowInterceptTouchEvent(true);
 
-            /* Cancel ListView's touch (un-highlighting the item) */
+			/* Cancel ListView's touch (un-highlighting the item) */
 			if (view != null) {
 				MotionEvent cancelEvent = MotionEvent.obtain(motionEvent);
 				cancelEvent.setAction(MotionEvent.ACTION_CANCEL | motionEvent.getActionIndex() << MotionEvent.ACTION_POINTER_INDEX_SHIFT);
