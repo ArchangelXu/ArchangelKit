@@ -569,10 +569,24 @@ public class CommonUtil {
 	}
 
 	public static void deleteFile(String path) {
-		try {
-			new File(path).delete();
-		} catch (Exception e) {
-			e.printStackTrace();
+//		try {
+//			new File(path).delete();
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+		File file = new File(path);
+		if (file.exists()) {
+			if (file.isFile()) {
+				file.delete();
+			} else if (file.isDirectory()) {
+				File files[] = file.listFiles();
+				for (int i = 0; i < files.length; i++) {
+					deleteFile(files[i].getAbsolutePath());
+				}
+			}
+			file.delete();
+		} else {
+			Logger.errSimple("delete file no exists " + file.getAbsolutePath());
 		}
 	}
 
