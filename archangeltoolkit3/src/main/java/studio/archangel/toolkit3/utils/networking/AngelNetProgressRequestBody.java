@@ -6,6 +6,7 @@ import java.io.IOException;
 import okhttp3.MediaType;
 import okhttp3.RequestBody;
 import okhttp3.internal.Util;
+import okio.Buffer;
 import okio.BufferedSink;
 import okio.Okio;
 import okio.Source;
@@ -45,10 +46,10 @@ public class AngelNetProgressRequestBody extends RequestBody {
 			final long length = file.length();
 			long total = 0;
 			long read;
-
-			while ((read = source.read(sink.buffer(), 2048)) != -1) {
+			Buffer buffer = sink.buffer();
+			while ((read = source.read(buffer, 32 * 1024)) != -1) {
 				total += read;
-				sink.flush();
+//				sink.flush();
 				final long finalTotal = total;
 				if (listener != null) {
 					if (listener instanceof AngelNetProgressCallBack) {
@@ -61,9 +62,9 @@ public class AngelNetProgressRequestBody extends RequestBody {
 					}
 				}
 			}
+			sink.flush();
 		} finally {
 			Util.closeQuietly(source);
 		}
 	}
-
 }

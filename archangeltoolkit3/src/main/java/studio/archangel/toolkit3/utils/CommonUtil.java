@@ -636,6 +636,9 @@ public class CommonUtil {
 			mimeType = MimeTypeMap.getSingleton().getMimeTypeFromExtension(
 					fileExtension.toLowerCase());
 		}
+		if (mimeType == null) {
+			mimeType = "application/octet-stream";
+		}
 		return mimeType;
 	}
 

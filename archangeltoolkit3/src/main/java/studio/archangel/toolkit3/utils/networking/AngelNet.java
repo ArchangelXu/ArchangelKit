@@ -329,28 +329,6 @@ public class AngelNet implements Executor {
 						multi_builder.setType(MediaType.parse("multipart/form-data; charset=utf-8"));
 						body = multi_builder.build();
 					}
-//					if (use_raw_format) {
-//						JSONObject jo = new JSONObject();
-//						for (Map.Entry<String, Object> en : parameters.entrySet()) {
-//							Object value = en.getValue();
-//							if (value instanceof File) {
-//
-//								Logger.out("skipped file parameter.");
-//							} else {
-//								try {
-//									jo.put(en.getKey(), en.getValue());
-//								} catch (JSONException e) {
-//									e.printStackTrace();
-//								}
-//							}
-//						}
-//						body = RequestBody.create(MediaType.parse("application/json; charset=utf-8"), jo.toString());
-//					} else {
-//						addParametersToBuilder(parameters, callback, multi_builder);
-//						multi_builder.setType(MediaType.parse("multipart/form-data; charset=utf-8"));
-//						body = multi_builder.build();
-//					}
-
 				} else {
 					body = RequestBody.create(MediaType.parse("text; charset=utf-8"), "");
 				}
