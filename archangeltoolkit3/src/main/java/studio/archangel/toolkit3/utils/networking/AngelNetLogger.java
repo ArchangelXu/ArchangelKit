@@ -1,5 +1,7 @@
 package studio.archangel.toolkit3.utils.networking;
 
+import android.net.Uri;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -29,6 +31,8 @@ public class AngelNetLogger {
 					Object value = en.getValue();
 					if (value instanceof File) {
 						sub.put(en.getKey(), AngelNet.FILE_PREFIX + ((File) value).getName());
+					} else if (value instanceof Uri) {
+						sub.put(en.getKey(), AngelNet.URI_PREFIX + value.toString());
 					} else if (value instanceof List) {
 						sub.put(en.getKey(), AngelNet.LIST_PREFIX + value.toString());
 					} else {

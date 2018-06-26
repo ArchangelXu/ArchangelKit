@@ -52,6 +52,7 @@ public class AngelNet implements Executor {
 	public static final String LOW_LEVEL_ERROR_CODE = "network_layer_error";
 	public static final String META_USE_RAW = "[meta]use_raw";
 	public static final String FILE_PREFIX = "[file]";
+	public static final String URI_PREFIX = "[uri]";
 	public static final String LIST_PREFIX = "[list]";
 	public static final int time_out = 30;//in second
 	OkHttpClient client;
@@ -299,15 +300,22 @@ public class AngelNet implements Executor {
 						JSONObject jo = new JSONObject();
 						Collection<Object> values = parameters.values();
 						File file = null;
+						Uri uri = null;
 						for (Object value : values) {
 							if (value instanceof File) {
 								file = (File) value;
 								break;
+							} else if (value instanceof Uri) {
+								uri = (Uri) value;
+								break;
 							}
 						}
-						if (file != null) {
-//							body = RequestBody.create(MediaType.parse(CommonUtil.getMimeType(Uri.fromFile(file))), file);
-							body = new AngelNetProgressRequestBody(file, CommonUtil.getMimeType(Uri.fromFile(file)), callback, this);
+						if (file != null || uri != null) {
+							if (file != null) {
+								body = new AngelNetProgressRequestBody(Uri.fromFile(file), CommonUtil.getMimeType(Uri.fromFile(file)), callback, this);
+							} else if (uri != null) {
+								body = new AngelNetProgressRequestBody(uri, CommonUtil.getMimeType(uri), callback, this);
+							}
 						} else {
 							for (Map.Entry<String, Object> en : parameters.entrySet()) {
 								Object value = en.getValue();
@@ -360,15 +368,22 @@ public class AngelNet implements Executor {
 						JSONObject jo = new JSONObject();
 						Collection<Object> values = parameters.values();
 						File file = null;
+						Uri uri = null;
 						for (Object value : values) {
 							if (value instanceof File) {
 								file = (File) value;
 								break;
+							} else if (value instanceof Uri) {
+								uri = (Uri) value;
+								break;
 							}
 						}
-						if (file != null) {
-//							body = RequestBody.create(MediaType.parse(CommonUtil.getMimeType(Uri.fromFile(file))), file);
-							body = new AngelNetProgressRequestBody(file, CommonUtil.getMimeType(Uri.fromFile(file)), callback, this);
+						if (file != null || uri != null) {
+							if (file != null) {
+								body = new AngelNetProgressRequestBody(Uri.fromFile(file), CommonUtil.getMimeType(Uri.fromFile(file)), callback, this);
+							} else if (uri != null) {
+								body = new AngelNetProgressRequestBody(uri, CommonUtil.getMimeType(uri), callback, this);
+							}
 						} else {
 							for (Map.Entry<String, Object> en : parameters.entrySet()) {
 								Object value = en.getValue();
@@ -414,7 +429,10 @@ public class AngelNet implements Executor {
 			Object value = en.getValue();
 			if (value instanceof File) {
 //				has_file = true;
-				multi_builder.addFormDataPart(en.getKey(), ((File) value).getName(), new AngelNetProgressRequestBody((File) value, "text/x-markdown; charset=utf-8", callback, this));
+				multi_builder.addFormDataPart(en.getKey(), ((File) value).getName(), new AngelNetProgressRequestBody(Uri.fromFile((File) value), "text/x-markdown; charset=utf-8", callback, this));
+			} else if (value instanceof Uri) {
+//				has_file = true;
+				multi_builder.addFormDataPart(en.getKey(), ((Uri) value).getLastPathSegment(), new AngelNetProgressRequestBody((Uri) value, "text/x-markdown; charset=utf-8", callback, this));
 			} else if (value instanceof List) {
 				List list = (List) value;
 				String key = en.getKey();
