@@ -6,5 +6,5 @@ import android.support.v4.content.FileProvider;
  * Created by xmk on 2017/9/22.
  */
 
-public class AngelFileProvider extends FileProvider {
-}
+//public class AngelFileProvider extends FileProvider {
+//}

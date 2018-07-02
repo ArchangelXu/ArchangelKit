@@ -543,10 +543,10 @@ public class CommonUtil {
 		return jo;
 	}
 
-	public static Uri getUriForFile(File file) {
-//		return PublicFileProvider.getUriForFile(AngelApplication.getInstance(), AngelApplication.getInstance().getPackageName() + ".publicfileprovider", file);
-		return AngelFileProvider.getUriForFile(AngelApplication.getInstance(), AngelApplication.getInstance().getPackageName() + ".fileprovider", file);
-	}
+//	public static Uri getUriForFile(File file) {
+////		return PublicFileProvider.getUriForFile(AngelApplication.getInstance(), AngelApplication.getInstance().getPackageName() + ".publicfileprovider", file);
+//		return AngelFileProvider.getUriForFile(AngelApplication.getInstance(), AngelApplication.getInstance().getPackageName() + ".fileprovider", file);
+//	}
 
 	public static boolean hasFrontCamera() {
 		Camera.CameraInfo ci = new Camera.CameraInfo();

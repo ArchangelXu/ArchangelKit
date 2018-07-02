@@ -15,6 +15,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.support.v4.content.FileProvider;
 
 import com.yalantis.ucrop.UCrop;
 
@@ -148,7 +149,8 @@ public class PickImageActivity extends AngelActivity {
 				Uri uri = null;
 				if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
 //					uri = FileProvider.getUriForFile(getSelf(), "studio.archangel.toolkit3.AngelFileProvider", photo);
-					uri = CommonUtil.getUriForFile(photo);
+//					uri = CommonUtil.getUriForFile(photo);
+					uri = FileProvider.getUriForFile(this, getPackageName() + ".fileprovider", photo);
 					intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
 					intent.addFlags(Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
 				} else {
