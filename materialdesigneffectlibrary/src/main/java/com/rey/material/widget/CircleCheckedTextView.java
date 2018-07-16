@@ -1,8 +1,7 @@
 package com.rey.material.widget;
 
-import android.annotation.TargetApi;
 import android.content.Context;
-import android.os.Build;
+import android.support.v7.widget.AppCompatCheckedTextView;
 import android.util.AttributeSet;
 import android.view.Gravity;
 import android.view.animation.Interpolator;
@@ -13,7 +12,7 @@ import com.rey.material.util.ViewUtil;
 /**
  * Created by Rey on 2/5/2015.
  */
-public class CircleCheckedTextView extends android.support.v7.widget.AppCompatCheckedTextView {
+public class CircleCheckedTextView extends AppCompatCheckedTextView {
 
 	private CircleDrawable mBackground;
 
@@ -39,13 +38,6 @@ public class CircleCheckedTextView extends android.support.v7.widget.AppCompatCh
 		super(context, attrs, defStyleAttr);
 
 		init(context, attrs, defStyleAttr, 0);
-	}
-
-	@TargetApi(Build.VERSION_CODES.LOLLIPOP)
-	public CircleCheckedTextView(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
-		super(context, attrs, defStyleAttr);
-
-		init(context, attrs, defStyleAttr, defStyleRes);
 	}
 
 	protected void init(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {

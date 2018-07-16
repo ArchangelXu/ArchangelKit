@@ -1,6 +1,9 @@
 package com.rey.material.app;
 
+import android.animation.Animator.AnimatorListener;
+import android.animation.ValueAnimator;
 import android.os.Build;
+import android.os.SystemClock;
 import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.GravityCompat;
@@ -8,20 +11,22 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatDelegate;
 import android.support.v7.widget.ActionMenuView;
 import android.support.v7.widget.Toolbar;
-import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewTreeObserver;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.view.animation.DecelerateInterpolator;
+import android.view.animation.Interpolator;
+import android.view.animation.TranslateAnimation;
 
 import com.rey.material.drawable.NavigationDrawerDrawable;
 import com.rey.material.drawable.ToolbarRippleDrawable;
 import com.rey.material.util.ViewUtil;
 
-import java.lang.ref.WeakReference;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A Manager class to help handling Toolbar used as ActionBar in ActionBarActivity.
@@ -53,11 +58,11 @@ public class ToolbarManager {
 		 * @param oldGroupId The id of old group.
 		 * @param groupId    The id of new group.
 		 */
-		public void onToolbarGroupChanged(int oldGroupId, int groupId);
+		void onToolbarGroupChanged(int oldGroupId, int groupId);
 
 	}
 
-	private ArrayList<WeakReference<OnToolbarGroupChangedListener>> mListeners = new ArrayList<>();
+	private ArrayList<OnToolbarGroupChangedListener> mListeners = new ArrayList<>();
 
 	private ViewTreeObserver.OnGlobalLayoutListener mOnGlobalLayoutListener = new ViewTreeObserver.OnGlobalLayoutListener() {
 		@Override
@@ -102,18 +107,11 @@ public class ToolbarManager {
 	}
 
 	/**
-	 * Register a listener for current group changed event. Note that it doesn't hold any strong reference to listener, so don't use anonymous listener.
+	 * Register a listener for current group changed event.
 	 */
 	public void registerOnToolbarGroupChangedListener(OnToolbarGroupChangedListener listener) {
-		for (int i = mListeners.size() - 1; i >= 0; i--) {
-			WeakReference<OnToolbarGroupChangedListener> ref = mListeners.get(i);
-			if (ref.get() == null)
-				mListeners.remove(i);
-			else if (ref.get() == listener)
-				return;
-		}
-
-		mListeners.add(new WeakReference<OnToolbarGroupChangedListener>(listener));
+		if (!mListeners.contains(listener))
+			mListeners.add(listener);
 	}
 
 	/**
@@ -122,21 +120,12 @@ public class ToolbarManager {
 	 * @param listener
 	 */
 	public void unregisterOnToolbarGroupChangedListener(OnToolbarGroupChangedListener listener) {
-		for (int i = mListeners.size() - 1; i >= 0; i--) {
-			WeakReference<OnToolbarGroupChangedListener> ref = mListeners.get(i);
-			if (ref.get() == null || ref.get() == listener)
-				mListeners.remove(i);
-		}
+		mListeners.remove(listener);
 	}
 
 	private void dispatchOnToolbarGroupChanged(int oldGroupId, int groupId) {
-		for (int i = mListeners.size() - 1; i >= 0; i--) {
-			WeakReference<OnToolbarGroupChangedListener> ref = mListeners.get(i);
-			if (ref.get() == null)
-				mListeners.remove(i);
-			else
-				ref.get().onToolbarGroupChanged(oldGroupId, groupId);
-		}
+		for (OnToolbarGroupChangedListener listener : mListeners)
+			listener.onToolbarGroupChanged(oldGroupId, groupId);
 	}
 
 	/**
@@ -231,6 +220,15 @@ public class ToolbarManager {
 	 */
 	public boolean isNavigationBackState() {
 		return mNavigationManager != null && mNavigationManager.isBackState();
+	}
+
+	public boolean isNavigationVisisble() {
+		return mNavigationManager != null && mNavigationManager.isNavigationVisible();
+	}
+
+	public void setNavigationVisisble(boolean visible, boolean animation) {
+		if (mNavigationManager != null)
+			mNavigationManager.setNavigationVisible(visible, animation);
 	}
 
 	private ToolbarRippleDrawable getBackground() {
@@ -369,19 +367,23 @@ public class ToolbarManager {
 		protected NavigationDrawerDrawable mNavigationIcon;
 		protected Toolbar mToolbar;
 
-		/**
-		 * @param styleId the style res of navigation icon.
-		 */
+		protected boolean mNavigationVisible = true;
+
+		protected long mAnimationDuration;
+		private long mAnimTime;
+		private List<Object> mAnimations = new ArrayList<>();
+
 		public NavigationManager(NavigationDrawerDrawable navigationIcon, Toolbar toolbar) {
 			mToolbar = toolbar;
 			mNavigationIcon = navigationIcon;
-			mToolbar.setNavigationIcon(mNavigationIcon);
+			mToolbar.setNavigationIcon(mNavigationVisible ? mNavigationIcon : null);
 			mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
 				@Override
 				public void onClick(View v) {
 					onNavigationClick();
 				}
 			});
+			mAnimationDuration = toolbar.getResources().getInteger(android.R.integer.config_shortAnimTime);
 		}
 
 		/**
@@ -407,7 +409,7 @@ public class ToolbarManager {
 		 * Notify the current state of navigation icon is changed. It should update the state with animation.
 		 */
 		public void notifyStateChanged() {
-			mNavigationIcon.switchIconState(isBackState() ? NavigationDrawerDrawable.STATE_ARROW : NavigationDrawerDrawable.STATE_DRAWER, true);
+			mNavigationIcon.switchIconState(isBackState() ? NavigationDrawerDrawable.STATE_ARROW : NavigationDrawerDrawable.STATE_DRAWER, mNavigationVisible);
 		}
 
 		/**
@@ -418,6 +420,244 @@ public class ToolbarManager {
 		 */
 		public void notifyStateProgressChanged(boolean isBackState, float progress) {
 			mNavigationIcon.setIconState(isBackState ? NavigationDrawerDrawable.STATE_ARROW : NavigationDrawerDrawable.STATE_DRAWER, progress);
+		}
+
+		public boolean isNavigationVisible() {
+			return mNavigationVisible;
+		}
+
+		public void setNavigationVisible(boolean visible, boolean animation) {
+			if (mNavigationVisible != visible) {
+				mNavigationVisible = visible;
+				long time = SystemClock.uptimeMillis();
+
+				if (!animation) {
+					mToolbar.setNavigationIcon(mNavigationVisible ? mNavigationIcon : null);
+					mAnimTime = time;
+					if (!mNavigationVisible)
+						mNavigationIcon.cancel();
+				} else {
+					if (mNavigationVisible)
+						animateNavigationIn(time);
+					else
+						animateNavigationOut(time);
+				}
+
+			}
+		}
+
+		protected Interpolator getInterpolator(boolean in) {
+			return new DecelerateInterpolator();
+		}
+
+		private void cancelAllAnimations() {
+			for (Object obj : mAnimations) {
+				if (obj instanceof Animation)
+					((Animation) obj).cancel();
+				else if (obj instanceof ValueAnimator)
+					((ValueAnimator) obj).cancel();
+			}
+
+			mAnimations.clear();
+		}
+
+		private void animateNavigationOut(long time) {
+			mAnimTime = time;
+			cancelAllAnimations();
+			mToolbar.setNavigationIcon(null);
+			doOnPreDraw(mToolbar, new AnimRunnable(time) {
+				@Override
+				void doWork() {
+					final ViewData viewData = new ViewData(mToolbar);
+					mToolbar.setNavigationIcon(mNavigationIcon);
+					doOnPreDraw(mToolbar, new AnimRunnable(mTime) {
+						@Override
+						void doWork() {
+							boolean first = true;
+							for (int i = 0, count = mToolbar.getChildCount(); i < count; i++) {
+								View child = mToolbar.getChildAt(i);
+								if (!(child instanceof ActionMenuView)) {
+									int nextLeft = viewData.getLeft(child);
+									if (nextLeft < 0)
+										nextLeft = -child.getLeft() - child.getWidth();
+
+									if (first) {
+										animateViewOut(child, nextLeft, new Runnable() {
+											@Override
+											public void run() {
+												mToolbar.setNavigationIcon(null);
+												mNavigationIcon.cancel();
+											}
+										});
+										first = false;
+									} else
+										animateViewOut(child, nextLeft, null);
+								}
+							}
+
+							if (first)
+								mToolbar.setNavigationIcon(null);
+						}
+					});
+				}
+			});
+		}
+
+		private void animateViewOut(final View view, final int nextLeft, final Runnable doOnEndRunnable) {
+			final Interpolator interpolator = getInterpolator(false);
+			final int prevLeft = view.getLeft();
+
+			ValueAnimator animator = ValueAnimator.ofFloat(0, 1);
+			animator.setDuration(mAnimationDuration);
+			animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+				@Override
+				public void onAnimationUpdate(ValueAnimator valueAnimator) {
+					float factor = interpolator.getInterpolation(valueAnimator.getAnimatedFraction());
+					float left = prevLeft + (nextLeft - prevLeft) * factor;
+					view.offsetLeftAndRight((int) (left - view.getLeft()));
+
+					if (valueAnimator.getAnimatedFraction() == 1f) {
+						if (doOnEndRunnable != null)
+							doOnEndRunnable.run();
+					}
+				}
+
+			});
+
+			animator.addListener(new AnimatorListener() {
+				@Override
+				public void onAnimationStart(android.animation.Animator animator) {
+
+				}
+
+				@Override
+				public void onAnimationEnd(android.animation.Animator animator) {
+					mAnimations.remove(animator);
+				}
+
+				@Override
+				public void onAnimationCancel(android.animation.Animator animator) {
+
+				}
+
+				@Override
+				public void onAnimationRepeat(android.animation.Animator animator) {
+
+				}
+			});
+
+			animator.start();
+			mAnimations.add(animator);
+		}
+
+		private void animateNavigationIn(long time) {
+			mAnimTime = time;
+			cancelAllAnimations();
+			mToolbar.setNavigationIcon(null);
+			doOnPreDraw(mToolbar, new AnimRunnable(time) {
+				@Override
+				void doWork() {
+					final ViewData viewData = new ViewData(mToolbar);
+					mToolbar.setNavigationIcon(mNavigationIcon);
+					doOnPreDraw(mToolbar, new AnimRunnable(mTime) {
+						@Override
+						void doWork() {
+							for (int i = 0, count = mToolbar.getChildCount(); i < count; i++) {
+								View child = mToolbar.getChildAt(i);
+								if (!(child instanceof ActionMenuView)) {
+									int prevLeft = viewData.getLeft(child);
+									if (prevLeft < 0)
+										prevLeft = -child.getLeft() - child.getWidth();
+
+									animateViewIn(child, prevLeft);
+								}
+							}
+						}
+					});
+				}
+			});
+		}
+
+		private void animateViewIn(View view, int prevLeft) {
+			TranslateAnimation anim = new TranslateAnimation(
+					TranslateAnimation.ABSOLUTE, prevLeft - view.getLeft(), TranslateAnimation.ABSOLUTE, 0,
+					TranslateAnimation.ABSOLUTE, 0, TranslateAnimation.ABSOLUTE, 0);
+
+			anim.setAnimationListener(new Animation.AnimationListener() {
+				@Override
+				public void onAnimationStart(Animation animation) {
+				}
+
+				@Override
+				public void onAnimationEnd(Animation animation) {
+					mAnimations.remove(animation);
+				}
+
+				@Override
+				public void onAnimationRepeat(Animation animation) {
+				}
+			});
+			anim.setInterpolator(getInterpolator(true));
+			anim.setDuration(mAnimationDuration);
+			view.startAnimation(anim);
+			mAnimations.add(anim);
+		}
+
+		private void doOnPreDraw(final View v, final Runnable runnable) {
+			v.getViewTreeObserver().addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener() {
+				@Override
+				public boolean onPreDraw() {
+					runnable.run();
+					v.getViewTreeObserver().removeOnPreDrawListener(this);
+					return false;
+				}
+			});
+		}
+
+		static class ViewData {
+
+			List<View> views;
+			List<Integer> lefts;
+
+			public ViewData(Toolbar toolbar) {
+				int count = toolbar.getChildCount();
+				views = new ArrayList<>(count);
+				lefts = new ArrayList<>(count);
+
+				for (int i = 0; i < count; i++) {
+					View child = toolbar.getChildAt(i);
+					if (!(child instanceof ActionMenuView)) {
+						views.add(child);
+						lefts.add(child.getLeft());
+					}
+				}
+			}
+
+			public int getLeft(View view) {
+				for (int i = 0, size = views.size(); i < size; i++)
+					if (views.get(i) == view)
+						return lefts.get(i);
+
+				return -1;
+			}
+
+		}
+
+		abstract class AnimRunnable implements Runnable {
+
+			long mTime;
+
+			public AnimRunnable(long time) {
+				mTime = time;
+			}
+
+			@Override
+			public void run() {
+				if (mTime == mAnimTime)
+					doWork();
+			}
+
+			abstract void doWork();
 		}
 
 	}
@@ -474,7 +714,7 @@ public class ToolbarManager {
 
 		@Override
 		public boolean isBackState() {
-			return mFragmentManager.getBackStackEntryCount() > 1 || (mDrawerLayout != null && mDrawerLayout.isDrawerOpen(Gravity.START));
+			return mFragmentManager.getBackStackEntryCount() > 1 || (mDrawerLayout != null && mDrawerLayout.isDrawerOpen(GravityCompat.START));
 		}
 
 		@Override
@@ -548,7 +788,7 @@ public class ToolbarManager {
 				NavigationDrawerDrawable drawable = new NavigationDrawerDrawable.Builder(mToolbar.getContext(), mCurrentStyle).build();
 				drawable.switchIconState(mNavigationIcon.getIconState(), false);
 				mNavigationIcon = drawable;
-				mToolbar.setNavigationIcon(mNavigationIcon);
+				mToolbar.setNavigationIcon(mNavigationVisible ? mNavigationIcon : null);
 			}
 		}
 

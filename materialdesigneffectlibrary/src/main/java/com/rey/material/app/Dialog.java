@@ -81,6 +81,7 @@ public class Dialog extends android.app.Dialog {
 
 	private boolean mCancelable = true;
 	private boolean mCanceledOnTouchOutside = true;
+	private boolean mDismissPending = false;
 
 	/**
 	 * The viewId of title view.
@@ -122,7 +123,7 @@ public class Dialog extends android.app.Dialog {
 
 	private void init(Context context, int style) {
 		mContentPadding = ThemeUtil.dpToPx(context, 24);
-		mActionMinWidth = ThemeUtil.dpToPx(context, 72);
+		mActionMinWidth = ThemeUtil.dpToPx(context, 64);
 		mActionHeight = ThemeUtil.dpToPx(context, 36);
 		mActionOuterHeight = ThemeUtil.dpToPx(context, 48);
 		mActionPadding = ThemeUtil.dpToPx(context, 8);
@@ -144,29 +145,14 @@ public class Dialog extends android.app.Dialog {
 		mTitle.setGravity(Gravity.START);
 		mTitle.setPadding(mContentPadding, mContentPadding, mContentPadding, mContentPadding - mActionPadding);
 		mPositiveAction.setId(ACTION_POSITIVE);
-		mPositiveAction.setAllCaps(false);
 		mPositiveAction.setPadding(mActionPadding, 0, mActionPadding, 0);
 		mPositiveAction.setBackgroundResource(0);
-		mPositiveAction.setMinWidth(ThemeUtil.dpToPx(getContext(), 72));
-		mPositiveAction.setMinHeight(ThemeUtil.dpToPx(getContext(), 36));
-		mPositiveAction.setMinimumWidth(ThemeUtil.dpToPx(getContext(), 72));
-		mPositiveAction.setMinimumHeight(ThemeUtil.dpToPx(getContext(), 36));
 		mNegativeAction.setId(ACTION_NEGATIVE);
-		mNegativeAction.setAllCaps(false);
 		mNegativeAction.setPadding(mActionPadding, 0, mActionPadding, 0);
 		mNegativeAction.setBackgroundResource(0);
-		mNegativeAction.setMinWidth(ThemeUtil.dpToPx(getContext(), 72));
-		mNegativeAction.setMinHeight(ThemeUtil.dpToPx(getContext(), 36));
-		mNegativeAction.setMinimumWidth(ThemeUtil.dpToPx(getContext(), 72));
-		mNegativeAction.setMinimumHeight(ThemeUtil.dpToPx(getContext(), 36));
 		mNeutralAction.setId(ACTION_NEUTRAL);
-		mNeutralAction.setAllCaps(false);
 		mNeutralAction.setPadding(mActionPadding, 0, mActionPadding, 0);
 		mNeutralAction.setBackgroundResource(0);
-		mNeutralAction.setMinWidth(ThemeUtil.dpToPx(getContext(), 72));
-		mNeutralAction.setMinHeight(ThemeUtil.dpToPx(getContext(), 36));
-		mNeutralAction.setMinimumWidth(ThemeUtil.dpToPx(getContext(), 72));
-		mNeutralAction.setMinimumHeight(ThemeUtil.dpToPx(getContext(), 36));
 
 		mContainer.addView(mCardView);
 		mCardView.addView(mTitle);
@@ -1113,7 +1099,7 @@ public class Dialog extends android.app.Dialog {
 
 	@Override
 	public void dismiss() {
-		if (!isShowing())
+		if (!isShowing() || mDismissPending)
 			return;
 
 		if (mOutAnimationId != 0) {
@@ -1121,6 +1107,7 @@ public class Dialog extends android.app.Dialog {
 			anim.setAnimationListener(new Animation.AnimationListener() {
 				@Override
 				public void onAnimationStart(Animation animation) {
+					mDismissPending = true;
 				}
 
 				@Override
@@ -1129,9 +1116,11 @@ public class Dialog extends android.app.Dialog {
 
 				@Override
 				public void onAnimationEnd(Animation animation) {
+					mDismissPending = false;
 					mCardView.setVisibility(View.GONE);
 					mHandler.post(mDismissAction);
 				}
+
 			});
 			mCardView.startAnimation(anim);
 		} else
@@ -1192,8 +1181,7 @@ public class Dialog extends android.app.Dialog {
 					if (mClickOutside && isOutsideDialog(event.getX(), event.getY())) {
 						mClickOutside = false;
 						if (mCancelable && mCanceledOnTouchOutside)
-//							dismiss();
-							cancel();
+							dismiss();
 						return true;
 					}
 					return false;
@@ -1381,8 +1369,7 @@ public class Dialog extends android.app.Dialog {
 			if (mLayoutActionVertical)
 				nonContentHeight += mActionOuterHeight * visibleActions;
 			else
-//				nonContentHeight += (visibleActions > 0) ? mActionOuterHeight : 0;
-				nonContentHeight += (visibleActions > 0) ? mActionOuterHeight : (mActionOuterHeight - mActionHeight);
+				nonContentHeight += (visibleActions > 0) ? mActionOuterHeight : 0;
 
 			if (height == ViewGroup.LayoutParams.WRAP_CONTENT)
 				height = Math.min(maxHeight, contentHeight + nonContentHeight);
@@ -1444,8 +1431,7 @@ public class Dialog extends android.app.Dialog {
 					if (mIsRtl) {
 						if (mPositiveAction.getVisibility() == View.VISIBLE) {
 							mPositiveAction.layout(actionLeft, actionTop, actionLeft + mPositiveAction.getMeasuredWidth(), actionBottom);
-//							actionLeft += mPositiveAction.getMeasuredWidth() + mActionPadding;
-							actionLeft += mPositiveAction.getMeasuredWidth();
+							actionLeft += mPositiveAction.getMeasuredWidth() + mActionPadding;
 						}
 
 						if (mNegativeAction.getVisibility() == View.VISIBLE)
@@ -1458,8 +1444,7 @@ public class Dialog extends android.app.Dialog {
 
 						if (mPositiveAction.getVisibility() == View.VISIBLE) {
 							mPositiveAction.layout(actionRight - mPositiveAction.getMeasuredWidth(), actionTop, actionRight, actionBottom);
-//							actionRight -= mPositiveAction.getMeasuredWidth() + mActionPadding;
-							actionRight -= mPositiveAction.getMeasuredWidth();
+							actionRight -= mPositiveAction.getMeasuredWidth() + mActionPadding;
 						}
 
 						if (mNegativeAction.getVisibility() == View.VISIBLE)
@@ -1471,8 +1456,6 @@ public class Dialog extends android.app.Dialog {
 
 					childBottom -= mActionOuterHeight;
 				}
-			} else {
-
 			}
 
 			mDividerPos = childBottom - mDividerPaint.getStrokeWidth() / 2f;

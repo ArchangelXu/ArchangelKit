@@ -7,8 +7,8 @@ import android.graphics.drawable.Drawable;
 
 /**
  * A drawable that draw nothing.
- *
  * @author Rey
+ *
  */
 public class BlankDrawable extends Drawable {
 

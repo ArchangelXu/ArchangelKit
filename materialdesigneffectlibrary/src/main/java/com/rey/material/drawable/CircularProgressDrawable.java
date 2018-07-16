@@ -51,18 +51,18 @@ public class CircularProgressDrawable extends Drawable implements Animatable {
 	private int mStrokeColorIndex;
 
 	private int mPadding;
-	private float mInitialAngle;
+	private float mInitialAngle;	
 	private float mProgressPercent;
 	private float mSecondaryProgressPercent;
 	private float mMaxSweepAngle;
-	private float mMinSweepAngle;
+	private float mMinSweepAngle;	
 	private int mStrokeSize;
 	private int[] mStrokeColors;
-	private int mStrokeSecondaryColor;
+	private int mStrokeSecondaryColor;	
 	private boolean mReverse;
 	private int mRotateDuration;
 	private int mTransformDuration;
-	private int mKeepDuration;
+	private int mKeepDuration;	
 	private float mInStepPercent;
 	private int[] mInColors;
 	private int mInAnimationDuration;
@@ -94,8 +94,8 @@ public class CircularProgressDrawable extends Drawable implements Animatable {
 		mPaint = new Paint();
 		mPaint.setAntiAlias(true);
 		mPaint.setStrokeCap(Paint.Cap.ROUND);
-		mPaint.setStrokeJoin(Paint.Join.ROUND);
-
+		mPaint.setStrokeJoin(Paint.Join.ROUND);		
+		
 		mRect = new RectF();
 	}
 
@@ -174,7 +174,7 @@ public class CircularProgressDrawable extends Drawable implements Animatable {
 	}
 
 	@Override
-	public void draw(Canvas canvas) {
+	public void draw(Canvas canvas) {			
 		switch (mProgressMode) {
 			case ProgressView.MODE_DETERMINATE:
 				drawDeterminate(canvas);
@@ -186,7 +186,7 @@ public class CircularProgressDrawable extends Drawable implements Animatable {
 	}
 
 	private void drawDeterminate(Canvas canvas) {
-		Rect bounds = getBounds();
+		Rect bounds = getBounds();		
 		float radius = 0f;
 		float size = 0f;
 
@@ -220,7 +220,7 @@ public class CircularProgressDrawable extends Drawable implements Animatable {
 				float sweepAngle = (mReverse ? -360 : 360) * mProgressPercent;
 
 				mRect.set(x - radius, y - radius, x + radius, y + radius);
-				mPaint.setColor(mStrokeSecondaryColor);
+				mPaint.setColor(mStrokeSecondaryColor);			
 				canvas.drawArc(mRect, mStartAngle + sweepAngle, (mReverse ? -360 : 360) - sweepAngle, false, mPaint);
 
 				mPaint.setColor(mStrokeColors[0]);
@@ -241,7 +241,7 @@ public class CircularProgressDrawable extends Drawable implements Animatable {
 
 	private void drawIndeterminate(Canvas canvas) {
 		if (mRunState == RUN_STATE_STARTING) {
-			Rect bounds = getBounds();
+			Rect bounds = getBounds();				
 			float x = (bounds.left + bounds.right) / 2f;
 			float y = (bounds.top + bounds.bottom) / 2f;
 			float maxRadius = (Math.min(bounds.width(), bounds.height()) - mPadding * 2) / 2f;
@@ -249,7 +249,7 @@ public class CircularProgressDrawable extends Drawable implements Animatable {
 			float stepTime = 1f / (mInStepPercent * (mInColors.length + 2) + 1);
 			float time = (float) (SystemClock.uptimeMillis() - mLastRunStateTime) / mInAnimationDuration;
 			float steps = time / stepTime;
-
+							
 			float outerRadius = 0f;
 			float innerRadius = 0f;
 
@@ -266,8 +266,8 @@ public class CircularProgressDrawable extends Drawable implements Animatable {
 					canvas.drawCircle(x, y, outerRadius, mPaint);
 				} else if (outerRadius > innerRadius) {
 					float radius = (innerRadius + outerRadius) / 2;
-					mRect.set(x - radius, y - radius, x + radius, y + radius);
-
+					mRect.set(x - radius, y - radius, x + radius, y + radius);	
+					
 					mPaint.setStrokeWidth(outerRadius - innerRadius);
 					mPaint.setStyle(Paint.Style.STROKE);
 					mPaint.setColor(mInColors[i]);
@@ -285,7 +285,7 @@ public class CircularProgressDrawable extends Drawable implements Animatable {
 			} else {
 				float radius = maxRadius - mStrokeSize / 2f;
 
-				mRect.set(x - radius, y - radius, x + radius, y + radius);
+				mRect.set(x - radius, y - radius, x + radius, y + radius);				
 				mPaint.setStrokeWidth(mStrokeSize);
 				mPaint.setStyle(Paint.Style.STROKE);
 				mPaint.setColor(getIndeterminateStrokeColor());
@@ -301,7 +301,7 @@ public class CircularProgressDrawable extends Drawable implements Animatable {
 				float x = (bounds.left + bounds.right) / 2f;
 				float y = (bounds.top + bounds.bottom) / 2f;
 
-				mRect.set(x - radius, y - radius, x + radius, y + radius);
+				mRect.set(x - radius, y - radius, x + radius, y + radius);					
 				mPaint.setStrokeWidth(size);
 				mPaint.setStyle(Paint.Style.STROKE);
 				mPaint.setColor(getIndeterminateStrokeColor());
@@ -314,13 +314,13 @@ public class CircularProgressDrawable extends Drawable implements Animatable {
 			float x = (bounds.left + bounds.right) / 2f;
 			float y = (bounds.top + bounds.bottom) / 2f;
 
-			mRect.set(x - radius, y - radius, x + radius, y + radius);
+			mRect.set(x - radius, y - radius, x + radius, y + radius);				
 			mPaint.setStrokeWidth(mStrokeSize);
 			mPaint.setStyle(Paint.Style.STROKE);
 			mPaint.setColor(getIndeterminateStrokeColor());
 
 			canvas.drawArc(mRect, mStartAngle, mSweepAngle, false, mPaint);
-		}
+		}		
 	}
 
 	@Override
@@ -391,7 +391,7 @@ public class CircularProgressDrawable extends Drawable implements Animatable {
 
 	@Override
 	public void start() {
-		start(mInAnimationDuration > 0);
+		start(mInAnimationDuration > 0);	    
 	}
 
 	@Override
@@ -432,7 +432,7 @@ public class CircularProgressDrawable extends Drawable implements Animatable {
 			invalidateSelf();
 		}
 	}
-
+	
 	@Override
 	public boolean isRunning() {
 		return mRunState != RUN_STATE_STOPPED;
@@ -444,7 +444,7 @@ public class CircularProgressDrawable extends Drawable implements Animatable {
 			mRunState = mInAnimationDuration > 0 ? RUN_STATE_STARTING : RUN_STATE_RUNNING;
 		super.scheduleSelf(what, when);
 	}
-
+	
 	private final Runnable mUpdater = new Runnable() {
 
 		@Override
@@ -519,7 +519,7 @@ public class CircularProgressDrawable extends Drawable implements Animatable {
 						mProgressState = PROGRESS_STATE_KEEP_STRETCH;
 						mLastProgressStateTime = curTime;
 					}
-				}
+				}				
 				break;
 			case PROGRESS_STATE_KEEP_STRETCH:
 				mStartAngle += rotateOffset;
@@ -541,7 +541,7 @@ public class CircularProgressDrawable extends Drawable implements Animatable {
 					float maxAngle = mReverse ? -mMaxSweepAngle : mMaxSweepAngle;
 					float minAngle = mReverse ? -mMinSweepAngle : mMinSweepAngle;
 
-					float newSweepAngle = (1f - mTransformInterpolator.getInterpolation(value)) * (maxAngle - minAngle) + minAngle;
+					float newSweepAngle = (1f - mTransformInterpolator.getInterpolation(value)) * (maxAngle - minAngle) + minAngle;						
 					mStartAngle += rotateOffset + mSweepAngle - newSweepAngle;
 					mSweepAngle = newSweepAngle;
 
@@ -551,7 +551,7 @@ public class CircularProgressDrawable extends Drawable implements Animatable {
 						mLastProgressStateTime = curTime;
 						mStrokeColorIndex = (mStrokeColorIndex + 1) % mStrokeColors.length;
 					}
-				}
+				}				
 				break;
 			case PROGRESS_STATE_KEEP_SHRINK:
 				mStartAngle += rotateOffset;
@@ -590,14 +590,14 @@ public class CircularProgressDrawable extends Drawable implements Animatable {
 		private float mProgressPercent;
 		private float mSecondaryProgressPercent;
 		private float mMaxSweepAngle;
-		private float mMinSweepAngle;
+		private float mMinSweepAngle;	
 		private int mStrokeSize;
 		private int[] mStrokeColors;
-		private int mStrokeSecondaryColor;
+		private int mStrokeSecondaryColor;		
 		private boolean mReverse;
 		private int mRotateDuration;
 		private int mTransformDuration;
-		private int mKeepDuration;
+		private int mKeepDuration;	
 		private Interpolator mTransformInterpolator;
 		private int mProgressMode;
 		private float mInStepPercent;
@@ -625,7 +625,7 @@ public class CircularProgressDrawable extends Drawable implements Animatable {
 			strokeSize(a.getDimensionPixelSize(R.styleable.CircularProgressDrawable_cpd_strokeSize, ThemeUtil.dpToPx(context, 4)));
 			strokeColors(a.getColor(R.styleable.CircularProgressDrawable_cpd_strokeColor, ThemeUtil.colorPrimary(context, 0xFF000000)));
 			if ((resId = a.getResourceId(R.styleable.CircularProgressDrawable_cpd_strokeColors, 0)) != 0) {
-				TypedArray ta = context.getResources().obtainTypedArray(resId);
+				TypedArray ta = context.getResources().obtainTypedArray(resId);				        	
 				int[] colors = new int[ta.length()];
 				for (int j = 0; j < ta.length(); j++)
 					colors[j] = ta.getColor(j, 0);
@@ -642,7 +642,7 @@ public class CircularProgressDrawable extends Drawable implements Animatable {
 			progressMode(a.getInteger(R.styleable.CircularProgressDrawable_pv_progressMode, ProgressView.MODE_INDETERMINATE));
 			inAnimDuration(a.getInteger(R.styleable.CircularProgressDrawable_cpd_inAnimDuration, context.getResources().getInteger(android.R.integer.config_mediumAnimTime)));
 			if ((resId = a.getResourceId(R.styleable.CircularProgressDrawable_cpd_inStepColors, 0)) != 0) {
-				TypedArray ta = context.getResources().obtainTypedArray(resId);
+				TypedArray ta = context.getResources().obtainTypedArray(resId);				        	
 				int[] colors = new int[ta.length()];
 				for (int j = 0; j < ta.length(); j++)
 					colors[j] = ta.getColor(j, 0);

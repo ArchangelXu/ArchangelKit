@@ -42,6 +42,13 @@ public class NavigationDrawerDrawable extends Drawable implements Drawable.Callb
 		return mLineDrawable.getAnimProgress();
 	}
 
+	public void cancel() {
+		if (mRippleDrawable != null)
+			mRippleDrawable.cancel();
+		if (mLineDrawable != null)
+			mLineDrawable.cancel();
+	}
+
 	@Override
 	public void draw(Canvas canvas) {
 		mRippleDrawable.draw(canvas);
@@ -96,9 +103,9 @@ public class NavigationDrawerDrawable extends Drawable implements Drawable.Callb
 	public boolean isStateful() {
 		return true;
 	}
-
+	
 	@Override
-	protected boolean onStateChange(int[] state) {
+	protected boolean onStateChange(int[] state) {		
 		return mRippleDrawable.onStateChange(state);
 	}
 

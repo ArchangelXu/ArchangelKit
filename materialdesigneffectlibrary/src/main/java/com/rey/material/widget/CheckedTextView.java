@@ -1,10 +1,9 @@
 package com.rey.material.widget;
 
-import android.annotation.TargetApi;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
-import android.os.Build;
 import android.support.annotation.NonNull;
+import android.support.v7.widget.AppCompatCheckedTextView;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 
@@ -12,11 +11,26 @@ import com.rey.material.app.ThemeManager;
 import com.rey.material.drawable.RippleDrawable;
 import com.rey.material.util.ViewUtil;
 
-public class CheckedTextView extends android.support.v7.widget.AppCompatCheckedTextView implements ThemeManager.OnThemeChangedListener {
+public class CheckedTextView extends AppCompatCheckedTextView implements ThemeManager.OnThemeChangedListener {
 
 	private RippleManager mRippleManager;
 	protected int mStyleId;
 	protected int mCurrentStyle = ThemeManager.THEME_UNDEFINED;
+
+	/**
+	 * Interface definition for a callback to be invoked when the checked state is changed.
+	 */
+	public interface OnCheckedChangeListener {
+		/**
+		 * Called when the checked state is changed.
+		 *
+		 * @param view    The CheckedTextView view.
+		 * @param checked The checked state.
+		 */
+		void onCheckedChanged(CheckedTextView view, boolean checked);
+	}
+
+	private OnCheckedChangeListener mOnCheckedChangeListener;
 
 	public CheckedTextView(Context context) {
 		super(context);
@@ -32,15 +46,8 @@ public class CheckedTextView extends android.support.v7.widget.AppCompatCheckedT
 
 	public CheckedTextView(Context context, AttributeSet attrs, int defStyleAttr) {
 		super(context, attrs, defStyleAttr);
-
+		
 		init(context, attrs, defStyleAttr, 0);
-	}
-
-	@TargetApi(Build.VERSION_CODES.LOLLIPOP)
-	public CheckedTextView(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
-		super(context, attrs, defStyleAttr);
-
-		init(context, attrs, defStyleAttr, defStyleRes);
 	}
 
 	protected void init(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
@@ -57,6 +64,23 @@ public class CheckedTextView extends android.support.v7.widget.AppCompatCheckedT
 
 	protected void applyStyle(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
 		getRippleManager().onCreate(this, context, attrs, defStyleAttr, defStyleRes);
+	}
+
+	/**
+	 * Set a listener will be called when the checked state is changed.
+	 *
+	 * @param listener The {@link OnCheckedChangeListener} will be called.
+	 */
+	public void setOnCheckedChangeListener(OnCheckedChangeListener listener) {
+		mOnCheckedChangeListener = listener;
+	}
+
+	@Override
+	public void setChecked(boolean checked) {
+		boolean change = isChecked() != checked;
+		super.setChecked(checked);
+		if (change && mOnCheckedChangeListener != null)
+			mOnCheckedChangeListener.onCheckedChanged(this, checked);
 	}
 
 	@Override
@@ -130,5 +154,5 @@ public class CheckedTextView extends android.support.v7.widget.AppCompatCheckedT
 	public boolean onTouchEvent(@NonNull MotionEvent event) {
 		boolean result = super.onTouchEvent(event);
 		return getRippleManager().onTouchEvent(this, event) || result;
-	}
+    }
 }

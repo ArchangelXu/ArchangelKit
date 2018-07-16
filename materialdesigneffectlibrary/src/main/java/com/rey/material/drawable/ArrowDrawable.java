@@ -16,7 +16,7 @@ import android.view.animation.Interpolator;
 import com.rey.material.util.ViewUtil;
 
 public class ArrowDrawable extends Drawable implements Animatable {
-
+	
 	private boolean mRunning = false;
 	private long mStartTime;
 	private float mAnimProgress;
@@ -82,7 +82,7 @@ public class ArrowDrawable extends Drawable implements Animatable {
 		if (mMode != mode) {
 			mMode = mode;
 			if (animation && mAnimDuration > 0)
-				start();
+				start();			
 			else
 				invalidateSelf();
 		}
@@ -139,7 +139,7 @@ public class ArrowDrawable extends Drawable implements Animatable {
 
 	@Override
 	public void setAlpha(int alpha) {
-		mPaint.setAlpha(alpha);
+		mPaint.setAlpha(alpha);			
 	}
 
 	@Override
@@ -162,7 +162,7 @@ public class ArrowDrawable extends Drawable implements Animatable {
 		int color = mColorStateList.getColorForState(state, mCurColor);
 
 		if (mCurColor != color) {
-			mCurColor = color;
+			mCurColor = color;	
 			return true;
 		}
 
@@ -176,7 +176,7 @@ public class ArrowDrawable extends Drawable implements Animatable {
 
 	@Override
 	public void start() {
-		resetAnimation();
+		resetAnimation();			
 		scheduleSelf(mUpdater, SystemClock.uptimeMillis() + ViewUtil.FRAME_DURATION);
 		invalidateSelf();
 	}
@@ -198,7 +198,7 @@ public class ArrowDrawable extends Drawable implements Animatable {
 		mRunning = true;
 		super.scheduleSelf(what, when);
 	}
-
+	
 	private final Runnable mUpdater = new Runnable() {
 
 		@Override
@@ -220,5 +220,5 @@ public class ArrowDrawable extends Drawable implements Animatable {
 
 		invalidateSelf();
 	}
-
+	
 }

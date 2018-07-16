@@ -55,6 +55,8 @@ public class BottomSheetDialog extends android.app.Dialog {
 	private boolean mRunShowAnimation = false;
 	private Animation mAnimation;
 
+	private boolean mDismissPending = false;
+
 	public BottomSheetDialog(Context context) {
 		this(context, R.style.Material_App_BottomSheetDialog);
 	}
@@ -350,7 +352,7 @@ public class BottomSheetDialog extends android.app.Dialog {
 
 	@Override
 	public void dismiss() {
-		if (!isShowing())
+		if (!isShowing() || mDismissPending)
 			return;
 
 		if (mContentView != null) {
@@ -360,6 +362,7 @@ public class BottomSheetDialog extends android.app.Dialog {
 			mAnimation.setAnimationListener(new Animation.AnimationListener() {
 				@Override
 				public void onAnimationStart(Animation animation) {
+					mDismissPending = true;
 				}
 
 				@Override
@@ -368,9 +371,11 @@ public class BottomSheetDialog extends android.app.Dialog {
 
 				@Override
 				public void onAnimationEnd(Animation animation) {
+					mDismissPending = false;
 					mAnimation = null;
 					mHandler.post(mDismissAction);
 				}
+
 			});
 			mContentView.startAnimation(mAnimation);
 		} else

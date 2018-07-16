@@ -1,9 +1,7 @@
 package com.rey.material.widget;
 
-import android.annotation.TargetApi;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
-import android.os.Build;
 import android.support.annotation.NonNull;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
@@ -35,13 +33,6 @@ public class RelativeLayout extends android.widget.RelativeLayout implements The
 		super(context, attrs, defStyleAttr);
 
 		init(context, attrs, defStyleAttr, 0);
-	}
-
-	@TargetApi(Build.VERSION_CODES.LOLLIPOP)
-	public RelativeLayout(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
-		super(context, attrs, defStyleAttr, defStyleRes);
-
-		init(context, attrs, defStyleAttr, defStyleRes);
 	}
 
 	protected void init(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
@@ -115,7 +106,7 @@ public class RelativeLayout extends android.widget.RelativeLayout implements The
 			setOnClickListener(rippleManager);
 		}
 	}
-
+	
 	@Override
 	public boolean onTouchEvent(@NonNull MotionEvent event) {
 		boolean result = super.onTouchEvent(event);

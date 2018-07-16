@@ -163,10 +163,11 @@
 	<style name = "Material.Drawable.NavigationDrawerIcon">
 		<item name = "lmd_state">@xml/nav_states</item>
 		<item name = "lmd_curState">0</item>
-		<item name = "lmd_padding">6dp</item>
+		<item name = "lmd_width">18dp</item>
+		<item name = "lmd_height">18dp</item>
 		<item name = "lmd_animDuration">@android:integer/config_mediumAnimTime</item>
 		<item name = "lmd_interpolator">@android:anim/accelerate_decelerate_interpolator</item>
-		<item name = "lmd_strokeSize">3dp</item>
+		<item name = "lmd_strokeSize">2dp</item>
 		<item name = "lmd_strokeColor">#FFFFFFFF</item>
 		<item name = "lmd_strokeCap">butt</item>
 		<item name = "lmd_strokeJoin">miter</item>
@@ -195,7 +196,7 @@
 		<item name = "rbd_strokeSize">2dp</item>
 		<item name = "rbd_radius">10dp</item>
 		<item name = "rbd_innerRadius">5dp</item>
-		<item name = "rbd_animDuration">@android:integer/config_shortAnimTime</item>
+		<item name = "rbd_animDuration">@android:integer/config_mediumAnimTime</item>
 	</style>
 
 	<style name = "Material.Drawable.CheckBox">
@@ -204,7 +205,7 @@
 		<item name = "cbd_boxSize">20dp</item>
 		<item name = "cbd_cornerRadius">2dp</item>
 		<item name = "cbd_strokeSize">2dp</item>
-		<item name = "cbd_animDuration">@android:integer/config_shortAnimTime</item>
+		<item name = "cbd_animDuration">@android:integer/config_mediumAnimTime</item>
 	</style>
 
 	<style name = "Material.Widget.Switch">
@@ -270,7 +271,7 @@
 		<item name = "fab_elevation">4dp</item>
 		<item name = "fab_iconSize">24dp</item>
 		<item name = "fab_interpolator">@android:anim/decelerate_interpolator</item>
-		<item name = "fab_animDuration">@android:integer/config_shortAnimTime</item>
+		<item name = "fab_animDuration">@android:integer/config_mediumAnimTime</item>
 	</style>
 
 	<style name = "Material.Widget.FloatingActionButton.Light"
@@ -279,7 +280,7 @@
 		<item name = "fab_elevation">4dp</item>
 		<item name = "fab_iconSize">24dp</item>
 		<item name = "fab_interpolator">@android:anim/decelerate_interpolator</item>
-		<item name = "fab_animDuration">@android:integer/config_shortAnimTime</item>
+		<item name = "fab_animDuration">@android:integer/config_mediumAnimTime</item>
 	</style>
 
 	<style name = "Material.Widget.FloatingActionButton.Mini"
@@ -288,7 +289,7 @@
 		<item name = "fab_elevation">4dp</item>
 		<item name = "fab_iconSize">24dp</item>
 		<item name = "fab_interpolator">@android:anim/decelerate_interpolator</item>
-		<item name = "fab_animDuration">@android:integer/config_shortAnimTime</item>
+		<item name = "fab_animDuration">@android:integer/config_mediumAnimTime</item>
 	</style>
 
 	<style name = "Material.Widget.FloatingActionButton.Mini.Light"
@@ -297,7 +298,7 @@
 		<item name = "fab_elevation">4dp</item>
 		<item name = "fab_iconSize">24dp</item>
 		<item name = "fab_interpolator">@android:anim/decelerate_interpolator</item>
-		<item name = "fab_animDuration">@android:integer/config_shortAnimTime</item>
+		<item name = "fab_animDuration">@android:integer/config_mediumAnimTime</item>
 	</style>
 
 	<style name = "Material.Widget.SnackBar">
@@ -593,9 +594,9 @@
 	<style name = "Material.App.BottomSheetDialog">
 		<item name = "android:layout_height">wrap_content</item>
 		<item name = "android:windowIsFloating">false</item>
-		<item name = "bsd_inDuration">@android:integer/config_shortAnimTime</item>
+		<item name = "bsd_inDuration">@android:integer/config_mediumAnimTime</item>
 		<item name = "bsd_inInterpolator">@android:anim/decelerate_interpolator</item>
-		<item name = "bsd_outDuration">@android:integer/config_shortAnimTime</item>
+		<item name = "bsd_outDuration">@android:integer/config_mediumAnimTime</item>
 		<item name = "bsd_outInterpolator">@android:anim/accelerate_interpolator</item>
 		<item name = "bsd_cancelable">true</item>
 		<item name = "bsd_canceledOnTouchOutside">true</item>

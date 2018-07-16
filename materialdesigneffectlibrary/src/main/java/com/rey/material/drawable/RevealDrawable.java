@@ -47,8 +47,8 @@ public class RevealDrawable extends Drawable implements Animatable {
 		mShaderPaint.setStyle(Paint.Style.FILL);
 
 		mFillPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
-		mFillPaint.setStyle(Paint.Style.FILL);
-
+		mFillPaint.setStyle(Paint.Style.FILL);	
+		
 		mCurColor = color;
 
 		mRect = new RectF();
@@ -64,7 +64,7 @@ public class RevealDrawable extends Drawable implements Animatable {
 		if (mCurColor != color) {
 			mCurColor = color;
 			mCurColorTransparent = Color.alpha(mCurColor) == 0;
-			invalidateSelf();
+			invalidateSelf();			
 		}
 	}
 
@@ -236,7 +236,7 @@ public class RevealDrawable extends Drawable implements Animatable {
 		mRunning = true;
 		super.scheduleSelf(what, when);
 	}
-
+	
 	private final Runnable mUpdater = new Runnable() {
 
 		@Override
@@ -263,7 +263,7 @@ public class RevealDrawable extends Drawable implements Animatable {
 					stop();
 			}
 		}
-
+		
 		invalidateSelf();
 
 		if (isRunning())

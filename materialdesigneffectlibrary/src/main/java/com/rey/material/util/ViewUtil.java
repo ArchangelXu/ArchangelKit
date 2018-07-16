@@ -47,7 +47,7 @@ public class ViewUtil {
 		for (int state1 : states)
 			if (state1 == state)
 				return true;
-
+		
 		return false;
 	}
 

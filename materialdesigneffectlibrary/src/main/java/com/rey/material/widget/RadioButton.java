@@ -19,10 +19,6 @@ public class RadioButton extends CompoundButton {
 		super(context, attrs, defStyleAttr);
 	}
 
-	public RadioButton(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
-		super(context, attrs, defStyleAttr, defStyleRes);
-	}
-
 	@Override
 	protected void applyStyle(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
 		super.applyStyle(context, attrs, defStyleAttr, defStyleRes);
@@ -33,7 +29,7 @@ public class RadioButton extends CompoundButton {
 		setButtonDrawable(drawable);
 		drawable.setAnimEnable(true);
 	}
-
+	
 	@Override
 	public void toggle() {
 		// we override to prevent toggle when the radio is already
@@ -57,5 +53,5 @@ public class RadioButton extends CompoundButton {
 		} else
 			setChecked(checked);
 	}
-
+	
 }

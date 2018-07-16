@@ -40,7 +40,7 @@ public final class RippleManager implements View.OnClickListener {
 
 		if (rippleStyle != 0)
 			drawable = new RippleDrawable.Builder(context, rippleStyle).backgroundDrawable(getBackground(v)).build();
-		else {
+		else{
 			boolean rippleEnable = a.getBoolean(R.styleable.RippleView_rd_enable, false);
 			if (rippleEnable)
 				drawable = new RippleDrawable.Builder(context, attrs, defStyleAttr, defStyleRes).backgroundDrawable(getBackground(v)).build();
@@ -61,17 +61,17 @@ public final class RippleManager implements View.OnClickListener {
 			return ((RippleDrawable) background).getBackgroundDrawable();
 
 		return background;
-	}
-
+    }
+		
 	public void setOnClickListener(View.OnClickListener l) {
 		mClickListener = l;
 	}
 
-	public boolean onTouchEvent(View v, MotionEvent event) {
+	public boolean onTouchEvent(View v, MotionEvent event){
 		Drawable background = v.getBackground();
 		return background != null && background instanceof RippleDrawable && ((RippleDrawable) background).onTouch(v, event);
-	}
-
+    }
+	
 	@Override
 	public void onClick(View v) {
 		Drawable background = v.getBackground();
@@ -84,10 +84,13 @@ public final class RippleManager implements View.OnClickListener {
 				delay = ((ToolbarRippleDrawable) background).getClickDelayTime();
 		}
 
-		if (delay > 0 && v.getHandler() != null && !mClickScheduled) {
-			mClickScheduled = true;
-			v.getHandler().postDelayed(new ClickRunnable(v), delay);
-		} else
+		if (delay > 0 && v.getHandler() != null) {
+			if (!mClickScheduled) {
+				mClickScheduled = true;
+				v.getHandler().postDelayed(new ClickRunnable(v), delay);
+			}
+		}
+		else
 			dispatchClickEvent(v);
 	}
 
@@ -101,7 +104,7 @@ public final class RippleManager implements View.OnClickListener {
 	 *
 	 * @param v
 	 */
-	public static void cancelRipple(View v) {
+	public static void cancelRipple(View v){
 		Drawable background = v.getBackground();
 		if (background instanceof RippleDrawable)
 			((RippleDrawable) background).cancel();
@@ -115,10 +118,10 @@ public final class RippleManager implements View.OnClickListener {
 		}
 	}
 
-	class ClickRunnable implements Runnable {
+	class ClickRunnable implements Runnable{
 		View mView;
 
-		public ClickRunnable(View v) {
+		public ClickRunnable(View v){
 			mView = v;
 		}
 
@@ -128,5 +131,5 @@ public final class RippleManager implements View.OnClickListener {
 			dispatchClickEvent(mView);
 		}
 	}
-
+	
 }

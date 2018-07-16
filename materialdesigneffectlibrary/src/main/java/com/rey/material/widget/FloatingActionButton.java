@@ -22,7 +22,6 @@ import android.view.animation.AnimationUtils;
 import android.view.animation.DecelerateInterpolator;
 import android.view.animation.Interpolator;
 import android.widget.FrameLayout;
-import android.widget.RelativeLayout;
 
 import com.rey.material.R;
 import com.rey.material.app.ThemeManager;
@@ -66,13 +65,6 @@ public class FloatingActionButton extends View implements ThemeManager.OnThemeCh
 		super(context, attrs, defStyleAttr);
 
 		init(context, attrs, defStyleAttr, 0);
-	}
-
-	@TargetApi(Build.VERSION_CODES.LOLLIPOP)
-	public FloatingActionButton(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
-		super(context, attrs, defStyleAttr, defStyleRes);
-
-		init(context, attrs, defStyleAttr, defStyleRes);
 	}
 
 	protected void init(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
@@ -131,7 +123,7 @@ public class FloatingActionButton extends View implements ThemeManager.OnThemeCh
 			mIconSize = ThemeUtil.dpToPx(context, 24);
 
 		if (mAnimDuration < 0)
-			mAnimDuration = context.getResources().getInteger(android.R.integer.config_shortAnimTime);
+			mAnimDuration = context.getResources().getInteger(android.R.integer.config_mediumAnimTime);
 
 		if (mInterpolator == null)
 			mInterpolator = new DecelerateInterpolator();
@@ -224,16 +216,16 @@ public class FloatingActionButton extends View implements ThemeManager.OnThemeCh
 		if (mBackground.setRadius(radius))
 			requestLayout();
 	}
-
+	
 	@TargetApi(Build.VERSION_CODES.LOLLIPOP)
 	@Override
 	public float getElevation() {
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
 			return super.getElevation();
-
+		
 		return mBackground.getShadowSize();
 	}
-
+	
 	@TargetApi(Build.VERSION_CODES.LOLLIPOP)
 	@Override
 	public void setElevation(float elevation) {
@@ -249,7 +241,7 @@ public class FloatingActionButton extends View implements ThemeManager.OnThemeCh
 	public int getLineMorphingState() {
 		if (mIcon != null && mIcon instanceof LineMorphingDrawable)
 			return ((LineMorphingDrawable) mIcon).getLineState();
-
+		
 		return -1;
 	}
 
@@ -267,14 +259,14 @@ public class FloatingActionButton extends View implements ThemeManager.OnThemeCh
 	/**
 	 * @return The background color of this button.
 	 */
-	public ColorStateList getBackgroundColor() {
+	public ColorStateList getBackgroundColor(){
 		return mBackground.getColor();
 	}
 
 	/**
 	 * @return The drawable is used as this button's icon.
 	 */
-	public Drawable getIcon() {
+	public Drawable getIcon(){
 		return mIcon;
 	}
 
@@ -305,13 +297,13 @@ public class FloatingActionButton extends View implements ThemeManager.OnThemeCh
 		}
 	}
 
-	public void setBackgroundColor(ColorStateList color) {
+	public void setBackgroundColor(ColorStateList color){
 		mBackground.setColor(color);
 		invalidate();
 	}
 
 	@Override
-	public void setBackgroundColor(int color) {
+	public void setBackgroundColor(int color){
 		mBackground.setColor(color);
 		invalidate();
 	}
@@ -326,8 +318,8 @@ public class FloatingActionButton extends View implements ThemeManager.OnThemeCh
 	 * @param gravity  The gravity apply with this button.
 	 * @see Gravity
 	 */
-	public void show(Activity activity, int x, int y, int gravity) {
-		if (getParent() == null) {
+	public void show(Activity activity, int x, int y, int gravity){
+		if(getParent() == null){
 			FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(mBackground.getIntrinsicWidth(), mBackground.getIntrinsicHeight());
 			updateParams(x, y, gravity, params);
 
@@ -346,8 +338,8 @@ public class FloatingActionButton extends View implements ThemeManager.OnThemeCh
 	 * @param gravity The gravity apply with this button.
 	 * @see Gravity
 	 */
-	public void show(ViewGroup parent, int x, int y, int gravity) {
-		if (getParent() == null) {
+	public void show(ViewGroup parent, int x, int y, int gravity){
+		if(getParent() == null){
 			ViewGroup.LayoutParams params = parent.generateLayoutParams(null);
 			params.width = mBackground.getIntrinsicWidth();
 			params.height = mBackground.getIntrinsicHeight();
@@ -366,19 +358,19 @@ public class FloatingActionButton extends View implements ThemeManager.OnThemeCh
 	 * @param gravity The gravity apply with this button.
 	 * @see Gravity
 	 */
-	public void updateLocation(int x, int y, int gravity) {
-		if (getParent() != null)
+	public void updateLocation(int x, int y, int gravity){
+		if(getParent() != null)
 			updateParams(x, y, gravity, getLayoutParams());
 		else
 			Log.v(FloatingActionButton.class.getSimpleName(), "updateLocation() is called without parent");
 	}
 
-	private void updateParams(int x, int y, int gravity, ViewGroup.LayoutParams params) {
+	private void updateParams(int x, int y, int gravity, ViewGroup.LayoutParams params){
 		int horizontalGravity = gravity & Gravity.HORIZONTAL_GRAVITY_MASK;
 
 		switch (horizontalGravity) {
 			case Gravity.LEFT:
-				setLeftMargin(params, (int) (x - mBackground.getPaddingLeft()));
+				setLeftMargin(params, (int)(x - mBackground.getPaddingLeft()));
 				break;
 			case Gravity.CENTER_HORIZONTAL:
 				setLeftMargin(params, (int) (x - mBackground.getCenterX()));
@@ -387,7 +379,7 @@ public class FloatingActionButton extends View implements ThemeManager.OnThemeCh
 				setLeftMargin(params, (int) (x - mBackground.getPaddingLeft() - mBackground.getRadius() * 2));
 				break;
 			default:
-				setLeftMargin(params, (int) (x - mBackground.getPaddingLeft()));
+				setLeftMargin(params, (int)(x - mBackground.getPaddingLeft()));
 				break;
 		}
 
@@ -395,7 +387,7 @@ public class FloatingActionButton extends View implements ThemeManager.OnThemeCh
 
 		switch (verticalGravity) {
 			case Gravity.TOP:
-				setTopMargin(params, (int) (y - mBackground.getPaddingTop()));
+				setTopMargin(params, (int)(y - mBackground.getPaddingTop()));
 				break;
 			case Gravity.CENTER_VERTICAL:
 				setTopMargin(params, (int) (y - mBackground.getCenterY()));
@@ -412,19 +404,15 @@ public class FloatingActionButton extends View implements ThemeManager.OnThemeCh
 	}
 
 	private void setLeftMargin(ViewGroup.LayoutParams params, int value) {
-		if (params instanceof FrameLayout.LayoutParams)
-			((FrameLayout.LayoutParams) params).leftMargin = value;
-		else if (params instanceof RelativeLayout.LayoutParams)
-			((RelativeLayout.LayoutParams) params).leftMargin = value;
+		if (params instanceof ViewGroup.MarginLayoutParams)
+			((ViewGroup.MarginLayoutParams) params).leftMargin = value;
 		else
 			Log.v(FloatingActionButton.class.getSimpleName(), "cannot recognize LayoutParams: " + params);
 	}
 
 	private void setTopMargin(ViewGroup.LayoutParams params, int value) {
-		if (params instanceof FrameLayout.LayoutParams)
-			((FrameLayout.LayoutParams) params).topMargin = value;
-		else if (params instanceof RelativeLayout.LayoutParams)
-			((RelativeLayout.LayoutParams) params).topMargin = value;
+		if (params instanceof ViewGroup.MarginLayoutParams)
+			((ViewGroup.MarginLayoutParams) params).topMargin = value;
 		else
 			Log.v(FloatingActionButton.class.getSimpleName(), "cannot recognize LayoutParams: " + params);
 	}
@@ -433,14 +421,14 @@ public class FloatingActionButton extends View implements ThemeManager.OnThemeCh
 	 * Remove this button from parent view.
 	 */
 	public void dismiss() {
-		if (getParent() != null)
-			((ViewGroup) getParent()).removeView(this);
+		if(getParent() != null)
+			((ViewGroup)getParent()).removeView(this);
 	}
 
 	@Override
 	protected boolean verifyDrawable(Drawable who) {
 		return super.verifyDrawable(who) || mBackground == who || mIcon == who || mPrevIcon == who;
-	}
+    }
 
 	@Override
 	protected void drawableStateChanged() {
@@ -449,7 +437,7 @@ public class FloatingActionButton extends View implements ThemeManager.OnThemeCh
 			mBackground.setState(getDrawableState());
 		if (mIcon != null)
 			mIcon.setState(getDrawableState());
-		if (mPrevIcon != null)
+		if(mPrevIcon != null)
 			mPrevIcon.setState(getDrawableState());
 	}
 
@@ -457,7 +445,7 @@ public class FloatingActionButton extends View implements ThemeManager.OnThemeCh
 	protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
 		setMeasuredDimension(mBackground.getIntrinsicWidth(), mBackground.getIntrinsicHeight());
 	}
-
+	
 	@Override
 	protected void onSizeChanged(int w, int h, int oldw, int oldh) {
 		mBackground.setBounds(0, 0, w, h);
@@ -469,8 +457,8 @@ public class FloatingActionButton extends View implements ThemeManager.OnThemeCh
 
 		if (mPrevIcon != null) {
 			float half = mIconSize / 2f;
-			mPrevIcon.setBounds((int) (mBackground.getCenterX() - half), (int) (mBackground.getCenterY() - half), (int) (mBackground.getCenterX() + half), (int) (mBackground.getCenterY() + half));
-		}
+			mPrevIcon.setBounds((int) (mBackground.getCenterX() - half), (int) (mBackground.getCenterY() - half), (int) (mBackground.getCenterX() + half), (int)(mBackground.getCenterY() + half));
+        }
 	}
 
 	@Override
@@ -478,15 +466,15 @@ public class FloatingActionButton extends View implements ThemeManager.OnThemeCh
 		mBackground.draw(canvas);
 		super.draw(canvas);
 		if (mPrevIcon != null)
-			mPrevIcon.draw(canvas);
+            mPrevIcon.draw(canvas);
 		if (mIcon != null)
 			mIcon.draw(canvas);
 	}
 
 	protected RippleManager getRippleManager() {
 		if (mRippleManager == null) {
-			synchronized (RippleManager.class) {
-				if (mRippleManager == null)
+			synchronized (RippleManager.class){
+				if(mRippleManager == null)
 					mRippleManager = new RippleManager();
 			}
 		}
@@ -506,10 +494,10 @@ public class FloatingActionButton extends View implements ThemeManager.OnThemeCh
 	}
 
 	@Override
-	public boolean onTouchEvent(@NonNull MotionEvent event) {
+    public boolean onTouchEvent(@NonNull MotionEvent event) {
 		int action = event.getActionMasked();
 
-		if (action == MotionEvent.ACTION_DOWN && !mBackground.isPointerOver(event.getX(), event.getY()))
+		if (action == MotionEvent.ACTION_DOWN && ! mBackground.isPointerOver(event.getX(), event.getY()))
 			return false;
 
 		boolean result = super.onTouchEvent(event);
@@ -642,10 +630,10 @@ public class FloatingActionButton extends View implements ThemeManager.OnThemeCh
 					getHandler().postAtTime(this, SystemClock.uptimeMillis() + ViewUtil.FRAME_DURATION);
 				else
 					stopAnimation();
-			}
+            }
 
-			invalidate();
-		}
+            invalidate();
+        }
 
-	}
+    }
 }

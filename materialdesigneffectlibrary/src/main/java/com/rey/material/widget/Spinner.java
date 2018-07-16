@@ -14,6 +14,7 @@ import android.os.Parcelable;
 import android.support.annotation.NonNull;
 import android.text.TextUtils;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.util.SparseArray;
 import android.util.TypedValue;
 import android.view.Gravity;
@@ -34,7 +35,7 @@ import com.rey.material.drawable.DividerDrawable;
 import com.rey.material.util.ThemeUtil;
 
 public class Spinner extends FrameLayout implements ThemeManager.OnThemeChangedListener {
-
+		
 	private static final int MAX_ITEMS_MEASURED = 15;
 
 	private static final int INVALID_POSITION = -1;
@@ -61,12 +62,11 @@ public class Spinner extends FrameLayout implements ThemeManager.OnThemeChangedL
 	public interface OnItemSelectedListener {
 		/**
 		 * Called when an item is selected.
-		 *
-		 * @param parent   The Spinner view.
-		 * @param view     The item view.
+		 * @param parent The Spinner view.
+		 * @param view The item view.
 		 * @param position The position of item.
-		 * @param id       The id of item.
-		 */
+		 * @param id The id of item.
+         */
 		void onItemSelected(Spinner parent, View view, int position, long id);
 	}
 
@@ -82,65 +82,61 @@ public class Spinner extends FrameLayout implements ThemeManager.OnThemeChangedL
 
 	private DropdownPopup mPopup;
 	private int mDropDownWidth;
-
+	
 	private ArrowDrawable mArrowDrawable;
 	private int mArrowSize;
 	private int mArrowPadding;
 	private boolean mArrowAnimSwitchMode;
-
+	
 	private DividerDrawable mDividerDrawable;
 	private int mDividerHeight;
 	private int mDividerPadding;
-
+	
 	private int mGravity;
 	private boolean mDisableChildrenWhenDisabled;
-
+	
 	private int mSelectedPosition;
-
+	
 	private RecycleBin mRecycler = new RecycleBin();
-
+	
 	private Rect mTempRect = new Rect();
-
+	
 	private DropDownAdapter mTempAdapter;
-
+	
 	private SpinnerDataSetObserver mDataSetObserver = new SpinnerDataSetObserver();
 
 	private boolean mIsRtl;
-
+		
 	public Spinner(Context context) {
 		super(context, null, R.attr.listPopupWindowStyle);
 	}
-
+	
 	public Spinner(Context context, AttributeSet attrs) {
 		super(context, attrs, R.attr.listPopupWindowStyle);
 	}
-
+	
 	public Spinner(Context context, AttributeSet attrs, int defStyleAttr) {
 		super(context, attrs, defStyleAttr);
 	}
 
-	public Spinner(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
-		super(context, attrs, defStyleAttr, defStyleRes);
-	}
-
-	@Override
+    @Override
 	protected void init(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
-		mLabelEnable = false;
-		mDropDownWidth = LayoutParams.WRAP_CONTENT;
-		mArrowAnimSwitchMode = false;
-		mGravity = Gravity.CENTER;
-		mDisableChildrenWhenDisabled = false;
-		mSelectedPosition = INVALID_POSITION;
-		mIsRtl = false;
+	    mLabelEnable = false;
+	    mDropDownWidth = LayoutParams.WRAP_CONTENT;
+	    mArrowAnimSwitchMode = false;
+	    mGravity = Gravity.CENTER;
+	    mDisableChildrenWhenDisabled = false;
+	    mSelectedPosition = INVALID_POSITION;
+	    mIsRtl = false;
 
-		setWillNotDraw(false);
+	    setWillNotDraw(false);
 
-		mPopup = new DropdownPopup(context, attrs, defStyleAttr, defStyleRes);
-		mPopup.setModal(true);
+	    mPopup = new DropdownPopup(context, attrs, defStyleAttr, defStyleRes);
+	    mPopup.setModal(true);
 
-		if (isInEditMode())
-			applyStyle(R.style.Material_Widget_Spinner);
-
+	    if (isInEditMode())
+		    applyStyle(R.style.Material_Widget_Spinner);
+		
 		setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -148,8 +144,8 @@ public class Spinner extends FrameLayout implements ThemeManager.OnThemeChangedL
 			}
 		});
 
-		super.init(context, attrs, defStyleAttr, defStyleRes);
-	}
+	    super.init(context, attrs, defStyleAttr, defStyleRes);
+    }
 
 	private android.widget.TextView getLabelView() {
 		if (mLabelView == null) {
@@ -371,14 +367,13 @@ public class Spinner extends FrameLayout implements ThemeManager.OnThemeChangedL
 
 	/**
 	 * Set the selected position of this Spinner.
-	 *
 	 * @param position The selected position.
-	 */
+     */
 	public void setSelection(int position) {
-		if (mAdapter != null)
+		if(mAdapter != null)
 			position = Math.max(0, Math.min(position, mAdapter.getCount() - 1));
 
-		if (mSelectedPosition != position) {
+		if (mSelectedPosition != position){
 			mSelectedPosition = position;
 
 			if (mOnItemSelectedListener != null)
@@ -391,7 +386,7 @@ public class Spinner extends FrameLayout implements ThemeManager.OnThemeChangedL
 	/**
 	 * @return The selected posiiton.
 	 */
-	public int getSelectedItemPosition() {
+	public int getSelectedItemPosition(){
 		return mSelectedPosition;
 	}
 
@@ -404,18 +399,17 @@ public class Spinner extends FrameLayout implements ThemeManager.OnThemeChangedL
 
 	/**
 	 * @return The adapter back this Spinner.
-	 */
+     */
 	public SpinnerAdapter getAdapter() {
 		return mAdapter;
 	}
 
 	/**
 	 * Set an adapter for this Spinner.
-	 *
 	 * @param adapter
-	 */
+     */
 	public void setAdapter(SpinnerAdapter adapter) {
-		if (mAdapter != null)
+		if(mAdapter != null)
 			mAdapter.unregisterDataSetObserver(mDataSetObserver);
 
 		mRecycler.clear();
@@ -571,7 +565,24 @@ public class Spinner extends FrameLayout implements ThemeManager.OnThemeChangedL
 
 		if (child != null) {
 			final int childBaseline = child.getBaseline();
-			return childBaseline >= 0 ? child.getTop() + childBaseline : -1;
+			if (childBaseline < 0)
+				return -1;
+
+			int paddingTop = getPaddingTop();
+			if (mLabelView != null)
+				paddingTop += mLabelView.getMeasuredHeight();
+
+			int remainHeight = getMeasuredHeight() - paddingTop - getPaddingBottom() - getDividerDrawableHeight();
+
+			int verticalGravity = mGravity & Gravity.VERTICAL_GRAVITY_MASK;
+			switch (verticalGravity) {
+				case Gravity.TOP:
+					return paddingTop + childBaseline;
+				case Gravity.BOTTOM:
+					return paddingTop + remainHeight - child.getMeasuredHeight() + childBaseline;
+				default:
+					return (remainHeight - child.getMeasuredHeight()) / 2 + paddingTop + childBaseline;
+			}
 		}
 
 		return -1;
@@ -605,12 +616,12 @@ public class Spinner extends FrameLayout implements ThemeManager.OnThemeChangedL
 	@Override
 	public boolean onInterceptTouchEvent(MotionEvent event) {
 		return true;
-	}
+    }
 
-	@Override
+    @Override
 	protected boolean verifyDrawable(Drawable who) {
-		return super.verifyDrawable(who) || mArrowDrawable == who || mDividerDrawable == who;
-	}
+        return super.verifyDrawable(who) || mArrowDrawable == who || mDividerDrawable == who;
+    }
 
 	private int getArrowDrawableWidth() {
 		return mArrowDrawable != null ? mArrowSize + mArrowPadding * 2 : 0;
@@ -620,6 +631,30 @@ public class Spinner extends FrameLayout implements ThemeManager.OnThemeChangedL
 		return mDividerHeight > 0 ? mDividerHeight + mDividerPadding : 0;
 	}
 
+	private int getSpec(int availableSize, int size) {
+		int spec;
+		switch (size) {
+			case ViewGroup.LayoutParams.WRAP_CONTENT:
+				if (availableSize > 0)
+					spec = MeasureSpec.makeMeasureSpec(availableSize, MeasureSpec.AT_MOST);
+				else
+					spec = MeasureSpec.makeMeasureSpec(0, MeasureSpec.UNSPECIFIED);
+				break;
+			case ViewGroup.LayoutParams.MATCH_PARENT:
+				if (availableSize > 0)
+					spec = MeasureSpec.makeMeasureSpec(availableSize, MeasureSpec.EXACTLY);
+				else
+					spec = MeasureSpec.makeMeasureSpec(0, MeasureSpec.UNSPECIFIED);
+				break;
+			default:
+				spec = MeasureSpec.makeMeasureSpec(size, MeasureSpec.EXACTLY);
+				break;
+		}
+
+		return spec;
+	}
+
+	@SuppressWarnings("Range")
 	@Override
 	protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
 		int widthMode = MeasureSpec.getMode(widthMeasureSpec);
@@ -633,7 +668,10 @@ public class Spinner extends FrameLayout implements ThemeManager.OnThemeChangedL
 		int labelWidth = 0;
 		int labelHeight = 0;
 		if (mLabelView != null && mLabelView.getLayoutParams() != null) {
-			mLabelView.measure(MeasureSpec.makeMeasureSpec(widthSize - paddingHorizontal, widthMode), MeasureSpec.makeMeasureSpec(0, MeasureSpec.UNSPECIFIED));
+			int size = widthMode == MeasureSpec.UNSPECIFIED ? 0 : (widthSize - paddingHorizontal);
+			int ws = MeasureSpec.makeMeasureSpec(size, widthMode);
+			int hs = MeasureSpec.makeMeasureSpec(0, MeasureSpec.UNSPECIFIED);
+			mLabelView.measure(ws, hs);
 			labelWidth = mLabelView.getMeasuredWidth();
 			labelHeight = mLabelView.getMeasuredHeight();
 		}
@@ -643,31 +681,9 @@ public class Spinner extends FrameLayout implements ThemeManager.OnThemeChangedL
 
 		View v = getSelectedView();
 		if (v != null) {
-			int ws;
-			int hs;
 			ViewGroup.LayoutParams params = v.getLayoutParams();
-			switch (params.width) {
-				case ViewGroup.LayoutParams.WRAP_CONTENT:
-					ws = MeasureSpec.makeMeasureSpec(0, MeasureSpec.UNSPECIFIED);
-					break;
-				case ViewGroup.LayoutParams.MATCH_PARENT:
-					ws = MeasureSpec.makeMeasureSpec(widthSize - paddingHorizontal, widthMode);
-					break;
-				default:
-					ws = MeasureSpec.makeMeasureSpec(params.width, MeasureSpec.EXACTLY);
-					break;
-			}
-			switch (params.height) {
-				case ViewGroup.LayoutParams.WRAP_CONTENT:
-					hs = MeasureSpec.makeMeasureSpec(0, MeasureSpec.UNSPECIFIED);
-					break;
-				case ViewGroup.LayoutParams.MATCH_PARENT:
-					hs = MeasureSpec.makeMeasureSpec(heightSize - paddingVertical - labelHeight, heightMode);
-					break;
-				default:
-					hs = MeasureSpec.makeMeasureSpec(params.height, MeasureSpec.EXACTLY);
-					break;
-			}
+			int ws = getSpec(widthSize - paddingHorizontal, params.width);
+			int hs = getSpec(heightSize - paddingVertical - mLabelView.getMeasuredHeight(), params.height);
 
 			v.measure(ws, hs);
 			width = v.getMeasuredWidth();
@@ -752,20 +768,20 @@ public class Spinner extends FrameLayout implements ThemeManager.OnThemeChangedL
 		int childTop = getPaddingTop();
 		int childBottom = h - getPaddingBottom();
 
-		if (mLabelView != null) {
-			if (mIsRtl)
-				mLabelView.layout(childRight - mLabelView.getMeasuredWidth(), childTop, childRight, childTop + mLabelView.getMeasuredHeight());
-			else
-				mLabelView.layout(childLeft, childTop, childLeft + mLabelView.getMeasuredWidth(), childTop + mLabelView.getMeasuredHeight());
-			childTop += mLabelView.getMeasuredHeight();
-		}
+        if(mLabelView != null){
+	        if (mIsRtl)
+		        mLabelView.layout(childRight - mLabelView.getMeasuredWidth(), childTop, childRight, childTop + mLabelView.getMeasuredHeight());
+	        else
+		        mLabelView.layout(childLeft, childTop, childLeft + mLabelView.getMeasuredWidth(), childTop + mLabelView.getMeasuredHeight());
+	        childTop += mLabelView.getMeasuredHeight();
+        }
 
 		View v = getSelectedView();
-		if (v != null) {
+		if(v != null){			
 			int x, y;
 
 			int horizontalGravity = mGravity & Gravity.HORIZONTAL_GRAVITY_MASK;
-			if (horizontalGravity == Gravity.START)
+			if(horizontalGravity == Gravity.START)
 				horizontalGravity = mIsRtl ? Gravity.RIGHT : Gravity.LEFT;
 			else if (horizontalGravity == Gravity.END)
 				horizontalGravity = mIsRtl ? Gravity.LEFT : Gravity.RIGHT;
@@ -779,12 +795,12 @@ public class Spinner extends FrameLayout implements ThemeManager.OnThemeChangedL
 					break;
 				case Gravity.RIGHT:
 					x = childRight - v.getMeasuredWidth();
-					break;
+					break;	
 				default:
 					x = (childRight - childLeft - v.getMeasuredWidth()) / 2 + childLeft;
 					break;
 			}
-
+			
 			int verticalGravity = mGravity & Gravity.VERTICAL_GRAVITY_MASK;
 
 			switch (verticalGravity) {
@@ -796,24 +812,24 @@ public class Spinner extends FrameLayout implements ThemeManager.OnThemeChangedL
 					break;
 				case Gravity.BOTTOM:
 					y = childBottom - v.getMeasuredHeight();
-					break;
+					break;		
 				default:
 					y = (childBottom - childTop - v.getMeasuredHeight()) / 2 + childTop;
 					break;
 			}
-
+			
 			v.layout(x, y, x + v.getMeasuredWidth(), y + v.getMeasuredHeight());
 		}
-	}
+    }
 
-	@Override
+    @Override
 	public void draw(@NonNull Canvas canvas) {
 		super.draw(canvas);
-		if (mDividerDrawable != null)
-			mDividerDrawable.draw(canvas);
-		if (mArrowDrawable != null)
-			mArrowDrawable.draw(canvas);
-	}
+        if(mDividerDrawable != null)
+	        mDividerDrawable.draw(canvas);
+	    if (mArrowDrawable != null)
+		    mArrowDrawable.draw(canvas);
+    }
 
 	@Override
 	protected void drawableStateChanged() {
@@ -825,17 +841,17 @@ public class Spinner extends FrameLayout implements ThemeManager.OnThemeChangedL
 	}
 
 	public boolean performItemClick(View view, int position, long id) {
-		if (mOnItemClickListener != null) {
+        if (mOnItemClickListener != null) {
 //            playSoundEffect(SoundEffectConstants.CLICK);
 //            if (view != null) 
 //                view.sendAccessibilityEvent(AccessibilityEvent.TYPE_VIEW_CLICKED);
+            
+            if(mOnItemClickListener.onItemClick(this, view, position, id))
+	            setSelection(position);
 
-			if (mOnItemClickListener.onItemClick(this, view, position, id))
-				setSelection(position);
-
-			return true;
-		} else
-			setSelection(position);
+	        return true;
+        } else
+	        setSelection(position);
 
 		return false;
 	}
@@ -848,7 +864,7 @@ public class Spinner extends FrameLayout implements ThemeManager.OnThemeChangedL
 		else
 			setSelection(mAdapter.getCount() - 1);
 	}
-
+	
 	private void onDataInvalidated() {
 		if (mAdapter == null)
 			return;
@@ -860,19 +876,19 @@ public class Spinner extends FrameLayout implements ThemeManager.OnThemeChangedL
 				removeViewAt(i);
 
 		int type = mAdapter.getItemViewType(mSelectedPosition);
-		View v = mAdapter.getView(mSelectedPosition, mRecycler.get(type), this);
+        View v = mAdapter.getView(mSelectedPosition, mRecycler.get(type), this);
 		v.setFocusable(false);
 		v.setClickable(false);
 
-		if (v.getParent() != null)
-			((ViewGroup) v.getParent()).removeView(v);
+        if(v.getParent() != null)
+	        ((ViewGroup) v.getParent()).removeView(v);
 
 		super.addView(v);
 
 		mRecycler.put(type, v);
 	}
-
-	private void showPopup() {
+	
+	private void showPopup(){
 		if (!mPopup.isShowing()) {
 			mPopup.show();
 			final ListView lv = mPopup.getListView();
@@ -901,7 +917,7 @@ public class Spinner extends FrameLayout implements ThemeManager.OnThemeChangedL
 
 	private int measureContentWidth(SpinnerAdapter adapter, Drawable background) {
 		if (adapter == null)
-			return 0;
+            return 0;
 
 		int width = 0;
 		View itemView = null;
@@ -922,7 +938,7 @@ public class Spinner extends FrameLayout implements ThemeManager.OnThemeChangedL
 				itemType = positionType;
 				itemView = null;
 			}
-			itemView = adapter.getView(i, itemView, null);
+			itemView = adapter.getView(i, itemView, this);
 			if (itemView.getLayoutParams() == null)
 				itemView.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
 
@@ -940,8 +956,8 @@ public class Spinner extends FrameLayout implements ThemeManager.OnThemeChangedL
 	}
 
 	static class SavedState extends BaseSavedState {
-
-		int position;
+		
+        int position;
 		boolean showDropdown;
 
 		SavedState(Parcelable superState) {
@@ -1027,7 +1043,7 @@ public class Spinner extends FrameLayout implements ThemeManager.OnThemeChangedL
 
 		@Override
 		public void onInvalidated() {
-			onDataInvalidated();
+			onDataInvalidated();			
 		}
 
 	}
@@ -1055,7 +1071,7 @@ public class Spinner extends FrameLayout implements ThemeManager.OnThemeChangedL
 
 	private static class DropDownAdapter implements ListAdapter, SpinnerAdapter, OnClickListener {
 
-		private SpinnerAdapter mAdapter;
+        private SpinnerAdapter mAdapter;
 
 		private ListAdapter mListAdapter;
 
@@ -1079,7 +1095,7 @@ public class Spinner extends FrameLayout implements ThemeManager.OnThemeChangedL
 		@Override
 		public void onClick(View v) {
 			int position = (Integer) v.getTag();
-			if (mOnItemClickListener != null)
+			if(mOnItemClickListener != null)
 				mOnItemClickListener.onItemClick(null, v, position, 0);
 		}
 
@@ -1151,19 +1167,19 @@ public class Spinner extends FrameLayout implements ThemeManager.OnThemeChangedL
 		@Override
 		public void registerDataSetObserver(DataSetObserver observer) {
 			if (mAdapter != null)
-				mAdapter.registerDataSetObserver(observer);
+                mAdapter.registerDataSetObserver(observer);
 		}
 
 		@Override
 		public void unregisterDataSetObserver(DataSetObserver observer) {
 			if (mAdapter != null)
-				mAdapter.unregisterDataSetObserver(observer);
+                mAdapter.unregisterDataSetObserver(observer);
 		}
 	}
 
 	private class DropdownPopup extends ListPopupWindow {
-
-		private CharSequence mHintText;
+		
+        private CharSequence mHintText;
 
 		private DropDownAdapter mAdapter;
 
@@ -1190,7 +1206,7 @@ public class Spinner extends FrameLayout implements ThemeManager.OnThemeChangedL
 				@SuppressWarnings("deprecation")
 				@TargetApi(Build.VERSION_CODES.JELLY_BEAN)
 				@Override
-				public void onDismiss() {
+                public void onDismiss() {
 					final ViewTreeObserver vto = getViewTreeObserver();
 					if (vto != null) {
 						if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN)

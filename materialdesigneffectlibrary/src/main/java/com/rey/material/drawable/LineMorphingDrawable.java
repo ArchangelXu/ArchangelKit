@@ -32,10 +32,13 @@ import java.util.List;
 import java.util.Locale;
 
 public class LineMorphingDrawable extends Drawable implements Animatable {
-
+	
 	private boolean mRunning = false;
 
 	private Paint mPaint;
+
+	private int mWidth;
+	private int mHeight;
 
 	private int mPaddingLeft = 12;
 	private int mPaddingTop = 12;
@@ -56,13 +59,16 @@ public class LineMorphingDrawable extends Drawable implements Animatable {
 	private Paint.Cap mStrokeCap;
 	private Paint.Join mStrokeJoin;
 	private boolean mIsRtl;
-
+	
 	private Path mPath;
 
 	private State[] mStates;
 
-	private LineMorphingDrawable(State[] states, int curState, int paddingLeft, int paddingTop, int paddingRight, int paddingBottom, int animDuration, Interpolator interpolator, int strokeSize, int strokeColor, Paint.Cap strokeCap, Paint.Join strokeJoin, boolean clockwise, boolean isRtl) {
+	private LineMorphingDrawable(State[] states, int curState, int width, int height, int paddingLeft, int paddingTop, int paddingRight, int paddingBottom, int animDuration, Interpolator interpolator, int strokeSize, int strokeColor, Paint.Cap strokeCap, Paint.Join strokeJoin, boolean clockwise, boolean isRtl) {
 		mStates = states;
+		mWidth = width;
+		mHeight = height;
+
 		mPaddingLeft = paddingLeft;
 		mPaddingTop = paddingTop;
 		mPaddingRight = paddingRight;
@@ -76,7 +82,7 @@ public class LineMorphingDrawable extends Drawable implements Animatable {
 		mStrokeJoin = strokeJoin;
 		mClockwise = clockwise;
 		mIsRtl = isRtl;
-
+		
 		mPaint = new Paint();
 		mPaint.setAntiAlias(true);
 		mPaint.setStyle(Paint.Style.STROKE);
@@ -87,8 +93,8 @@ public class LineMorphingDrawable extends Drawable implements Animatable {
 
 		mDrawBound = new RectF();
 
-		mPath = new Path();
-
+		mPath = new Path();			
+			
 		switchLineState(curState, false);
 	}
 
@@ -100,7 +106,7 @@ public class LineMorphingDrawable extends Drawable implements Animatable {
 		if (mIsRtl)
 			canvas.scale(-1f, 1f, mDrawBound.centerX(), mDrawBound.centerY());
 
-		canvas.rotate(degrees, mDrawBound.centerX(), mDrawBound.centerY());
+		canvas.rotate(degrees, mDrawBound.centerX(), mDrawBound.centerY());		
 		canvas.drawPath(mPath, mPaint);
 		canvas.restoreToCount(restoreCount);
 	}
@@ -124,11 +130,18 @@ public class LineMorphingDrawable extends Drawable implements Animatable {
 	protected void onBoundsChange(Rect bounds) {
 		super.onBoundsChange(bounds);
 
-		mDrawBound.left = bounds.left + mPaddingLeft;
-		mDrawBound.top = bounds.top + mPaddingTop;
-		mDrawBound.right = bounds.right - mPaddingRight;
-		mDrawBound.bottom = bounds.bottom - mPaddingBottom;
-
+		if (mWidth > 0 && mHeight > 0) {
+			mDrawBound.left = bounds.left + (bounds.width() - mWidth) / 2f;
+			mDrawBound.top = bounds.top + (bounds.height() - mHeight) / 2f;
+			mDrawBound.right = mDrawBound.left + mWidth;
+			mDrawBound.bottom = mDrawBound.top + mHeight;
+		} else {
+			mDrawBound.left = bounds.left + mPaddingLeft;
+			mDrawBound.top = bounds.top + mPaddingTop;
+			mDrawBound.right = bounds.right - mPaddingRight;
+			mDrawBound.bottom = bounds.bottom - mPaddingBottom;
+		}
+		
 		updatePath();
 	}
 
@@ -311,6 +324,11 @@ public class LineMorphingDrawable extends Drawable implements Animatable {
 		mAnimProgress = 0f;
 	}
 
+	public void cancel() {
+		stop();
+		setLineState(mCurState, 1f);
+	}
+
 	@Override
 	public void start() {
 		resetAnimation();
@@ -339,7 +357,7 @@ public class LineMorphingDrawable extends Drawable implements Animatable {
 		mRunning = true;
 		super.scheduleSelf(what, when);
 	}
-
+	
 	private final Runnable mUpdater = new Runnable() {
 
 		@Override
@@ -379,6 +397,9 @@ public class LineMorphingDrawable extends Drawable implements Animatable {
 	public static class Builder {
 		private int mCurState;
 
+		private int mWidth;
+		private int mHeight;
+
 		private int mPaddingLeft;
 		private int mPaddingTop;
 		private int mPaddingRight;
@@ -392,7 +413,7 @@ public class LineMorphingDrawable extends Drawable implements Animatable {
 		private Paint.Cap mStrokeCap;
 		private Paint.Join mStrokeJoin;
 		private boolean mIsRtl;
-
+		
 		private State[] mStates;
 
 		private static final String TAG_STATE_LIST = "state-list";
@@ -413,14 +434,16 @@ public class LineMorphingDrawable extends Drawable implements Animatable {
 			int resId;
 
 			if ((resId = a.getResourceId(R.styleable.LineMorphingDrawable_lmd_state, 0)) != 0)
-				states(readStates(context, resId));
+				states(readStates(context, resId));			
 			curState(a.getInteger(R.styleable.LineMorphingDrawable_lmd_curState, 0));
+			width(a.getDimensionPixelSize(R.styleable.LineMorphingDrawable_lmd_width, 0));
+			height(a.getDimensionPixelSize(R.styleable.LineMorphingDrawable_lmd_height, 0));
 			padding(a.getDimensionPixelSize(R.styleable.LineMorphingDrawable_lmd_padding, 0));
 			paddingLeft(a.getDimensionPixelSize(R.styleable.LineMorphingDrawable_lmd_paddingLeft, mPaddingLeft));
 			paddingTop(a.getDimensionPixelSize(R.styleable.LineMorphingDrawable_lmd_paddingTop, mPaddingTop));
 			paddingRight(a.getDimensionPixelSize(R.styleable.LineMorphingDrawable_lmd_paddingRight, mPaddingRight));
 			paddingBottom(a.getDimensionPixelSize(R.styleable.LineMorphingDrawable_lmd_paddingBottom, mPaddingBottom));
-			animDuration(a.getInteger(R.styleable.LineMorphingDrawable_lmd_animDuration, context.getResources().getInteger(android.R.integer.config_shortAnimTime)));
+			animDuration(a.getInteger(R.styleable.LineMorphingDrawable_lmd_animDuration, context.getResources().getInteger(android.R.integer.config_mediumAnimTime)));
 			if ((resId = a.getResourceId(R.styleable.LineMorphingDrawable_lmd_interpolator, 0)) != 0)
 				interpolator(AnimationUtils.loadInterpolator(context, resId));
 			strokeSize(a.getDimensionPixelSize(R.styleable.LineMorphingDrawable_lmd_strokeSize, ThemeUtil.dpToPx(context, 3)));
@@ -446,7 +469,7 @@ public class LineMorphingDrawable extends Drawable implements Animatable {
 				rtl(TextUtilsCompat.getLayoutDirectionFromLocale(Locale.getDefault()) == ViewCompat.LAYOUT_DIRECTION_RTL);
 			else
 				rtl(direction == View.LAYOUT_DIRECTION_RTL);
-
+			
 			a.recycle();
 		}
 
@@ -571,7 +594,7 @@ public class LineMorphingDrawable extends Drawable implements Animatable {
 			if (mInterpolator == null)
 				mInterpolator = new AccelerateInterpolator();
 
-			return new LineMorphingDrawable(mStates, mCurState, mPaddingLeft, mPaddingTop, mPaddingRight, mPaddingBottom, mAnimDuration, mInterpolator, mStrokeSize, mStrokeColor, mStrokeCap, mStrokeJoin, mClockwise, mIsRtl);
+			return new LineMorphingDrawable(mStates, mCurState, mWidth, mHeight, mPaddingLeft, mPaddingTop, mPaddingRight, mPaddingBottom, mAnimDuration, mInterpolator, mStrokeSize, mStrokeColor, mStrokeCap, mStrokeJoin, mClockwise, mIsRtl);
 		}
 
 		public Builder states(State... states) {
@@ -581,6 +604,16 @@ public class LineMorphingDrawable extends Drawable implements Animatable {
 
 		public Builder curState(int state) {
 			mCurState = state;
+			return this;
+		}
+
+		public Builder width(int width) {
+			mWidth = width;
+			return this;
+		}
+
+		public Builder height(int height) {
+			mHeight = height;
 			return this;
 		}
 
@@ -651,6 +684,6 @@ public class LineMorphingDrawable extends Drawable implements Animatable {
 			mIsRtl = rtl;
 			return this;
 		}
-
+		
 	}
 }

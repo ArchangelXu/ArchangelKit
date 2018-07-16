@@ -3,7 +3,7 @@ package com.rey.material.widget;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.support.annotation.NonNull;
-import android.support.v7.widget.AppCompatButton;
+import android.support.v7.widget.AppCompatImageView;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 
@@ -11,33 +11,34 @@ import com.rey.material.app.ThemeManager;
 import com.rey.material.drawable.RippleDrawable;
 import com.rey.material.util.ViewUtil;
 
-public class Button extends AppCompatButton implements ThemeManager.OnThemeChangedListener {
+/**
+ * Created by Rey on 9/16/2015.
+ */
+public class ImageView extends AppCompatImageView implements ThemeManager.OnThemeChangedListener {
 
 	private RippleManager mRippleManager;
-
 	protected int mStyleId;
 	protected int mCurrentStyle = ThemeManager.THEME_UNDEFINED;
 
-	public Button(Context context) {
+	public ImageView(Context context) {
 		super(context);
 
 		init(context, null, 0, 0);
 	}
 
-	public Button(Context context, AttributeSet attrs) {
+	public ImageView(Context context, AttributeSet attrs) {
 		super(context, attrs);
 
 		init(context, attrs, 0, 0);
 	}
 
-	public Button(Context context, AttributeSet attrs, int defStyleAttr) {
+	public ImageView(Context context, AttributeSet attrs, int defStyleAttr) {
 		super(context, attrs, defStyleAttr);
 
 		init(context, attrs, defStyleAttr, 0);
 	}
 
 	protected void init(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
-		ViewUtil.applyFont(this, attrs, defStyleAttr, defStyleRes);
 		applyStyle(context, attrs, defStyleAttr, defStyleRes);
 		if (!isInEditMode())
 			mStyleId = ThemeManager.getStyleId(context, attrs, defStyleAttr, defStyleRes);
@@ -50,16 +51,6 @@ public class Button extends AppCompatButton implements ThemeManager.OnThemeChang
 
 	protected void applyStyle(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
 		getRippleManager().onCreate(this, context, attrs, defStyleAttr, defStyleRes);
-	}
-
-	@Override
-	public void setTextAppearance(int resId) {
-		ViewUtil.applyTextAppearance(this, resId);
-	}
-
-	@Override
-	public void setTextAppearance(Context context, int resId) {
-		ViewUtil.applyTextAppearance(this, resId);
 	}
 
 	@Override
@@ -118,7 +109,7 @@ public class Button extends AppCompatButton implements ThemeManager.OnThemeChang
 			setOnClickListener(rippleManager);
 		}
 	}
-	
+
 	@Override
 	public boolean onTouchEvent(@NonNull MotionEvent event) {
 		boolean result = super.onTouchEvent(event);

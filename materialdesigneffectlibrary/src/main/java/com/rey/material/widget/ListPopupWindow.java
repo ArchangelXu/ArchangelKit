@@ -308,7 +308,7 @@ public class ListPopupWindow {
 
 	/**
 	 * Set whether this window should be modal when shown.
-	 * <p/>
+	 * <p>
 	 * <p>If a popup window is modal, it will receive all touch and key input.
 	 * If the user touches outside the popup window's content area the popup window
 	 * will be dismissed.
@@ -342,7 +342,7 @@ public class ListPopupWindow {
 
 	/**
 	 * Sets whether the drop-down should remain visible under certain conditions.
-	 * <p/>
+	 * <p>
 	 * The drop-down will occupy the entire screen below {@link #getAnchorView} regardless
 	 * of the size or content of the list.  {@link #getBackground()} will fill any space
 	 * that is not used by the list.
@@ -711,7 +711,7 @@ public class ListPopupWindow {
 	 * Control how the popup operates with an input method: one of
 	 * {@link #INPUT_METHOD_FROM_FOCUSABLE}, {@link #INPUT_METHOD_NEEDED},
 	 * or {@link #INPUT_METHOD_NOT_NEEDED}.
-	 * <p/>
+	 * <p>
 	 * <p>If the popup is showing, calling this method will take effect only
 	 * the next time the popup is shown or through a manual call to the {@link #show()}
 	 * method.</p>
@@ -1024,11 +1024,11 @@ public class ListPopupWindow {
 	 * Returns an {@link OnTouchListener} that can be added to the source view
 	 * to implement drag-to-open behavior. Generally, the source view should be
 	 * the same view that was passed to {@link #setAnchorView}.
-	 * <p/>
+	 * <p>
 	 * When the listener is set on a view, touching that view and dragging
 	 * outside of its bounds will open the popup window. Lifting will select the
 	 * currently touched list item.
-	 * <p/>
+	 * <p>
 	 * Example usage:
 	 * <pre>
 	 * ListPopupWindow myPopup = new ListPopupWindow(context);
@@ -1300,7 +1300,7 @@ public class ListPopupWindow {
 
 		/**
 		 * Returns the popup to which this listener is forwarding events.
-		 * <p/>
+		 * <p>
 		 * Override this to return the correct popup. If the popup is displayed
 		 * asynchronously, you may also need to override
 		 * {@link #onForwardingStopped} to prevent premature cancelation of

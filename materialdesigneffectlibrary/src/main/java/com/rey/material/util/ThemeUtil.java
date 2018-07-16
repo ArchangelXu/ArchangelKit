@@ -35,7 +35,7 @@ public class ThemeUtil {
 			}
 		} catch (Exception ex) {
 		}
-
+		
 		return defaultValue;
 	}
 
@@ -50,7 +50,7 @@ public class ThemeUtil {
 	public static int textColorSecondary(Context context, int defaultValue) {
 		return getColor(context, android.R.attr.textColorSecondary, defaultValue);
 	}
-
+	
 	@TargetApi(Build.VERSION_CODES.LOLLIPOP)
 	public static int colorPrimary(Context context, int defaultValue) {
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
