@@ -31,6 +31,7 @@
 	<color name = "blue_light">#6CB6F5</color>
 	<color name = "blue">#3080f9</color>
 	<color name = "pruple">#9E8ADB</color>
+	<color name = "dark">#000000</color>
 	<!--Text Color-->
 	<color name = "text_black">@color/black</color>
 	<color name = "text_white">@color/white</color>

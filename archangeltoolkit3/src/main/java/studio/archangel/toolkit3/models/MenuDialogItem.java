@@ -12,6 +12,10 @@ public class MenuDialogItem {
 	public int icon_res;
 	public Drawable icon_drawable;
 	public int icon_size_px;
+	public Object tag;
+
+	public MenuDialogItem() {
+	}
 
 	public MenuDialogItem(int id, String text) {
 		this(id, text, 0, 0);
