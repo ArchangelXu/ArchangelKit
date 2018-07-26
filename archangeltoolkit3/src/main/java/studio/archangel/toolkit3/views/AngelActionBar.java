@@ -15,7 +15,7 @@ import studio.archangel.toolkit3.utils.UIUtil;
 
 
 /**
- * Created by xmk on 16/5/14.
+ * Created by xumingke on 16/5/14.
  */
 public class AngelActionBar extends FrameLayout {
 	static int default_arrow_resource = R.drawable.ic_back;

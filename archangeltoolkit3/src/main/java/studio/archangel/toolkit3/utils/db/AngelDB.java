@@ -15,7 +15,7 @@ import studio.archangel.toolkit3.models.AngelDBEntry;
 import studio.archangel.toolkit3.utils.Logger;
 
 /**
- * Created by xmk on 16/5/16.
+ * Created by xumingke on 16/5/16.
  */
 public class AngelDB {
 	public static final int SQL_ERROR = -1;

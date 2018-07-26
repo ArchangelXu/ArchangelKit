@@ -8,7 +8,7 @@ import studio.archangel.toolkit3.AngelApplication;
 import studio.archangel.toolkit3.models.AngelDBEntry;
 
 /**
- * Created by xmk on 16/5/30.
+ * Created by xumingke on 16/5/30.
  */
 public abstract class AngelDBConfig {
 

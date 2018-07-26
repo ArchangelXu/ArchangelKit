@@ -39,7 +39,7 @@ import studio.archangel.toolkit3.utils.ui.Rom;
 import studio.archangel.toolkit3.views.AngelActionBar;
 
 /**
- * Created by xmk on 16/5/15.
+ * Created by xumingke on 16/5/15.
  */
 public class UIUtil {
 	public static ValueAnimator getColorAnimator(int... values) {

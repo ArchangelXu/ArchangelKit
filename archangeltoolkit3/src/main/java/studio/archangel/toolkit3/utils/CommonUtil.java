@@ -49,7 +49,7 @@ import java.util.regex.Pattern;
 import studio.archangel.toolkit3.AngelApplication;
 
 /**
- * Created by xmk on 16/5/15.
+ * Created by xumingke on 16/5/15.
  */
 public class CommonUtil {
 	public static boolean isEmptyString(CharSequence cs) {

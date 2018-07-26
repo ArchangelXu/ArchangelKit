@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import studio.archangel.toolkit3.utils.Logger;
 
 /**
- * Created by xmk on 16/6/3.
+ * Created by xumingke on 16/6/3.
  */
 public class UITimeTracker {
 	static UITimeTracker instance;

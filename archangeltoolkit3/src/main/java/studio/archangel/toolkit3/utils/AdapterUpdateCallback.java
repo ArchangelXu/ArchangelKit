@@ -4,7 +4,7 @@ import android.support.v7.util.ListUpdateCallback;
 import android.support.v7.widget.RecyclerView;
 
 /**
- * Created by xmk on 2017/6/16.
+ * Created by xumingke on 2017/6/16.
  */
 public class AdapterUpdateCallback implements ListUpdateCallback {
 	int insert_position = -1;

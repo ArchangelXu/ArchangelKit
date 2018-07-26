@@ -15,7 +15,7 @@ import studio.archangel.toolkit3.utils.CommonUtil;
 import studio.archangel.toolkit3.utils.UIUtil;
 
 /**
- * Created by xmk on 16/7/7.
+ * Created by xumingke on 16/7/7.
  */
 public class Notifier {
 	private static Handler handler = new Handler(Looper.getMainLooper());

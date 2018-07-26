@@ -24,7 +24,7 @@ import studio.archangel.toolkit3.utils.Logger;
 import studio.archangel.toolkit3.utils.UIUtil;
 
 /**
- * Created by xmk on 2016/10/19.
+ * Created by xumingke on 2016/10/19.
  */
 
 public class AngelDialogFactory {
