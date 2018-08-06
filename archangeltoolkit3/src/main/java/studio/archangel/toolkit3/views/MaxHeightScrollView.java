@@ -8,7 +8,7 @@ import studio.archangel.toolkit3.R;
 import uk.co.androidalliance.edgeeffectoverride.EdgeEffectScrollView;
 
 /**
- * Created by xmk on 2017/3/16.
+ * Created by xumingke on 2017/3/16.
  */
 
 public class MaxHeightScrollView extends EdgeEffectScrollView {

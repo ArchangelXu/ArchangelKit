@@ -5,7 +5,7 @@ import android.content.Context;
 import studio.archangel.toolkit3.R;
 
 /**
- * Created by xmk on 16/7/13.
+ * Created by xumingke on 16/7/13.
  */
 
 public class AngelHintDialogFactory {

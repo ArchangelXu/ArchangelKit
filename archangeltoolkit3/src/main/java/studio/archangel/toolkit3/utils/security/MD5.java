@@ -13,7 +13,7 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 /**
- * Created by xmk on 16/5/16.
+ * Created by xumingke on 16/5/16.
  */
 public class MD5 {
 	/**

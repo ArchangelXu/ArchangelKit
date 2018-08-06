@@ -6,7 +6,7 @@ import android.view.View;
 import studio.archangel.toolkit3.R;
 
 /**
- * Created by xmk on 16/5/17.
+ * Created by xumingke on 16/5/17.
  */
 public abstract class AngelTabConfig {
 	public int getTabLayoutId() {

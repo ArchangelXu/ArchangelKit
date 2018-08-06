@@ -14,7 +14,7 @@ import okio.Okio;
 import studio.archangel.toolkit3.utils.CommonUtil;
 
 /**
- * Created by xmk on 2017/3/13.
+ * Created by xumingke on 2017/3/13.
  */
 
 public class GzipRequestInterceptor implements Interceptor {

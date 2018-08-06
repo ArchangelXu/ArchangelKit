@@ -3,7 +3,7 @@ package studio.archangel.toolkit3.models;
 import android.graphics.drawable.Drawable;
 
 /**
- * Created by xmk on 2017/3/14.
+ * Created by xumingke on 2017/3/14.
  */
 
 public class MenuDialogItem {

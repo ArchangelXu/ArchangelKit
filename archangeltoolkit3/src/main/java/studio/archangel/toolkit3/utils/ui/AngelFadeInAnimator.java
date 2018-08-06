@@ -6,7 +6,7 @@ import android.view.animation.Interpolator;
 import jp.wasabeef.recyclerview.animators.FadeInAnimator;
 
 /**
- * Created by xmk on 2017/6/29.
+ * Created by xumingke on 2017/6/29.
  */
 
 public class AngelFadeInAnimator extends FadeInAnimator {

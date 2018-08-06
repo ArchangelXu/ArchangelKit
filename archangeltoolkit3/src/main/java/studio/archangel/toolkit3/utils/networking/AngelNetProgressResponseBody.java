@@ -11,7 +11,7 @@ import okio.Okio;
 import okio.Source;
 
 /**
- * Created by xmk on 16/6/5.
+ * Created by xumingke on 16/6/5.
  */
 public class AngelNetProgressResponseBody extends ResponseBody {
 	long downloaded_size = 0;

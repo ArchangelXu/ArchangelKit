@@ -3,7 +3,7 @@ package studio.archangel.toolkit3.utils.networking;
 import org.json.JSONObject;
 
 /**
- * Created by xmk on 16/9/12.
+ * Created by xumingke on 16/9/12.
  */
 
 public abstract class AngelNetRawCallBack extends AngelNetCallBack {

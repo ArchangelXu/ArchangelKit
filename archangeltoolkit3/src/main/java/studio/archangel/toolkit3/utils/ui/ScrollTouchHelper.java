@@ -1,7 +1,7 @@
 package studio.archangel.toolkit3.utils.ui;
 
 /**
- * Created by xmk on 2016/12/20.
+ * Created by xumingke on 2016/12/20.
  */
 
 import android.view.MotionEvent;

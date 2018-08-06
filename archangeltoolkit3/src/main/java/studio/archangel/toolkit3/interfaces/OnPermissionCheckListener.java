@@ -3,7 +3,7 @@ package studio.archangel.toolkit3.interfaces;
 import studio.archangel.toolkit3.activities.AngelActivity;
 
 /**
- * Created by xmk on 2016/12/8.
+ * Created by xumingke on 2016/12/8.
  */
 public abstract class OnPermissionCheckListener {
 	private AngelActivity act;

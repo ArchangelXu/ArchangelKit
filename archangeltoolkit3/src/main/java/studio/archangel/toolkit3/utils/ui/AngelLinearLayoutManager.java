@@ -11,7 +11,7 @@ import android.util.DisplayMetrics;
 import studio.archangel.toolkit3.utils.UIUtil;
 
 /**
- * Created by xmk on 2017/5/31.
+ * Created by xumingke on 2017/5/31.
  */
 public class AngelLinearLayoutManager extends LinearLayoutManager {
 	LinearSmoothScroller fast_scroller;
