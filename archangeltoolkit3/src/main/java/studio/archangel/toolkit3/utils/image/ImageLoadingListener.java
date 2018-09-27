@@ -8,5 +8,5 @@ import com.facebook.imagepipeline.image.ImageInfo;
 public interface ImageLoadingListener {
 	void onImageLoaded(ImageInfo imageInfo);
 
-	void onFailure();
+	void onFailure(Throwable throwable);
 }

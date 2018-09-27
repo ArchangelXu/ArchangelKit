@@ -194,7 +194,7 @@ public class ImageProvider {
 
 					@Override
 					public void onFailure(String id, Throwable throwable) {
-						l.onFailure();
+						l.onFailure(throwable);
 					}
 				};
 				controller_builder.setControllerListener(controllerListener);
