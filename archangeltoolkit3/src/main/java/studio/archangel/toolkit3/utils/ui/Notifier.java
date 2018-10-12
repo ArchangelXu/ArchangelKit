@@ -53,7 +53,7 @@ public class Notifier {
 			return;
 		}
 //		final WeakReference<Context> ref = new WeakReference<>(context);
-		new Thread(new Runnable() {
+		Thread thread = new Thread(new Runnable() {
 			public void run() {
 				handler.post(new Runnable() {
 					@Override
@@ -85,7 +85,9 @@ public class Notifier {
 					}
 				});
 			}
-		}).start();
+		});
+		thread.setName("show_toast_thread_" + System.currentTimeMillis());
+		thread.start();
 	}
 
 }
