@@ -1,6 +1,9 @@
 package studio.archangel.toolkit3.models;
 
 import android.graphics.drawable.Drawable;
+import android.view.View;
+
+import java.util.Objects;
 
 /**
  * Created by xumingke on 2017/3/14.
@@ -14,6 +17,8 @@ public class MenuDialogItem {
 	public int icon_size_px;
 	public Object tag;
 
+	public View.OnClickListener listener;
+
 	public MenuDialogItem() {
 	}
 
@@ -26,5 +31,21 @@ public class MenuDialogItem {
 		this.text = text;
 		this.icon_res = icon_res;
 		this.icon_size_px = icon_size_px;
+	}
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+		MenuDialogItem that = (MenuDialogItem) o;
+		return id == that.id &&
+				icon_res == that.icon_res &&
+				Objects.equals(text, that.text) &&
+				Objects.equals(tag, that.tag);
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(id, text, icon_res, tag);
 	}
 }
