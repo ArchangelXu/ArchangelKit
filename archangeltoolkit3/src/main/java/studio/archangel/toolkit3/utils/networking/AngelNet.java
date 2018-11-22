@@ -312,9 +312,12 @@ public class AngelNet implements Executor {
 						}
 						if (file != null || uri != null) {
 							if (file != null) {
-								body = new AngelNetProgressRequestBody(Uri.fromFile(file), CommonUtil.getMimeType(Uri.fromFile(file)), callback, this);
+								RequestBody requestBody = RequestBody.create(MediaType.parse("multipart/form-data; charset=utf-8"), file);
+								body = new AngelNetProgressRequestBody(requestBody, callback);
 							} else if (uri != null) {
-								body = new AngelNetProgressRequestBody(uri, CommonUtil.getMimeType(uri), callback, this);
+								File f = new File(uri.getPath());
+								RequestBody requestBody = RequestBody.create(MediaType.parse("multipart/form-data; charset=utf-8"), f);
+								body = new AngelNetProgressRequestBody(requestBody, callback);
 							}
 						} else {
 							for (Map.Entry<String, Object> en : parameters.entrySet()) {
@@ -380,9 +383,12 @@ public class AngelNet implements Executor {
 						}
 						if (file != null || uri != null) {
 							if (file != null) {
-								body = new AngelNetProgressRequestBody(Uri.fromFile(file), CommonUtil.getMimeType(Uri.fromFile(file)), callback, this);
+								RequestBody requestBody = RequestBody.create(MediaType.parse("multipart/form-data; charset=utf-8"), file);
+								body = new AngelNetProgressRequestBody(requestBody, callback);
 							} else if (uri != null) {
-								body = new AngelNetProgressRequestBody(uri, CommonUtil.getMimeType(uri), callback, this);
+								File f = new File(uri.getPath());
+								RequestBody requestBody = RequestBody.create(MediaType.parse("multipart/form-data; charset=utf-8"), f);
+								body = new AngelNetProgressRequestBody(requestBody, callback);
 							}
 						} else {
 							for (Map.Entry<String, Object> en : parameters.entrySet()) {
@@ -429,10 +435,14 @@ public class AngelNet implements Executor {
 			Object value = en.getValue();
 			if (value instanceof File) {
 //				has_file = true;
-				multi_builder.addFormDataPart(en.getKey(), ((File) value).getName(), new AngelNetProgressRequestBody(Uri.fromFile((File) value), "text/x-markdown; charset=utf-8", callback, this));
+				RequestBody requestBody = RequestBody.create(MediaType.parse("text/x-markdown; charset=utf-8"), (File) value);
+				AngelNetProgressRequestBody body = new AngelNetProgressRequestBody(requestBody, callback);
+				multi_builder.addFormDataPart(en.getKey(), ((File) value).getName(), body);
 			} else if (value instanceof Uri) {
 //				has_file = true;
-				multi_builder.addFormDataPart(en.getKey(), ((Uri) value).getLastPathSegment(), new AngelNetProgressRequestBody((Uri) value, "text/x-markdown; charset=utf-8", callback, this));
+				RequestBody requestBody = RequestBody.create(MediaType.parse("text/x-markdown; charset=utf-8"), new File(((Uri) value).getPath()));
+				AngelNetProgressRequestBody body = new AngelNetProgressRequestBody(requestBody, callback);
+				multi_builder.addFormDataPart(en.getKey(), ((Uri) value).getLastPathSegment(), body);
 			} else if (value instanceof List) {
 				List list = (List) value;
 				String key = en.getKey();
