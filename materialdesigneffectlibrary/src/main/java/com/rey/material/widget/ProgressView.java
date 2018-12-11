@@ -155,7 +155,7 @@ public class ProgressView extends View implements ThemeManager.OnThemeChangedLis
 				start();
 		}
 	}
-	
+
 	@Override
 	protected void onAttachedToWindow() {
 		super.onAttachedToWindow();

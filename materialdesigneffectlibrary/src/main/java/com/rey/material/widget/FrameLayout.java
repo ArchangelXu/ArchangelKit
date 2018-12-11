@@ -106,7 +106,7 @@ public class FrameLayout extends android.widget.FrameLayout implements ThemeMana
 			setOnClickListener(rippleManager);
 		}
 	}
-	
+
 	@Override
 	public boolean onTouchEvent(@NonNull MotionEvent event) {
 		boolean result = super.onTouchEvent(event);

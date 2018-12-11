@@ -51,7 +51,7 @@ public class Switch extends View implements Checkable, ThemeManager.OnThemeChang
 	private ColorStateList mThumbColors;
 	private float mThumbPosition;
 	private int mMaxAnimDuration = -1;
-	private Interpolator mInterpolator;	
+	private Interpolator mInterpolator;
 	private int mGravity = Gravity.CENTER_VERTICAL;
 
 	private boolean mChecked = false;
@@ -105,13 +105,13 @@ public class Switch extends View implements Checkable, ThemeManager.OnThemeChang
 
 	public Switch(Context context, AttributeSet attrs, int defStyleAttr) {
 		super(context, attrs, defStyleAttr);
-		
+
 		init(context, attrs, defStyleAttr, 0);
 	}
 
-	protected void init(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes){
+	protected void init(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
 		mPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
-		
+
 		mDrawRect = new RectF();
 		mTempRect = new RectF();
 		mTrackPath = new Path();
@@ -290,8 +290,8 @@ public class Switch extends View implements Checkable, ThemeManager.OnThemeChang
 			mChecked = checked;
 			if (mOnCheckedChangeListener != null)
 				mOnCheckedChangeListener.onCheckedChanged(this, mChecked);
-        }
-		
+		}
+
 		float desPos = mChecked ? 1f : 0f;
 
 		if (mThumbPosition != desPos)
@@ -311,7 +311,7 @@ public class Switch extends View implements Checkable, ThemeManager.OnThemeChang
 		}
 		mThumbPosition = mChecked ? 1f : 0f;
 		invalidate();
-    }
+	}
 
 	@Override
 	public boolean isChecked() {
@@ -319,8 +319,8 @@ public class Switch extends View implements Checkable, ThemeManager.OnThemeChang
 	}
 
 	@Override
-	public void toggle() {	
-		if(isEnabled())
+	public void toggle() {
+		if (isEnabled())
 			setChecked(!mChecked);
 	}
 
@@ -330,8 +330,8 @@ public class Switch extends View implements Checkable, ThemeManager.OnThemeChang
 		if (mIsRtl != rtl) {
 			mIsRtl = rtl;
 			invalidate();
-        }
-    }
+		}
+	}
 
 	@Override
 	public boolean onTouchEvent(@NonNull MotionEvent event) {
@@ -366,7 +366,7 @@ public class Switch extends View implements Checkable, ThemeManager.OnThemeChang
 				else if ((!mChecked && mThumbPosition < 0.1f) || (mChecked && mThumbPosition > 0.9f))
 					toggle();
 				else
-					setChecked(mThumbPosition > 0.5f);				
+					setChecked(mThumbPosition > 0.5f);
 				break;
 			case MotionEvent.ACTION_CANCEL:
 				if (getParent() != null)
@@ -375,7 +375,7 @@ public class Switch extends View implements Checkable, ThemeManager.OnThemeChang
 				setChecked(mThumbPosition > 0.5f);
 				break;
 		}
-		
+
 		return true;
 	}
 
@@ -383,10 +383,10 @@ public class Switch extends View implements Checkable, ThemeManager.OnThemeChang
 	protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
 		int widthSize = MeasureSpec.getSize(widthMeasureSpec);
 		int widthMode = MeasureSpec.getMode(widthMeasureSpec);
-		
+
 		int heightSize = MeasureSpec.getSize(heightMeasureSpec);
 		int heightMode = MeasureSpec.getMode(heightMeasureSpec);
-		
+
 		switch (widthMode) {
 			case MeasureSpec.UNSPECIFIED:
 				widthSize = getSuggestedMinimumWidth();
@@ -395,7 +395,7 @@ public class Switch extends View implements Checkable, ThemeManager.OnThemeChang
 				widthSize = Math.min(widthSize, getSuggestedMinimumWidth());
 				break;
 		}
-				
+
 		switch (heightMode) {
 			case MeasureSpec.UNSPECIFIED:
 				heightSize = getSuggestedMinimumHeight();
@@ -404,7 +404,7 @@ public class Switch extends View implements Checkable, ThemeManager.OnThemeChang
 				heightSize = Math.min(heightSize, getSuggestedMinimumHeight());
 				break;
 		}
-		
+
 		setMeasuredDimension(widthSize, heightSize);
 	}
 
@@ -417,15 +417,15 @@ public class Switch extends View implements Checkable, ThemeManager.OnThemeChang
 	public int getSuggestedMinimumHeight() {
 		return mThumbRadius * 2 + Math.max(mShadowSize - mShadowOffset, getPaddingTop()) + Math.max(mShadowSize + mShadowOffset, getPaddingBottom());
 	}
-		
+
 	@Override
 	protected void onSizeChanged(int w, int h, int oldw, int oldh) {
 		mDrawRect.left = Math.max(mShadowSize, getPaddingLeft());
 		mDrawRect.right = w - Math.max(mShadowSize, getPaddingRight());
-		
+
 		int height = mThumbRadius * 2;
 		int align = mGravity & Gravity.VERTICAL_GRAVITY_MASK;
-								
+
 		switch (align) {
 			case Gravity.TOP:
 				mDrawRect.top = Math.max(mShadowSize - mShadowOffset, getPaddingTop());
@@ -442,17 +442,17 @@ public class Switch extends View implements Checkable, ThemeManager.OnThemeChang
 		}
 	}
 
-	private int getTrackColor(boolean checked){
+	private int getTrackColor(boolean checked) {
 		mTempStates[0] = isEnabled() ? android.R.attr.state_enabled : -android.R.attr.state_enabled;
 		mTempStates[1] = checked ? android.R.attr.state_checked : -android.R.attr.state_checked;
-		
+
 		return mTrackColors.getColorForState(mTempStates, 0);
 	}
 
-	private int getThumbColor(boolean checked){
+	private int getThumbColor(boolean checked) {
 		mTempStates[0] = isEnabled() ? android.R.attr.state_enabled : -android.R.attr.state_enabled;
 		mTempStates[1] = checked ? android.R.attr.state_checked : -android.R.attr.state_checked;
-		
+
 		return mThumbColors.getColorForState(mTempStates, 0);
 	}
 
@@ -484,23 +484,23 @@ public class Switch extends View implements Checkable, ThemeManager.OnThemeChang
 		mShadowPath.addOval(mTempRect, Path.Direction.CW);
 	}
 
-	private void getTrackPath(float x, float y, float radius){
+	private void getTrackPath(float x, float y, float radius) {
 		float halfStroke = mTrackSize / 2f;
 
 		mTrackPath.reset();
 
-		if (mTrackCap != Paint.Cap.ROUND){
+		if (mTrackCap != Paint.Cap.ROUND) {
 			mTempRect.set(x - radius + 1f, y - radius + 1f, x + radius - 1f, y + radius - 1f);
 			float angle = (float) (Math.asin(halfStroke / (radius - 1f)) / Math.PI * 180);
 
-			if (x - radius > mDrawRect.left){
+			if (x - radius > mDrawRect.left) {
 				mTrackPath.moveTo(mDrawRect.left, y - halfStroke);
 				mTrackPath.arcTo(mTempRect, 180 + angle, -angle * 2);
 				mTrackPath.lineTo(mDrawRect.left, y + halfStroke);
 				mTrackPath.close();
 			}
 
-			if (x + radius < mDrawRect.right){
+			if (x + radius < mDrawRect.right) {
 				mTrackPath.moveTo(mDrawRect.right, y - halfStroke);
 				mTrackPath.arcTo(mTempRect, -angle, angle * 2);
 				mTrackPath.lineTo(mDrawRect.right, y + halfStroke);
@@ -511,10 +511,10 @@ public class Switch extends View implements Checkable, ThemeManager.OnThemeChang
 
 			if (x - radius > mDrawRect.left) {
 				float angle2 = (float) (Math.acos(Math.max(0f, (mDrawRect.left + halfStroke - x + radius) / halfStroke)) / Math.PI * 180);
-				
+
 				mTempRect.set(mDrawRect.left, y - halfStroke, mDrawRect.left + mTrackSize, y + halfStroke);
 				mTrackPath.arcTo(mTempRect, 180 - angle2, angle2 * 2);
-				
+
 				mTempRect.set(x - radius + 1f, y - radius + 1f, x + radius - 1f, y + radius - 1f);
 				mTrackPath.arcTo(mTempRect, 180 + angle, -angle * 2);
 				mTrackPath.close();
@@ -524,15 +524,15 @@ public class Switch extends View implements Checkable, ThemeManager.OnThemeChang
 				float angle2 = (float) Math.acos(Math.max(0f, (x + radius - mDrawRect.right + halfStroke) / halfStroke));
 				mTrackPath.moveTo((float) (mDrawRect.right - halfStroke + Math.cos(angle2) * halfStroke), (float) (y + Math.sin(angle2) * halfStroke));
 
-				angle2 = (float)(angle2 / Math.PI * 180);				
+				angle2 = (float) (angle2 / Math.PI * 180);
 				mTempRect.set(mDrawRect.right - mTrackSize, y - halfStroke, mDrawRect.right, y + halfStroke);
 				mTrackPath.arcTo(mTempRect, angle2, -angle2 * 2);
-				
+
 				mTempRect.set(x - radius + 1f, y - radius + 1f, x + radius - 1f, y + radius - 1f);
 				mTrackPath.arcTo(mTempRect, -angle, angle * 2);
 				mTrackPath.close();
 			}
-		}		
+		}
 	}
 
 	@Override
@@ -543,10 +543,10 @@ public class Switch extends View implements Checkable, ThemeManager.OnThemeChang
 		if (mIsRtl)
 			x = 2 * mDrawRect.centerX() - x;
 		float y = mDrawRect.centerY();
-				
+
 		getTrackPath(x, y, mThumbRadius);
 		mPaint.setColor(ColorUtil.getMiddleColor(getTrackColor(false), getTrackColor(true), mThumbPosition));
-		mPaint.setStyle(Paint.Style.FILL);		
+		mPaint.setStyle(Paint.Style.FILL);
 		canvas.drawPath(mTrackPath, mPaint);
 
 		if (mShadowSize > 0) {
@@ -561,15 +561,15 @@ public class Switch extends View implements Checkable, ThemeManager.OnThemeChang
 		canvas.drawCircle(x, y, mThumbRadius, mPaint);
 	}
 
-	private void resetAnimation(){	
+	private void resetAnimation() {
 		mStartTime = SystemClock.uptimeMillis();
 		mStartPosition = mThumbPosition;
 		mAnimDuration = (int) (mMaxAnimDuration * (mChecked ? (1f - mStartPosition) : mStartPosition));
 	}
-		
+
 	private void startAnimation() {
-		if (getHandler() != null){
-			resetAnimation();		
+		if (getHandler() != null) {
+			resetAnimation();
 			mRunning = true;
 			getHandler().postAtTime(mUpdater, SystemClock.uptimeMillis() + ViewUtil.FRAME_DURATION);
 		} else
@@ -584,7 +584,7 @@ public class Switch extends View implements Checkable, ThemeManager.OnThemeChang
 			getHandler().removeCallbacks(mUpdater);
 		invalidate();
 	}
-	
+
 	private final Runnable mUpdater = new Runnable() {
 
 		@Override
@@ -598,10 +598,10 @@ public class Switch extends View implements Checkable, ThemeManager.OnThemeChang
 		long curTime = SystemClock.uptimeMillis();
 		float progress = Math.min(1f, (float) (curTime - mStartTime) / mAnimDuration);
 		float value = mInterpolator.getInterpolation(progress);
-		
+
 		mThumbPosition = mChecked ? (mStartPosition * (1 - value) + value) : (mStartPosition * (1 - value));
-		
-		if(progress == 1f)
+
+		if (progress == 1f)
 			stopAnimation();
 
 		if (mRunning) {
@@ -610,8 +610,8 @@ public class Switch extends View implements Checkable, ThemeManager.OnThemeChang
 			else
 				stopAnimation();
 		}
-    	
-    	invalidate();
+
+		invalidate();
 	}
 
 	@Override
@@ -621,7 +621,7 @@ public class Switch extends View implements Checkable, ThemeManager.OnThemeChang
 		SavedState ss = new SavedState(superState);
 
 		ss.checked = isChecked();
-        return ss;
+		return ss;
 	}
 
 	@Override
@@ -630,9 +630,9 @@ public class Switch extends View implements Checkable, ThemeManager.OnThemeChang
 
 		super.onRestoreInstanceState(ss.getSuperState());
 		setChecked(ss.checked);
-        requestLayout();
+		requestLayout();
 	}
-	
+
 	static class SavedState extends BaseSavedState {
 		boolean checked;
 
@@ -673,7 +673,7 @@ public class Switch extends View implements Checkable, ThemeManager.OnThemeChang
 			public SavedState[] newArray(int size) {
 				return new SavedState[size];
 			}
-        };
-    }
-	
+		};
+	}
+
 }

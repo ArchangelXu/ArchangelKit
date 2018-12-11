@@ -109,7 +109,7 @@ public class LinearLayout extends android.widget.LinearLayout implements ThemeMa
 			setOnClickListener(rippleManager);
 		}
 	}
-	
+
 	@Override
 	public boolean onTouchEvent(@NonNull MotionEvent event) {
 		boolean result = super.onTouchEvent(event);

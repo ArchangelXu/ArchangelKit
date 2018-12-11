@@ -32,7 +32,7 @@ import java.util.List;
 import java.util.Locale;
 
 public class LineMorphingDrawable extends Drawable implements Animatable {
-	
+
 	private boolean mRunning = false;
 
 	private Paint mPaint;
@@ -59,7 +59,7 @@ public class LineMorphingDrawable extends Drawable implements Animatable {
 	private Paint.Cap mStrokeCap;
 	private Paint.Join mStrokeJoin;
 	private boolean mIsRtl;
-	
+
 	private Path mPath;
 
 	private State[] mStates;
@@ -82,7 +82,7 @@ public class LineMorphingDrawable extends Drawable implements Animatable {
 		mStrokeJoin = strokeJoin;
 		mClockwise = clockwise;
 		mIsRtl = isRtl;
-		
+
 		mPaint = new Paint();
 		mPaint.setAntiAlias(true);
 		mPaint.setStyle(Paint.Style.STROKE);
@@ -93,8 +93,8 @@ public class LineMorphingDrawable extends Drawable implements Animatable {
 
 		mDrawBound = new RectF();
 
-		mPath = new Path();			
-			
+		mPath = new Path();
+
 		switchLineState(curState, false);
 	}
 
@@ -106,7 +106,7 @@ public class LineMorphingDrawable extends Drawable implements Animatable {
 		if (mIsRtl)
 			canvas.scale(-1f, 1f, mDrawBound.centerX(), mDrawBound.centerY());
 
-		canvas.rotate(degrees, mDrawBound.centerX(), mDrawBound.centerY());		
+		canvas.rotate(degrees, mDrawBound.centerX(), mDrawBound.centerY());
 		canvas.drawPath(mPath, mPaint);
 		canvas.restoreToCount(restoreCount);
 	}
@@ -141,7 +141,7 @@ public class LineMorphingDrawable extends Drawable implements Animatable {
 			mDrawBound.right = bounds.right - mPaddingRight;
 			mDrawBound.bottom = bounds.bottom - mPaddingBottom;
 		}
-		
+
 		updatePath();
 	}
 
@@ -357,7 +357,7 @@ public class LineMorphingDrawable extends Drawable implements Animatable {
 		mRunning = true;
 		super.scheduleSelf(what, when);
 	}
-	
+
 	private final Runnable mUpdater = new Runnable() {
 
 		@Override
@@ -413,7 +413,7 @@ public class LineMorphingDrawable extends Drawable implements Animatable {
 		private Paint.Cap mStrokeCap;
 		private Paint.Join mStrokeJoin;
 		private boolean mIsRtl;
-		
+
 		private State[] mStates;
 
 		private static final String TAG_STATE_LIST = "state-list";
@@ -434,7 +434,7 @@ public class LineMorphingDrawable extends Drawable implements Animatable {
 			int resId;
 
 			if ((resId = a.getResourceId(R.styleable.LineMorphingDrawable_lmd_state, 0)) != 0)
-				states(readStates(context, resId));			
+				states(readStates(context, resId));
 			curState(a.getInteger(R.styleable.LineMorphingDrawable_lmd_curState, 0));
 			width(a.getDimensionPixelSize(R.styleable.LineMorphingDrawable_lmd_width, 0));
 			height(a.getDimensionPixelSize(R.styleable.LineMorphingDrawable_lmd_height, 0));
@@ -469,7 +469,7 @@ public class LineMorphingDrawable extends Drawable implements Animatable {
 				rtl(TextUtilsCompat.getLayoutDirectionFromLocale(Locale.getDefault()) == ViewCompat.LAYOUT_DIRECTION_RTL);
 			else
 				rtl(direction == View.LAYOUT_DIRECTION_RTL);
-			
+
 			a.recycle();
 		}
 
@@ -684,6 +684,6 @@ public class LineMorphingDrawable extends Drawable implements Animatable {
 			mIsRtl = rtl;
 			return this;
 		}
-		
+
 	}
 }

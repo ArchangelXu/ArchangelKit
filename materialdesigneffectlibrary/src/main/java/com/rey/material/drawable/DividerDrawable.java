@@ -16,7 +16,7 @@ import android.os.SystemClock;
 import com.rey.material.util.ViewUtil;
 
 public class DividerDrawable extends Drawable implements Animatable {
-	
+
 	private boolean mRunning = false;
 	private long mStartTime;
 	private float mAnimProgress;
@@ -29,7 +29,7 @@ public class DividerDrawable extends Drawable implements Animatable {
 	private int mCurColor;
 
 	private boolean mEnable = true;
-	private PathEffect mPathEffect;		
+	private PathEffect mPathEffect;
 	private Path mPath;
 
 	private boolean mInEditMode = false;
@@ -137,12 +137,12 @@ public class DividerDrawable extends Drawable implements Animatable {
 			mPaint.setPathEffect(null);
 
 			if (mAnimProgress < 1f) {
-				mPaint.setColor(mPrevColor);				
+				mPaint.setColor(mPrevColor);
 				mPath.reset();
 				mPath.moveTo(bounds.left + mPaddingLeft, y);
 				mPath.lineTo(start, y);
 				mPath.moveTo(bounds.right - mPaddingRight, y);
-				mPath.lineTo(end, y);				
+				mPath.lineTo(end, y);
 				canvas.drawPath(mPath, mPaint);
 			}
 
@@ -156,7 +156,7 @@ public class DividerDrawable extends Drawable implements Animatable {
 
 	@Override
 	public void setAlpha(int alpha) {
-		mPaint.setAlpha(alpha);			
+		mPaint.setAlpha(alpha);
 	}
 
 	@Override
@@ -187,7 +187,7 @@ public class DividerDrawable extends Drawable implements Animatable {
 			} else {
 				mPrevColor = color;
 				mCurColor = color;
-			}		
+			}
 			return true;
 		} else if (!isRunning())
 			mPrevColor = color;
@@ -202,7 +202,7 @@ public class DividerDrawable extends Drawable implements Animatable {
 
 	@Override
 	public void start() {
-		resetAnimation();			
+		resetAnimation();
 		scheduleSelf(mUpdater, SystemClock.uptimeMillis() + ViewUtil.FRAME_DURATION);
 		invalidateSelf();
 	}
@@ -224,7 +224,7 @@ public class DividerDrawable extends Drawable implements Animatable {
 		mRunning = true;
 		super.scheduleSelf(what, when);
 	}
-	
+
 	private final Runnable mUpdater = new Runnable() {
 
 		@Override
@@ -246,5 +246,5 @@ public class DividerDrawable extends Drawable implements Animatable {
 
 		invalidateSelf();
 	}
-	
+
 }

@@ -29,7 +29,7 @@ public class RadioButton extends CompoundButton {
 		setButtonDrawable(drawable);
 		drawable.setAnimEnable(true);
 	}
-	
+
 	@Override
 	public void toggle() {
 		// we override to prevent toggle when the radio is already
@@ -53,5 +53,5 @@ public class RadioButton extends CompoundButton {
 		} else
 			setChecked(checked);
 	}
-	
+
 }

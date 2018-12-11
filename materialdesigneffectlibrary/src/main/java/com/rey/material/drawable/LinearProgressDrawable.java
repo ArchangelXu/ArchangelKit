@@ -68,11 +68,11 @@ public class LinearProgressDrawable extends Drawable implements Animatable {
 	private int mStrokeSize;
 	private int mVerticalAlign;
 	private int[] mStrokeColors;
-	private int mStrokeSecondaryColor;	
+	private int mStrokeSecondaryColor;
 	private boolean mReverse;
 	private int mTravelDuration;
 	private int mTransformDuration;
-	private int mKeepDuration;	
+	private int mKeepDuration;
 	private int mInAnimationDuration;
 	private int mOutAnimationDuration;
 	private int mProgressMode;
@@ -101,8 +101,8 @@ public class LinearProgressDrawable extends Drawable implements Animatable {
 		mPaint = new Paint();
 		mPaint.setAntiAlias(true);
 		mPaint.setStrokeCap(Paint.Cap.ROUND);
-		mPaint.setStrokeJoin(Paint.Join.ROUND);	
-		
+		mPaint.setStrokeJoin(Paint.Join.ROUND);
+
 		mPath = new Path();
 	}
 
@@ -183,9 +183,9 @@ public class LinearProgressDrawable extends Drawable implements Animatable {
 
 		invalidateSelf();
 	}
-		
+
 	@Override
-	public void draw(Canvas canvas) {			
+	public void draw(Canvas canvas) {
 		switch (mProgressMode) {
 			case ProgressView.MODE_DETERMINATE:
 				drawDeterminate(canvas);
@@ -210,7 +210,7 @@ public class LinearProgressDrawable extends Drawable implements Animatable {
 	}
 
 	private void drawDeterminate(Canvas canvas) {
-		Rect bounds = getBounds();		
+		Rect bounds = getBounds();
 		int width = bounds.width();
 		float size = 0f;
 
@@ -270,7 +270,7 @@ public class LinearProgressDrawable extends Drawable implements Animatable {
 	}
 
 	private void drawIndeterminate(Canvas canvas) {
-		Rect bounds = getBounds();		
+		Rect bounds = getBounds();
 		int width = bounds.width();
 		float size = 0f;
 
@@ -369,7 +369,7 @@ public class LinearProgressDrawable extends Drawable implements Animatable {
 	}
 
 	private void drawBuffer(Canvas canvas) {
-		Rect bounds = getBounds();		
+		Rect bounds = getBounds();
 		int width = bounds.width();
 		float size = 0f;
 
@@ -405,27 +405,27 @@ public class LinearProgressDrawable extends Drawable implements Animatable {
 				mPaint.setPathEffect(null);
 
 				if (mReverse)
-					drawLinePath(canvas, width - secondaryLineWidth, y, width - lineWidth, y, mPaint);			
+					drawLinePath(canvas, width - secondaryLineWidth, y, width - lineWidth, y, mPaint);
 				else
 					drawLinePath(canvas, secondaryLineWidth, y, lineWidth, y, mPaint);
 
 				mPaint.setStrokeWidth(mLineWidth);
-				mPaint.setPathEffect(getPathEffect());		
+				mPaint.setPathEffect(getPathEffect());
 				float offset = mStrokeSize * 2 - mStartLine;
 
 				if (mReverse)
 					drawLinePath(canvas, -offset, y, width - secondaryLineWidth, y, mPaint);
 				else
-					drawLinePath(canvas, width + offset, y, secondaryLineWidth, y, mPaint);				
+					drawLinePath(canvas, width + offset, y, secondaryLineWidth, y, mPaint);
 			}
 
 			if (mProgressPercent != 0f) {
 				mPaint.setStrokeWidth(size);
-				mPaint.setColor(mStrokeColors[0]);			
+				mPaint.setColor(mStrokeColors[0]);
 				mPaint.setPathEffect(null);
 
 				if (mReverse)
-					drawLinePath(canvas, width - lineWidth, y, width, y, mPaint);				
+					drawLinePath(canvas, width - lineWidth, y, width, y, mPaint);
 				else
 					drawLinePath(canvas, 0, y, lineWidth, y, mPaint);
 			}
@@ -437,7 +437,7 @@ public class LinearProgressDrawable extends Drawable implements Animatable {
 	}
 
 	private void drawQuery(Canvas canvas) {
-		Rect bounds = getBounds();		
+		Rect bounds = getBounds();
 		int width = bounds.width();
 		float size = 0f;
 
@@ -564,10 +564,10 @@ public class LinearProgressDrawable extends Drawable implements Animatable {
 			mLineWidth = !mReverse ? -mMaxLineWidth : mMaxLineWidth;
 		}
 	}
-	
+
 	@Override
 	public void start() {
-		start(mInAnimationDuration > 0);	    
+		start(mInAnimationDuration > 0);
 	}
 
 	@Override
@@ -608,7 +608,7 @@ public class LinearProgressDrawable extends Drawable implements Animatable {
 			invalidateSelf();
 		}
 	}
-	
+
 	@Override
 	public boolean isRunning() {
 		return mRunState != RUN_STATE_STOPPED;
@@ -620,7 +620,7 @@ public class LinearProgressDrawable extends Drawable implements Animatable {
 			mRunState = mInAnimationDuration > 0 ? RUN_STATE_STARTING : RUN_STATE_RUNNING;
 		super.scheduleSelf(what, when);
 	}
-	
+
 	private final Runnable mUpdater = new Runnable() {
 
 		@Override
@@ -711,7 +711,7 @@ public class LinearProgressDrawable extends Drawable implements Animatable {
 						mProgressState = PROGRESS_STATE_KEEP_STRETCH;
 						mLastProgressStateTime = curTime;
 					}
-				}				
+				}
 				break;
 			case PROGRESS_STATE_KEEP_STRETCH:
 				mStartLine = offset(mStartLine, travelOffset, width);
@@ -728,7 +728,7 @@ public class LinearProgressDrawable extends Drawable implements Animatable {
 						mLineWidth = -mLineWidth;
 					mStartLine = offset(mStartLine, travelOffset, width);
 					mProgressState = PROGRESS_STATE_KEEP_SHRINK;
-					mLastProgressStateTime = curTime;		
+					mLastProgressStateTime = curTime;
 					mStrokeColorIndex = (mStrokeColorIndex + 1) % mStrokeColors.length;
 				} else {
 					float value = (curTime - mLastProgressStateTime) / (float) mTransformDuration;
@@ -748,7 +748,7 @@ public class LinearProgressDrawable extends Drawable implements Animatable {
 						mLastProgressStateTime = curTime;
 						mStrokeColorIndex = (mStrokeColorIndex + 1) % mStrokeColors.length;
 					}
-				}				
+				}
 				break;
 			case PROGRESS_STATE_KEEP_SHRINK:
 				mStartLine = offset(mStartLine, travelOffset, width);
@@ -783,7 +783,7 @@ public class LinearProgressDrawable extends Drawable implements Animatable {
 		while (mStartLine > maxDistance)
 			mStartLine -= maxDistance;
 		mLastUpdateTime = curTime;
-    	
+
 		switch (mProgressState) {
 			case PROGRESS_STATE_STRETCH:
 				if (mTransformDuration <= 0) {
@@ -798,7 +798,7 @@ public class LinearProgressDrawable extends Drawable implements Animatable {
 						mProgressState = PROGRESS_STATE_KEEP_STRETCH;
 						mLastProgressStateTime = curTime;
 					}
-				}				
+				}
 				break;
 			case PROGRESS_STATE_KEEP_STRETCH:
 				if (curTime - mLastProgressStateTime > mKeepDuration) {
@@ -819,7 +819,7 @@ public class LinearProgressDrawable extends Drawable implements Animatable {
 						mProgressState = PROGRESS_STATE_KEEP_SHRINK;
 						mLastProgressStateTime = curTime;
 					}
-				}				
+				}
 				break;
 			case PROGRESS_STATE_KEEP_SHRINK:
 				if (curTime - mLastProgressStateTime > mKeepDuration) {
@@ -882,7 +882,7 @@ public class LinearProgressDrawable extends Drawable implements Animatable {
 			if (requestUpdate)
 				scheduleSelf(mUpdater, SystemClock.uptimeMillis() + ViewUtil.FRAME_DURATION);
 			else if (mRunState == RUN_STATE_RUNNING)
-				mRunState = RUN_STATE_STARTED;	
+				mRunState = RUN_STATE_STARTED;
 		}
 
 		invalidateSelf();
@@ -898,11 +898,11 @@ public class LinearProgressDrawable extends Drawable implements Animatable {
 		private int mStrokeSize = 8;
 		private int mVerticalAlign = LinearProgressDrawable.ALIGN_BOTTOM;
 		private int[] mStrokeColors;
-		private int mStrokeSecondaryColor;		
+		private int mStrokeSecondaryColor;
 		private boolean mReverse = false;
 		private int mTravelDuration = 1000;
 		private int mTransformDuration = 800;
-		private int mKeepDuration = 200;	
+		private int mKeepDuration = 200;
 		private Interpolator mTransformInterpolator;
 		private int mProgressMode = ProgressView.MODE_INDETERMINATE;
 		private int mInAnimationDuration = 400;
@@ -919,7 +919,7 @@ public class LinearProgressDrawable extends Drawable implements Animatable {
 			TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.LinearProgressDrawable, defStyleAttr, defStyleRes);
 			int resId;
 
-			progressPercent(a.getFloat(R.styleable.LinearProgressDrawable_pv_progress, 0));	
+			progressPercent(a.getFloat(R.styleable.LinearProgressDrawable_pv_progress, 0));
 			secondaryProgressPercent(a.getFloat(R.styleable.LinearProgressDrawable_pv_secondaryProgress, 0));
 
 			TypedValue value = a.peekValue(R.styleable.LinearProgressDrawable_lpd_maxLineWidth);
@@ -927,7 +927,7 @@ public class LinearProgressDrawable extends Drawable implements Animatable {
 				maxLineWidth(0.75f);
 			else if (value.type == TypedValue.TYPE_FRACTION)
 				maxLineWidth(a.getFraction(R.styleable.LinearProgressDrawable_lpd_maxLineWidth, 1, 1, 0.75f));
-			else 
+			else
 				maxLineWidth(a.getDimensionPixelSize(R.styleable.LinearProgressDrawable_lpd_maxLineWidth, 0));
 
 			value = a.peekValue(R.styleable.LinearProgressDrawable_lpd_minLineWidth);
@@ -935,14 +935,14 @@ public class LinearProgressDrawable extends Drawable implements Animatable {
 				minLineWidth(0.25f);
 			else if (value.type == TypedValue.TYPE_FRACTION)
 				minLineWidth(a.getFraction(R.styleable.LinearProgressDrawable_lpd_minLineWidth, 1, 1, 0.25f));
-			else 
+			else
 				minLineWidth(a.getDimensionPixelSize(R.styleable.LinearProgressDrawable_lpd_minLineWidth, 0));
 
 			strokeSize(a.getDimensionPixelSize(R.styleable.LinearProgressDrawable_lpd_strokeSize, ThemeUtil.dpToPx(context, 4)));
 			verticalAlign(a.getInteger(R.styleable.LinearProgressDrawable_lpd_verticalAlign, LinearProgressDrawable.ALIGN_BOTTOM));
 			strokeColors(a.getColor(R.styleable.LinearProgressDrawable_lpd_strokeColor, ThemeUtil.colorPrimary(context, 0xFF000000)));
 			if ((resId = a.getResourceId(R.styleable.LinearProgressDrawable_lpd_strokeColors, 0)) != 0) {
-				TypedArray ta = context.getResources().obtainTypedArray(resId);				        	
+				TypedArray ta = context.getResources().obtainTypedArray(resId);
 				int[] colors = new int[ta.length()];
 				for (int j = 0; j < ta.length(); j++)
 					colors[j] = ta.getColor(j, 0);

@@ -46,7 +46,7 @@ public class CheckedTextView extends AppCompatCheckedTextView implements ThemeMa
 
 	public CheckedTextView(Context context, AttributeSet attrs, int defStyleAttr) {
 		super(context, attrs, defStyleAttr);
-		
+
 		init(context, attrs, defStyleAttr, 0);
 	}
 
@@ -154,5 +154,5 @@ public class CheckedTextView extends AppCompatCheckedTextView implements ThemeMa
 	public boolean onTouchEvent(@NonNull MotionEvent event) {
 		boolean result = super.onTouchEvent(event);
 		return getRippleManager().onTouchEvent(this, event) || result;
-    }
+	}
 }

@@ -774,6 +774,6 @@ public class TabIndicatorView extends RecyclerView implements ThemeManager.OnThe
 					break;
 			}
 		}
-    }
+	}
 
 }

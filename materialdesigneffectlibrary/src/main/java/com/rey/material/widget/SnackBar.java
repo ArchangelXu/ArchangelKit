@@ -51,14 +51,14 @@ public class SnackBar extends FrameLayout implements ThemeManager.OnThemeChanged
 
 	private Animation mInAnimation;
 	private Animation mOutAnimation;
-	
+
 	private Runnable mDismissRunnable = new Runnable() {
 		@Override
 		public void run() {
 			dismiss();
 		}
 	};
-	
+
 	private int mState = STATE_DISMISSED;
 
 	/**
@@ -87,7 +87,8 @@ public class SnackBar extends FrameLayout implements ThemeManager.OnThemeChanged
 
 		/**
 		 * Called when action button is clicked.
-		 * @param sb The SnackBar fire this event.
+		 *
+		 * @param sb       The SnackBar fire this event.
 		 * @param actionId The ActionId of this SnackBar.
 		 */
 		public void onActionClick(SnackBar sb, int actionId);
@@ -102,7 +103,8 @@ public class SnackBar extends FrameLayout implements ThemeManager.OnThemeChanged
 
 		/**
 		 * Called when SnackBar's state is changed.
-		 * @param sb The SnackBar fire this event.
+		 *
+		 * @param sb       The SnackBar fire this event.
 		 * @param oldState The old state of SnackBar.
 		 * @param newState The new state of SnackBar.
 		 */
@@ -371,6 +373,7 @@ public class SnackBar extends FrameLayout implements ThemeManager.OnThemeChanged
 
 	/**
 	 * Set the text that this SnackBar is to display.
+	 *
 	 * @param text The text is displayed.
 	 * @return This SnackBar for chaining methods.
 	 */
@@ -381,6 +384,7 @@ public class SnackBar extends FrameLayout implements ThemeManager.OnThemeChanged
 
 	/**
 	 * Set the text that this SnackBar is to display.
+	 *
 	 * @param id The resourceId of text is displayed.
 	 * @return This SnackBar for chaining methods.
 	 */
@@ -390,6 +394,7 @@ public class SnackBar extends FrameLayout implements ThemeManager.OnThemeChanged
 
 	/**
 	 * Set the text color.
+	 *
 	 * @param color The color of text.
 	 * @return This SnackBar for chaining methods.
 	 */
@@ -400,6 +405,7 @@ public class SnackBar extends FrameLayout implements ThemeManager.OnThemeChanged
 
 	/**
 	 * Set the text size to the given value, interpreted as "scaled pixel" units.
+	 *
 	 * @param size The size of text.
 	 * @return This SnackBar for chaining methods.
 	 */
@@ -410,6 +416,7 @@ public class SnackBar extends FrameLayout implements ThemeManager.OnThemeChanged
 
 	/**
 	 * Sets the text color, size, style from the specified TextAppearance resource.
+	 *
 	 * @param resId The resourceId value.
 	 * @return This SnackBar for chaining methods.
 	 */
@@ -421,6 +428,7 @@ public class SnackBar extends FrameLayout implements ThemeManager.OnThemeChanged
 
 	/**
 	 * Causes words in the text that are longer than the view is wide to be ellipsized instead of broken in the middle.
+	 *
 	 * @param at
 	 * @return This SnackBar for chaining methods.
 	 */
@@ -431,6 +439,7 @@ public class SnackBar extends FrameLayout implements ThemeManager.OnThemeChanged
 
 	/**
 	 * Sets the text will be single-line or not.
+	 *
 	 * @param b
 	 * @return This SnackBar for chaining methods.
 	 */
@@ -441,6 +450,7 @@ public class SnackBar extends FrameLayout implements ThemeManager.OnThemeChanged
 
 	/**
 	 * Makes the text at most this many lines tall.
+	 *
 	 * @param lines The maximum line value.
 	 * @return This SnackBar for chaining methods.
 	 */
@@ -451,6 +461,7 @@ public class SnackBar extends FrameLayout implements ThemeManager.OnThemeChanged
 
 	/**
 	 * Makes the text exactly this many lines tall.
+	 *
 	 * @param lines The line number.
 	 * @return This SnackBar for chaining methods.
 	 */
@@ -461,16 +472,18 @@ public class SnackBar extends FrameLayout implements ThemeManager.OnThemeChanged
 
 	/**
 	 * Set the actionId of this SnackBar. Used to determine the current action of this SnackBar.
+	 *
 	 * @param id The actionId value.
 	 * @return This SnackBar for chaining methods.
 	 */
 	public SnackBar actionId(int id) {
-		mActionId = id;		
+		mActionId = id;
 		return this;
 	}
 
 	/**
 	 * Set the text that the ActionButton is to display.
+	 *
 	 * @param text If null, then the ActionButton will be hidden.
 	 * @return This SnackBar for chaining methods.
 	 */
@@ -478,7 +491,7 @@ public class SnackBar extends FrameLayout implements ThemeManager.OnThemeChanged
 		if (TextUtils.isEmpty(text))
 			mAction.setVisibility(View.INVISIBLE);
 		else {
-			mAction.setVisibility(View.VISIBLE);		
+			mAction.setVisibility(View.VISIBLE);
 			mAction.setText(text);
 		}
 		return this;
@@ -486,6 +499,7 @@ public class SnackBar extends FrameLayout implements ThemeManager.OnThemeChanged
 
 	/**
 	 * Set the text that the ActionButton is to display.
+	 *
 	 * @param id If 0, then the ActionButton will be hidden.
 	 * @return This SnackBar for chaining methods.
 	 */
@@ -498,6 +512,7 @@ public class SnackBar extends FrameLayout implements ThemeManager.OnThemeChanged
 
 	/**
 	 * Set the text color of the ActionButton for all states.
+	 *
 	 * @param color The color of text.
 	 * @return This SnackBar for chaining methods.
 	 */
@@ -508,6 +523,7 @@ public class SnackBar extends FrameLayout implements ThemeManager.OnThemeChanged
 
 	/**
 	 * Set the text color of the ActionButton.
+	 *
 	 * @param colors
 	 * @return This SnackBar for chaining methods.
 	 */
@@ -518,6 +534,7 @@ public class SnackBar extends FrameLayout implements ThemeManager.OnThemeChanged
 
 	/**
 	 * Sets the text color, size, style of the ActionButton from the specified TextAppearance resource.
+	 *
 	 * @param resId The resourceId value.
 	 * @return This SnackBar for chaining methods.
 	 */
@@ -529,6 +546,7 @@ public class SnackBar extends FrameLayout implements ThemeManager.OnThemeChanged
 
 	/**
 	 * Set the text size of the ActionButton to the given value, interpreted as "scaled pixel" units.
+	 *
 	 * @param size The size of text.
 	 * @return This SnackBar for chaining methods.
 	 */
@@ -539,6 +557,7 @@ public class SnackBar extends FrameLayout implements ThemeManager.OnThemeChanged
 
 	/**
 	 * Set the style of RippleEffect of the ActionButton.
+	 *
 	 * @param resId The resourceId of RippleEffect.
 	 * @return This SnackBar for chaining methods.
 	 */
@@ -550,6 +569,7 @@ public class SnackBar extends FrameLayout implements ThemeManager.OnThemeChanged
 
 	/**
 	 * Set the duration this SnackBar will be shown before dismissing.
+	 *
 	 * @param duration If 0, then the SnackBar will not be dismissed until {@link #dismiss() dismiss()} is called.
 	 * @return This SnackBar for chaining methods.
 	 */
@@ -560,6 +580,7 @@ public class SnackBar extends FrameLayout implements ThemeManager.OnThemeChanged
 
 	/**
 	 * Set the background color of this SnackBar.
+	 *
 	 * @param color The color of background.
 	 * @return This SnackBar for chaining methods.
 	 */
@@ -570,6 +591,7 @@ public class SnackBar extends FrameLayout implements ThemeManager.OnThemeChanged
 
 	/**
 	 * Set the background's corner radius of this SnackBar.
+	 *
 	 * @param radius The corner radius.
 	 * @return This SnackBar for chaining methods.
 	 */
@@ -580,40 +602,44 @@ public class SnackBar extends FrameLayout implements ThemeManager.OnThemeChanged
 
 	/**
 	 * Set the horizontal padding between this SnackBar and it's text and button.
+	 *
 	 * @param padding
 	 * @return This SnackBar for chaining methods.
 	 */
 	public SnackBar horizontalPadding(int padding) {
-		mText.setPadding(padding, mText.getPaddingTop(), padding, mText.getPaddingBottom());	
+		mText.setPadding(padding, mText.getPaddingTop(), padding, mText.getPaddingBottom());
 		mAction.setPadding(padding, mAction.getPaddingTop(), padding, mAction.getPaddingBottom());
 		return this;
 	}
 
 	/**
 	 * Set the vertical padding between this SnackBar and it's text and button.
+	 *
 	 * @param padding
 	 * @return This SnackBar for chaining methods.
 	 */
 	public SnackBar verticalPadding(int padding) {
-		mText.setPadding(mText.getPaddingLeft(), padding, mText.getPaddingRight(), padding);	
+		mText.setPadding(mText.getPaddingLeft(), padding, mText.getPaddingRight(), padding);
 		mAction.setPadding(mAction.getPaddingLeft(), padding, mAction.getPaddingRight(), padding);
 		return this;
 	}
 
 	/**
 	 * Set the padding between this SnackBar and it's text and button.
+	 *
 	 * @param horizontalPadding The horizontal padding.
-	 * @param verticalPadding The vertical padding.
+	 * @param verticalPadding   The vertical padding.
 	 * @return This SnackBar for chaining methods.
 	 */
 	public SnackBar padding(int horizontalPadding, int verticalPadding) {
 		mText.setPadding(horizontalPadding, verticalPadding, horizontalPadding, verticalPadding);
-		mAction.setPadding(horizontalPadding, verticalPadding, horizontalPadding, verticalPadding);		
+		mAction.setPadding(horizontalPadding, verticalPadding, horizontalPadding, verticalPadding);
 		return this;
 	}
 
 	/**
 	 * Makes this SnackBar exactly this many pixels wide.
+	 *
 	 * @param width The width value in pixels.
 	 * @return This SnackBar for chaining methods.
 	 */
@@ -624,6 +650,7 @@ public class SnackBar extends FrameLayout implements ThemeManager.OnThemeChanged
 
 	/**
 	 * Makes this SnackBar at least this many pixels wide
+	 *
 	 * @param width The minimum width value in pixels.
 	 * @return This SnackBar for chaining methods.
 	 */
@@ -634,6 +661,7 @@ public class SnackBar extends FrameLayout implements ThemeManager.OnThemeChanged
 
 	/**
 	 * Makes this SnackBar at most this many pixels wide
+	 *
 	 * @param width The maximum width value in pixels.
 	 * @return This SnackBar for chaining methods.
 	 */
@@ -644,6 +672,7 @@ public class SnackBar extends FrameLayout implements ThemeManager.OnThemeChanged
 
 	/**
 	 * Makes this SnackBar exactly this many pixels tall.
+	 *
 	 * @param height The height value in pixels.
 	 * @return This SnackBar for chaining methods.
 	 */
@@ -654,6 +683,7 @@ public class SnackBar extends FrameLayout implements ThemeManager.OnThemeChanged
 
 	/**
 	 * Makes this SnackBar at most this many pixels tall
+	 *
 	 * @param height The maximum height value in pixels.
 	 * @return This SnackBar for chaining methods.
 	 */
@@ -664,6 +694,7 @@ public class SnackBar extends FrameLayout implements ThemeManager.OnThemeChanged
 
 	/**
 	 * Makes this SnackBar at least this many pixels tall
+	 *
 	 * @param height The maximum height value in pixels.
 	 * @return This SnackBar for chaining methods.
 	 */
@@ -674,6 +705,7 @@ public class SnackBar extends FrameLayout implements ThemeManager.OnThemeChanged
 
 	/**
 	 * Set the start margin between this SnackBar and it's parent.
+	 *
 	 * @param size
 	 * @return This SnackBar for chaining methods.
 	 */
@@ -684,6 +716,7 @@ public class SnackBar extends FrameLayout implements ThemeManager.OnThemeChanged
 
 	/**
 	 * Set the bottom margin between this SnackBar and it's parent.
+	 *
 	 * @param size
 	 * @return This SnackBar for chaining methods.
 	 */
@@ -694,6 +727,7 @@ public class SnackBar extends FrameLayout implements ThemeManager.OnThemeChanged
 
 	/**
 	 * Set the listener will be called when the ActionButton is clicked.
+	 *
 	 * @param listener The {@link OnActionClickListener} will be called.
 	 * @return This SnackBar for chaining methods.
 	 */
@@ -704,6 +738,7 @@ public class SnackBar extends FrameLayout implements ThemeManager.OnThemeChanged
 
 	/**
 	 * Set the listener will be called when this SnackBar's state is changed.
+	 *
 	 * @param listener The {@link OnStateChangeListener} will be called.
 	 * @return This SnackBar for chaining methods.
 	 */
@@ -736,16 +771,18 @@ public class SnackBar extends FrameLayout implements ThemeManager.OnThemeChanged
 
 	/**
 	 * Indicate that this SnackBar should remove itself from parent view after being dismissed.
+	 *
 	 * @param b
 	 * @return This SnackBar for chaining methods.
 	 */
 	public SnackBar removeOnDismiss(boolean b) {
 		mRemoveOnDismiss = b;
 		return this;
-    }
+	}
 
 	/**
 	 * Show this SnackBar. It will auto attach to the activity's root view.
+	 *
 	 * @param activity
 	 */
 	public void show(Activity activity) {
@@ -754,6 +791,7 @@ public class SnackBar extends FrameLayout implements ThemeManager.OnThemeChanged
 
 	/**
 	 * Show this SnackBar. It will auto attach to the parent view.
+	 *
 	 * @param parent Must be {@linke android.widget.FrameLayout} or {@link android.widget.RelativeLayout}
 	 */
 	public void show(ViewGroup parent) {
@@ -768,7 +806,7 @@ public class SnackBar extends FrameLayout implements ThemeManager.OnThemeChanged
 		}
 
 		show();
-    }
+	}
 
 	/**
 	 * Show this SnackBar.
@@ -786,7 +824,7 @@ public class SnackBar extends FrameLayout implements ThemeManager.OnThemeChanged
 			params.width = mWidth;
 			params.height = mHeight;
 			params.gravity = Gravity.START | Gravity.BOTTOM;
-			if(mIsRtl)
+			if (mIsRtl)
 				params.rightMargin = mMarginStart;
 			else
 				params.leftMargin = mMarginStart;
@@ -800,7 +838,7 @@ public class SnackBar extends FrameLayout implements ThemeManager.OnThemeChanged
 			params.height = mHeight;
 			params.addRule(android.widget.RelativeLayout.ALIGN_PARENT_BOTTOM);
 			params.addRule(Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1 ? android.widget.RelativeLayout.ALIGN_PARENT_START : android.widget.RelativeLayout.ALIGN_PARENT_LEFT);
-			if(mIsRtl)
+			if (mIsRtl)
 				params.rightMargin = mMarginStart;
 			else
 				params.leftMargin = mMarginStart;
@@ -839,7 +877,7 @@ public class SnackBar extends FrameLayout implements ThemeManager.OnThemeChanged
 		}
 	}
 
-	private void startTimer(){
+	private void startTimer() {
 		removeCallbacks(mDismissRunnable);
 		if (mDuration > 0)
 			postDelayed(mDismissRunnable, mDuration);
@@ -851,27 +889,28 @@ public class SnackBar extends FrameLayout implements ThemeManager.OnThemeChanged
 	public void dismiss() {
 		if (mState != STATE_SHOWN)
 			return;
-		
+
 		removeCallbacks(mDismissRunnable);
 
 		if (mOutAnimation != null) {
 			mOutAnimation.cancel();
 			mOutAnimation.reset();
 			mOutAnimation.setAnimationListener(new Animation.AnimationListener() {
-				
+
 				@Override
 				public void onAnimationStart(Animation animation) {
 					setState(STATE_DISMISSING);
 				}
 
 				@Override
-				public void onAnimationRepeat(Animation animation) {}
-				
+				public void onAnimationRepeat(Animation animation) {
+				}
+
 				@Override
 				public void onAnimationEnd(Animation animation) {
 					if (mRemoveOnDismiss && getParent() != null && getParent() instanceof ViewGroup)
 						((ViewGroup) getParent()).removeView(SnackBar.this);
-					
+
 					setState(STATE_DISMISSED);
 					setVisibility(View.GONE);
 				}
@@ -881,23 +920,24 @@ public class SnackBar extends FrameLayout implements ThemeManager.OnThemeChanged
 		} else {
 			if (mRemoveOnDismiss && getParent() != null && getParent() instanceof ViewGroup)
 				((ViewGroup) getParent()).removeView(this);
-			
+
 			setState(STATE_DISMISSED);
 			setVisibility(View.GONE);
-		}		
-		
+		}
+
 	}
 
 	/**
 	 * Get the current state of this SnackBar.
+	 *
 	 * @return The current state of this SnackBar. Can be {@link #STATE_DISMISSED}, {@link #STATE_DISMISSING}, {@link #STATE_SHOWING} or {@link #STATE_SHOWN}.
 	 */
-	public int getState(){
+	public int getState() {
 		return mState;
 	}
 
 	private void setState(int state) {
-		if (mState != state){
+		if (mState != state) {
 			int oldState = mState;
 			mState = state;
 			if (mStateChangeListener != null)
@@ -905,24 +945,24 @@ public class SnackBar extends FrameLayout implements ThemeManager.OnThemeChanged
 		}
 	}
 
-	private class BackgroundDrawable extends Drawable{
+	private class BackgroundDrawable extends Drawable {
 
 		private int mBackgroundColor;
 		private int mBackgroundRadius;
-		
+
 		private Paint mPaint;
 		private RectF mRect;
 
-		public BackgroundDrawable(){
+		public BackgroundDrawable() {
 			mPaint = new Paint();
 			mPaint.setAntiAlias(true);
 			mPaint.setStyle(Paint.Style.FILL);
-			
+
 			mRect = new RectF();
 		}
 
 		public void setColor(int color) {
-			if (mBackgroundColor != color){
+			if (mBackgroundColor != color) {
 				mBackgroundColor = color;
 				mPaint.setColor(mBackgroundColor);
 				invalidateSelf();
@@ -930,12 +970,12 @@ public class SnackBar extends FrameLayout implements ThemeManager.OnThemeChanged
 		}
 
 		public void setRadius(int radius) {
-			if (mBackgroundRadius != radius){
+			if (mBackgroundRadius != radius) {
 				mBackgroundRadius = radius;
 				invalidateSelf();
 			}
 		}
-		
+
 		@Override
 		protected void onBoundsChange(Rect bounds) {
 			mRect.set(bounds);
@@ -960,6 +1000,6 @@ public class SnackBar extends FrameLayout implements ThemeManager.OnThemeChanged
 		public int getOpacity() {
 			return PixelFormat.TRANSLUCENT;
 		}
-		
+
 	}
 }

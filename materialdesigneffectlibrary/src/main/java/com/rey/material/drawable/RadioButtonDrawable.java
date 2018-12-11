@@ -34,8 +34,8 @@ public class RadioButtonDrawable extends Drawable implements Animatable {
 	private int mPrevColor;
 	private int mCurColor;
 	private ColorStateList mStrokeColor;
-	private boolean mChecked = false;	
-	
+	private boolean mChecked = false;
+
 	private boolean mInEditMode = false;
 	private boolean mAnimEnable = true;
 
@@ -107,19 +107,19 @@ public class RadioButtonDrawable extends Drawable implements Animatable {
 
 			if (mAnimProgress < inTime) {
 				float inProgress = mAnimProgress / inTime;
-				float outerRadius = mRadius + halfStrokeSize * (1f - inProgress);	
+				float outerRadius = mRadius + halfStrokeSize * (1f - inProgress);
 				float innerRadius = (mRadius - halfStrokeSize) * (1f - inProgress);
 
 				mPaint.setColor(ColorUtil.getMiddleColor(mPrevColor, mCurColor, inProgress));
 				mPaint.setStrokeWidth(outerRadius - innerRadius);
-				mPaint.setStyle(Paint.Style.STROKE);					
+				mPaint.setStyle(Paint.Style.STROKE);
 				canvas.drawCircle(cx, cy, (outerRadius + innerRadius) / 2, mPaint);
 			} else {
 				float outProgress = (mAnimProgress - inTime) / (1f - inTime);
-				float innerRadius = (mRadius - mStrokeSize) * (1 - outProgress) + mInnerRadius * outProgress;	
-				
+				float innerRadius = (mRadius - mStrokeSize) * (1 - outProgress) + mInnerRadius * outProgress;
+
 				mPaint.setColor(mCurColor);
-				mPaint.setStyle(Paint.Style.FILL);					
+				mPaint.setStyle(Paint.Style.FILL);
 				canvas.drawCircle(cx, cy, innerRadius, mPaint);
 
 				float outerRadius = mRadius + halfStrokeSize * outProgress;
@@ -130,7 +130,7 @@ public class RadioButtonDrawable extends Drawable implements Animatable {
 		} else {
 			mPaint.setColor(mCurColor);
 			mPaint.setStrokeWidth(mStrokeSize);
-			mPaint.setStyle(Paint.Style.STROKE);			
+			mPaint.setStyle(Paint.Style.STROKE);
 			canvas.drawCircle(cx, cy, mRadius, mPaint);
 
 			mPaint.setStyle(Paint.Style.FILL);
@@ -143,7 +143,7 @@ public class RadioButtonDrawable extends Drawable implements Animatable {
 		float cy = getBounds().exactCenterY();
 
 		if (isRunning()) {
-			float halfStrokeSize = mStrokeSize / 2f;			
+			float halfStrokeSize = mStrokeSize / 2f;
 			float inTime = (mRadius - mStrokeSize - mInnerRadius) / (mRadius - halfStrokeSize + mRadius - mStrokeSize - mInnerRadius);
 
 			if (mAnimProgress < inTime) {
@@ -151,7 +151,7 @@ public class RadioButtonDrawable extends Drawable implements Animatable {
 				float innerRadius = (mRadius - mStrokeSize) * inProgress + mInnerRadius * (1f - inProgress);
 
 				mPaint.setColor(ColorUtil.getMiddleColor(mPrevColor, mCurColor, inProgress));
-				mPaint.setStyle(Paint.Style.FILL);					
+				mPaint.setStyle(Paint.Style.FILL);
 				canvas.drawCircle(cx, cy, innerRadius, mPaint);
 
 				float outerRadius = mRadius + halfStrokeSize * (1f - inProgress);
@@ -159,26 +159,26 @@ public class RadioButtonDrawable extends Drawable implements Animatable {
 				mPaint.setStyle(Paint.Style.STROKE);
 				canvas.drawCircle(cx, cy, outerRadius - halfStrokeSize, mPaint);
 			} else {
-				float outProgress = (mAnimProgress - inTime) / (1f - inTime);				
+				float outProgress = (mAnimProgress - inTime) / (1f - inTime);
 				float outerRadius = mRadius + halfStrokeSize * outProgress;
 				float innerRadius = (mRadius - halfStrokeSize) * outProgress;
 
 				mPaint.setColor(mCurColor);
 				mPaint.setStrokeWidth(outerRadius - innerRadius);
-				mPaint.setStyle(Paint.Style.STROKE);					
+				mPaint.setStyle(Paint.Style.STROKE);
 				canvas.drawCircle(cx, cy, (outerRadius + innerRadius) / 2, mPaint);
 			}
 		} else {
 			mPaint.setColor(mCurColor);
 			mPaint.setStrokeWidth(mStrokeSize);
-			mPaint.setStyle(Paint.Style.STROKE);			
+			mPaint.setStyle(Paint.Style.STROKE);
 			canvas.drawCircle(cx, cy, mRadius, mPaint);
 		}
 	}
 
 	@Override
 	protected boolean onStateChange(int[] state) {
-		boolean checked = ViewUtil.hasState(state, android.R.attr.state_checked);		
+		boolean checked = ViewUtil.hasState(state, android.R.attr.state_checked);
 		int color = mStrokeColor.getColorForState(state, mCurColor);
 		boolean needRedraw = false;
 
@@ -194,8 +194,8 @@ public class RadioButtonDrawable extends Drawable implements Animatable {
 			mCurColor = color;
 			needRedraw = true;
 		} else if (!isRunning())
-			mPrevColor = color;	
-		
+			mPrevColor = color;
+
 		return needRedraw;
 	}
 
@@ -222,7 +222,7 @@ public class RadioButtonDrawable extends Drawable implements Animatable {
 	}
 
 	@Override
-	public void start() {			
+	public void start() {
 		resetAnimation();
 
 		scheduleSelf(mUpdater, SystemClock.uptimeMillis() + ViewUtil.FRAME_DURATION);
@@ -230,7 +230,7 @@ public class RadioButtonDrawable extends Drawable implements Animatable {
 	}
 
 	@Override
-	public void stop() {				
+	public void stop() {
 		mRunning = false;
 		unscheduleSelf(mUpdater);
 		invalidateSelf();
@@ -246,7 +246,7 @@ public class RadioButtonDrawable extends Drawable implements Animatable {
 		mRunning = true;
 		super.scheduleSelf(what, when);
 	}
-	
+
 	private final Runnable mUpdater = new Runnable() {
 
 		@Override
@@ -270,7 +270,7 @@ public class RadioButtonDrawable extends Drawable implements Animatable {
 	}
 
 	public static class Builder {
-	
+
 		private int mAnimDuration = 400;
 		private int mStrokeSize = 4;
 		private int mWidth = 64;
@@ -296,7 +296,7 @@ public class RadioButtonDrawable extends Drawable implements Animatable {
 			innerRadius(a.getDimensionPixelSize(R.styleable.RadioButtonDrawable_rbd_innerRadius, ThemeUtil.dpToPx(context, 5)));
 			strokeColor(a.getColorStateList(R.styleable.RadioButtonDrawable_rbd_strokeColor));
 			animDuration(a.getInt(R.styleable.RadioButtonDrawable_rbd_animDuration, context.getResources().getInteger(android.R.integer.config_mediumAnimTime)));
-			
+
 			a.recycle();
 
 			if (mStrokeColor == null) {
@@ -307,7 +307,7 @@ public class RadioButtonDrawable extends Drawable implements Animatable {
 				int[] colors = new int[]{
 						ThemeUtil.colorControlNormal(context, 0xFF000000),
 						ThemeUtil.colorControlActivated(context, 0xFF000000),
-				};				
+				};
 				strokeColor(new ColorStateList(states, colors));
 			}
 		}

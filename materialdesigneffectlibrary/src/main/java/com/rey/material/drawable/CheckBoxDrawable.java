@@ -143,7 +143,7 @@ public class CheckBoxDrawable extends Drawable implements Animatable {
 				path.lineTo(x1 * (1 - progress) + x2 * progress, y1 * (1 - progress) + y2 * progress);
 			} else {
 				progress = (progress - midProgress) / (1f - midProgress);
-				path.lineTo(x2, y2);				
+				path.lineTo(x2, y2);
 				path.lineTo(x2 * (1 - progress) + x3 * progress, y2 * (1 - progress) + y3 * progress);
 			}
 		} else {
@@ -186,8 +186,8 @@ public class CheckBoxDrawable extends Drawable implements Animatable {
 				mPaint.setColor(mCurColor);
 				mPaint.setStrokeWidth(mStrokeSize);
 				mPaint.setStyle(Paint.Style.FILL_AND_STROKE);
-				canvas.drawRoundRect(mBoxRect, mCornerRadius, mCornerRadius, mPaint);	
-				
+				canvas.drawRoundRect(mBoxRect, mCornerRadius, mCornerRadius, mPaint);
+
 				mPaint.setStyle(Paint.Style.STROKE);
 				mPaint.setStrokeJoin(Paint.Join.MITER);
 				mPaint.setStrokeCap(Paint.Cap.BUTT);
@@ -199,8 +199,8 @@ public class CheckBoxDrawable extends Drawable implements Animatable {
 			mPaint.setColor(mCurColor);
 			mPaint.setStrokeWidth(mStrokeSize);
 			mPaint.setStyle(Paint.Style.FILL_AND_STROKE);
-			canvas.drawRoundRect(mBoxRect, mCornerRadius, mCornerRadius, mPaint);		
-						
+			canvas.drawRoundRect(mBoxRect, mCornerRadius, mCornerRadius, mPaint);
+
 			mPaint.setStyle(Paint.Style.STROKE);
 			mPaint.setStrokeJoin(Paint.Join.MITER);
 			mPaint.setStrokeCap(Paint.Cap.BUTT);
@@ -217,12 +217,12 @@ public class CheckBoxDrawable extends Drawable implements Animatable {
 				float x = mBoxRect.left + mStrokeSize;
 				float y = mBoxRect.top + mStrokeSize;
 				float progress = mAnimProgress / (1f - FILL_TIME);
-				
+
 				mPaint.setColor(mPrevColor);
 				mPaint.setStrokeWidth(mStrokeSize);
 				mPaint.setStyle(Paint.Style.FILL_AND_STROKE);
-				canvas.drawRoundRect(mBoxRect, mCornerRadius, mCornerRadius, mPaint);	
-				
+				canvas.drawRoundRect(mBoxRect, mCornerRadius, mCornerRadius, mPaint);
+
 				mPaint.setStyle(Paint.Style.STROKE);
 				mPaint.setStrokeJoin(Paint.Join.MITER);
 				mPaint.setStrokeCap(Paint.Cap.BUTT);
@@ -230,7 +230,7 @@ public class CheckBoxDrawable extends Drawable implements Animatable {
 
 				canvas.drawPath(getTickPath(mTickPath, x, y, size, progress, false), mPaint);
 			} else {
-				float progress = (mAnimProgress + FILL_TIME - 1f) / FILL_TIME;				
+				float progress = (mAnimProgress + FILL_TIME - 1f) / FILL_TIME;
 				float fillWidth = (mBoxSize - mStrokeSize) / 2f * (1f - progress);
 				float padding = mStrokeSize / 2f + fillWidth / 2f - 0.5f;
 
@@ -240,19 +240,19 @@ public class CheckBoxDrawable extends Drawable implements Animatable {
 				canvas.drawRect(mBoxRect.left + padding, mBoxRect.top + padding, mBoxRect.right - padding, mBoxRect.bottom - padding, mPaint);
 
 				mPaint.setStrokeWidth(mStrokeSize);
-				canvas.drawRoundRect(mBoxRect, mCornerRadius, mCornerRadius, mPaint);	
+				canvas.drawRoundRect(mBoxRect, mCornerRadius, mCornerRadius, mPaint);
 			}
 		} else {
 			mPaint.setColor(mCurColor);
 			mPaint.setStrokeWidth(mStrokeSize);
-			mPaint.setStyle(Paint.Style.STROKE);			
+			mPaint.setStyle(Paint.Style.STROKE);
 			canvas.drawRoundRect(mBoxRect, mCornerRadius, mCornerRadius, mPaint);
 		}
 	}
 
 	@Override
 	protected boolean onStateChange(int[] state) {
-		boolean checked = ViewUtil.hasState(state, android.R.attr.state_checked);		
+		boolean checked = ViewUtil.hasState(state, android.R.attr.state_checked);
 		int color = mStrokeColor.getColorForState(state, mCurColor);
 		boolean needRedraw = false;
 
@@ -268,10 +268,10 @@ public class CheckBoxDrawable extends Drawable implements Animatable {
 			mCurColor = color;
 			needRedraw = true;
 		} else if (!isRunning())
-			mPrevColor = color;		
-		
+			mPrevColor = color;
+
 		return needRedraw;
-	}	
+	}
 
 	@Override
 	public void setAlpha(int alpha) {
@@ -296,7 +296,7 @@ public class CheckBoxDrawable extends Drawable implements Animatable {
 	}
 
 	@Override
-	public void start() {						
+	public void start() {
 		resetAnimation();
 
 		scheduleSelf(mUpdater, SystemClock.uptimeMillis() + ViewUtil.FRAME_DURATION);
@@ -304,7 +304,7 @@ public class CheckBoxDrawable extends Drawable implements Animatable {
 	}
 
 	@Override
-	public void stop() {		
+	public void stop() {
 		mRunning = false;
 		unscheduleSelf(mUpdater);
 		invalidateSelf();
@@ -320,7 +320,7 @@ public class CheckBoxDrawable extends Drawable implements Animatable {
 		mRunning = true;
 		super.scheduleSelf(what, when);
 	}
-	
+
 	private final Runnable mUpdater = new Runnable() {
 
 		@Override
@@ -344,12 +344,12 @@ public class CheckBoxDrawable extends Drawable implements Animatable {
 	}
 
 	public static class Builder {
-		
+
 		private int mAnimDuration = 400;
 		private int mStrokeSize = 4;
 		private int mWidth = 64;
 		private int mHeight = 64;
-		private ColorStateList mStrokeColor;		
+		private ColorStateList mStrokeColor;
 		private int mCornerRadius = 8;
 		private int mBoxSize = 32;
 		private int mTickColor = 0xFFFFFFFF;
@@ -372,7 +372,7 @@ public class CheckBoxDrawable extends Drawable implements Animatable {
 			strokeColor(a.getColorStateList(R.styleable.CheckBoxDrawable_cbd_strokeColor));
 			tickColor(a.getColor(R.styleable.CheckBoxDrawable_cbd_tickColor, 0xFFFFFFFF));
 			animDuration(a.getInt(R.styleable.CheckBoxDrawable_cbd_animDuration, context.getResources().getInteger(android.R.integer.config_mediumAnimTime)));
-			
+
 			a.recycle();
 
 			if (mStrokeColor == null) {
@@ -383,7 +383,7 @@ public class CheckBoxDrawable extends Drawable implements Animatable {
 				int[] colors = new int[]{
 						ThemeUtil.colorControlNormal(context, 0xFF000000),
 						ThemeUtil.colorControlActivated(context, 0xFF000000),
-				};				
+				};
 				strokeColor(new ColorStateList(states, colors));
 			}
 		}

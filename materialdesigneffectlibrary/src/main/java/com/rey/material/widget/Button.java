@@ -118,7 +118,7 @@ public class Button extends AppCompatButton implements ThemeManager.OnThemeChang
 			setOnClickListener(rippleManager);
 		}
 	}
-	
+
 	@Override
 	public boolean onTouchEvent(@NonNull MotionEvent event) {
 		boolean result = super.onTouchEvent(event);

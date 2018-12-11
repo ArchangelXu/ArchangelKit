@@ -227,7 +227,7 @@ public class CompoundButton extends android.widget.CompoundButton implements The
 		boolean result = super.onTouchEvent(event);
 		return getRippleManager().onTouchEvent(this, event) || result;
 	}
-	
+
 	@Override
 	public void setButtonDrawable(Drawable d) {
 		super.setButtonDrawable(null);

@@ -103,9 +103,9 @@ public class NavigationDrawerDrawable extends Drawable implements Drawable.Callb
 	public boolean isStateful() {
 		return true;
 	}
-	
+
 	@Override
-	protected boolean onStateChange(int[] state) {		
+	protected boolean onStateChange(int[] state) {
 		return mRippleDrawable.onStateChange(state);
 	}
 

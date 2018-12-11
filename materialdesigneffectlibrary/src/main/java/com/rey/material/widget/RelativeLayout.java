@@ -106,7 +106,7 @@ public class RelativeLayout extends android.widget.RelativeLayout implements The
 			setOnClickListener(rippleManager);
 		}
 	}
-	
+
 	@Override
 	public boolean onTouchEvent(@NonNull MotionEvent event) {
 		boolean result = super.onTouchEvent(event);

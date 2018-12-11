@@ -308,7 +308,7 @@ public class ListPopupWindow {
 
 	/**
 	 * Set whether this window should be modal when shown.
-	 * <p>
+	 *
 	 * <p>If a popup window is modal, it will receive all touch and key input.
 	 * If the user touches outside the popup window's content area the popup window
 	 * will be dismissed.
@@ -711,7 +711,7 @@ public class ListPopupWindow {
 	 * Control how the popup operates with an input method: one of
 	 * {@link #INPUT_METHOD_FROM_FOCUSABLE}, {@link #INPUT_METHOD_NEEDED},
 	 * or {@link #INPUT_METHOD_NOT_NEEDED}.
-	 * <p>
+	 *
 	 * <p>If the popup is showing, calling this method will take effect only
 	 * the next time the popup is shown or through a manual call to the {@link #show()}
 	 * method.</p>

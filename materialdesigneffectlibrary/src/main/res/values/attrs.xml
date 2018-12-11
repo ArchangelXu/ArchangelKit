@@ -11,7 +11,7 @@
 	<attr name = "rd_style" format = "reference"/>
 	<attr name = "rd_enable" format = "boolean"/>
 	<attr name = "tv_fontFamily" format = "reference|string"/>
-	<declare-styleable name = "View">
+	<declare-styleable name = "MDView">
 		<attr name = "android:background"/>
 		<attr name = "android:backgroundTint"/>
 		<attr name = "android:backgroundTintMode"/>
@@ -39,7 +39,7 @@
 		<attr name = "android:layoutDirection"/>
 		<attr name = "android:src"/>
 	</declare-styleable>
-	<declare-styleable name = "TextView">
+	<declare-styleable name = "MDTextView">
 		<attr name = "android:drawableBottom"/>
 		<attr name = "android:drawableEnd"/>
 		<attr name = "android:drawableLeft"/>
@@ -86,10 +86,10 @@
 		<attr name = "android:textStyle"/>
 		<attr name = "android:typeface"/>
 	</declare-styleable>
-	<declare-styleable name = "TextViewAppearance">
+	<declare-styleable name = "MDTextViewAppearance">
 		<attr name = "android:textAppearance"/>
 	</declare-styleable>
-	<declare-styleable name = "TextAppearance">
+	<declare-styleable name = "MDTextAppearance">
 		<attr name = "android:textColorHighlight"/>
 		<attr name = "android:textColor"/>
 		<attr name = "android:textColorHint"/>
@@ -108,7 +108,7 @@
 		<attr name = "android:fontFeatureSettings"/>
 		<attr name = "android:letterSpacing"/>
 	</declare-styleable>
-	<declare-styleable name = "AutoCompleteTextView">
+	<declare-styleable name = "MDAutoCompleteTextView">
 		<attr name = "android:completionHint"/>
 		<attr name = "android:completionThreshold"/>
 		<attr name = "android:dropDownAnchor"/>
@@ -435,7 +435,7 @@
 		<attr name = "fab_interpolator" format = "reference"/>
 		<attr name = "fab_animDuration" format = "reference|integer"/>
 	</declare-styleable>
-	<declare-styleable name = "Spinner">
+	<declare-styleable name = "MDSpinner">
 		<attr name = "android:gravity"/>
 		<attr name = "android:prompt"/>
 		<attr name = "android:dropDownWidth"/>
