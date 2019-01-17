@@ -14,11 +14,10 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
         }
     }
-    buildToolsVersion '27.0.3'
 }
 
 dependencies {
 //    api files('libs/fbcore-v0.7.0.jar')
-    testCompile 'junit:junit:4.12'
+    testImplementation 'junit:junit:4.12'
 
 }

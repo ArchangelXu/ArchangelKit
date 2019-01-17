@@ -3,7 +3,6 @@ apply plugin: 'com.android.library'
 
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
-    buildToolsVersion rootProject.ext.buildToolsVersion
 
     defaultConfig {
         minSdkVersion rootProject.ext.minSdkVersion
@@ -37,7 +36,7 @@ dependencies {
 //    api project(':materialEditText')
 //    api 'com.rengwuxian.materialedittext:library:2.1.4'
 
-    api 'com.squareup.okhttp3:okhttp:3.9.0'
+    api 'com.squareup.okhttp3:okhttp:3.11.0'
     api 'com.ogaclejapan.smarttablayout:library:1.6.1@aar'
     api 'com.ogaclejapan.smarttablayout:utils-v4:1.6.1@aar'
     api project(':materialdesigneffectlibrary')
@@ -64,9 +63,11 @@ dependencies {
     api "com.android.support:appcompat-v7:$rootProject.ext.supportLibraryVersion"
     api 'org.simple:androideventbus:1.0.5.1'
 //    api fileTree(dir: 'libs', include: ['*.jar'])
-    api 'com.facebook.fresco:fresco:1.8.1'
-    api 'com.facebook.fresco:imagepipeline-okhttp3:1.8.1'
-    api 'com.facebook.fresco:animated-gif:1.8.1'
+    api 'com.facebook.fresco:fresco:1.11.0'
+    api 'com.facebook.fresco:animated-gif:1.11.0'
+    api 'com.facebook.fresco:animated-webp:1.11.0'
+    api 'com.facebook.fresco:webpsupport:1.11.0'
+    api 'com.facebook.fresco:imagepipeline-okhttp3:1.11.0'
     api 'me.relex:photodraweeview:1.1.2'
 //    api 'de.cketti.fileprovider:public-fileprovider:1.0.0'
 }
