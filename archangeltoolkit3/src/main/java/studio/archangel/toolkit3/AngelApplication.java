@@ -29,6 +29,8 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.lang.ref.WeakReference;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.util.HashSet;
 import java.util.List;
@@ -81,6 +83,7 @@ public abstract class AngelApplication extends Application {
 	@Override
 	public void onCreate() {
 		super.onCreate();
+		closeAndroidPDialog();
 		Logger.setEnable(true);
 		getScreenSize();
 		initAPPParameters();
@@ -97,6 +100,29 @@ public abstract class AngelApplication extends Application {
 		instance = this;
 		initExtraTools();
 		FrescoInit();
+	}
+
+	private void closeAndroidPDialog() {
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+			try {
+				Class aClass = Class.forName("android.content.pm.PackageParser$Package");
+				Constructor declaredConstructor = aClass.getDeclaredConstructor(String.class);
+				declaredConstructor.setAccessible(true);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			try {
+				Class cls = Class.forName("android.app.ActivityThread");
+				Method declaredMethod = cls.getDeclaredMethod("currentActivityThread");
+				declaredMethod.setAccessible(true);
+				Object activityThread = declaredMethod.invoke(null);
+				Field mHiddenApiWarningShown = cls.getDeclaredField("mHiddenApiWarningShown");
+				mHiddenApiWarningShown.setAccessible(true);
+				mHiddenApiWarningShown.setBoolean(activityThread, true);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
 	}
 
 	void initAPPParameters() {
